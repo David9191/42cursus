@@ -1,9 +1,18 @@
 #include "get_next_line.h"
 
-int	main(void)
+int main(void)
 {
-	char buff[50];
-	int fd = open("hello.txt", O_RDONLY);
-	read(fd, buff, 10);
-	printf("%s\n", buff);
+	char *line = 0;
+	int ret;
+	int fd;
+
+	fd = open("your_file_name", O_RDONLY);
+	while ((ret = get_next_line(fd)) > 0)
+	{
+		printf("%s\n", line);
+		free(line);
+	}
+	printf("%s\n", line);
+	free(line);
+	return (0);
 }
