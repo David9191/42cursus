@@ -1,2 +1,5 @@
 *.sh
 test*.*
+a.out
+*.swp
+*.o

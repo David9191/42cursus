@@ -10,7 +10,44 @@ buff 안에 개행 문자가 있는지 없는지 검사를 합니다.
 (이 과정에서 기존에 백업한 것과 계속 합쳐나가야합니다)
 개행문자가 있다 -> 그 다음단계는 static char *에 있는 애들을 \n 전과 후로 잘라서,
 \n 전까지는 line 에다가 주고 나머지는 다시 static 변수에 백업.... 하면됩니다.
+
+	ft_read_to_left_str
+	위에 애는 \n이 있을 때까지 읽는 함수.
+
+	ft_get_line
+	\n까지 꾾어서 주기.
+
+	ft_new_left_str
+	\n이후부터 주기.
+
+	if (fd < 0 || BUFFER_SIZE <= 0)
+		return (0);
+	left_str = ft_read_to_left_str(fd, left_str);
+	if (!left_str)
+		return (NULL);
+	line = ft_get_line(left_str);
+	left_str = ft_new_left_str(left_str);
+	return (line);
 */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 /* logic */
 /* 큰 틀

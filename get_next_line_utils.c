@@ -6,7 +6,7 @@
 /*   By: jislim <jislim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 02:01:45 by jislim            #+#    #+#             */
-/*   Updated: 2021/12/20 23:56:01 by jislim           ###   ########.fr       */
+/*   Updated: 2021/12/21 03:20:19 by jislim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,24 +29,6 @@ size_t	ft_strlcpy(char *dest, const char *src, size_t size)
 		dest[i] = '\0';
 	}
 	return (src_len);
-}
-
-char	*cpy_edl(char *str)
-{
-	char	*ret_str;
-	int		size;
-	int		i;
-
-	size = 1;
-	while (str[size] != '\n')
-		size++;
-	ret_str = malloc(sizeof(char) * (size + 1));
-	size += 1;
-	i = 0;
-	while ((i + 1) < size)
-		ret_str[i] = str[i];
-	ret_str[i] = '\0';
-	return (ret_str);
 }
 
 char	*ft_strdup(const char *s1)
@@ -77,4 +59,17 @@ size_t	ft_strlen(const char *s)
 	while (s[len])
 		len++;
 	return (len);
+}
+
+int	ft_strchr(const char *s, int c)
+{
+	if (c < 0)
+		return (NULL);
+	while (*s != (char)c)
+	{
+		if (*s == '\0')
+			return (0);
+		s++;
+	}
+	return (1);
 }
