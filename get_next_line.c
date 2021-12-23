@@ -6,7 +6,7 @@
 /*   By: jislim <jislim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 02:01:47 by jislim            #+#    #+#             */
-/*   Updated: 2021/12/24 01:06:57 by jislim           ###   ########.fr       */
+/*   Updated: 2021/12/24 01:38:37 by jislim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,8 @@ char	*get_line(int fd, char *backup)
 		check_read = read(fd, buf, BUFFER_SIZE);
 		if (check_read < 0)
 			return (NULL);
-		else if (check_read == 0)
-			return (ft_strdup(""));
-		buf[BUFFER_SIZE] = '\0';
-		ft_strlcat(backup, buf);
+		buf[check_read] = '\0';
+		backup = ft_strjoin(backup, buf);
 	}
 	ret_buf = get_line_endl(backup);
 	if (!ret_buf)
@@ -39,7 +37,6 @@ char	*get_next_line(int fd)
 {
 	static char	*backup;
 	char		*buf;
-	size_t		check_read;
 
 	if (fd < 0 || BUFFER_SIZE < 0)
 		return (NULL);
@@ -48,4 +45,13 @@ char	*get_next_line(int fd)
 		return (NULL);
 	backup += loc_nl(backup);
 	return (buf);
+}
+
+int	main(void)
+{
+	char	*buf;
+	int fd = open("hello.txt", O_RDWR);
+
+	buf = get_next_line(fd);
+	printf("%s\n", buf);
 }

@@ -6,7 +6,7 @@
 /*   By: jislim <jislim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 02:01:45 by jislim            #+#    #+#             */
-/*   Updated: 2021/12/24 01:05:47 by jislim           ###   ########.fr       */
+/*   Updated: 2021/12/24 01:40:41 by jislim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,40 +25,42 @@ int	ft_strchr(const char *s, int c)
 	return (1);
 }
 
-char	*ft_strdup(const char *s1)
+size_t	ft_strlen(const char *s)
 {
-	char	*ps1;
-	size_t	len;
 	size_t	i;
 
-	len = 0;
-	while (s1[len] != '\0')
-		len++;
-	ps1 = (char *)malloc(sizeof(char) * (len + 1));
-	if (!(ps1))
-		return (NULL);
 	i = 0;
-	while (i < len)
-	{
-		ps1[i] = s1[i];
+	if (!s)
+		return (0);
+	while (s[i] != '\0')
 		i++;
-	}
-	ps1[i] = '\0';
-	return (ps1);
+	return (i);
 }
 
-void	ft_strlcat(char *dest, const char *src)
+char	*ft_strjoin(char *dest, char *src)
 {
+	char	*ret_str;
 	size_t	dst_idx;
 	size_t	src_idx;
 
+	ret_str = malloc(sizeof(char) * ft_strlen(dest) + ft_strlen(src) + 1);
+	if (!ret_str)
+		return (NULL);
 	dst_idx = 0;
 	while (dest[dst_idx] != '\0')
+	{
+		ret_str[dst_idx] = dest[dst_idx];
 		dst_idx++;
+	}
 	src_idx = 0;
 	while (src[src_idx] != '\0')
-		dest[dst_idx++] = src[src_idx++];
-	dest[dst_idx] = '\0';
+	{
+		ret_str[dst_idx + src_idx] = src[src_idx];
+		src_idx++;
+	}
+	ret_str[dst_idx + src_idx] = '\0';
+	free(dest);
+	return (ret_str);
 }
 
 char	*get_line_endl(char *str)
