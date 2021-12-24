@@ -6,7 +6,7 @@
 /*   By: jislim <jislim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 02:01:47 by jislim            #+#    #+#             */
-/*   Updated: 2021/12/24 01:38:37 by jislim           ###   ########.fr       */
+/*   Updated: 2021/12/24 20:39:47 by jislim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ char	*get_next_line(int fd)
 
 	if (fd < 0 || BUFFER_SIZE < 0)
 		return (NULL);
+	backup = malloc(sizeof(char) * BUFFER_SIZE + 1);
 	buf = get_line(fd, backup);
 	if (!buf)
 		return (NULL);
