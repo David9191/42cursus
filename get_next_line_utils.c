@@ -6,7 +6,7 @@
 /*   By: jislim <jislim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 02:01:45 by jislim            #+#    #+#             */
-/*   Updated: 2021/12/25 02:48:38 by jislim           ###   ########.fr       */
+/*   Updated: 2021/12/25 03:40:59 by jislim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,10 +71,10 @@ char	*get_line_endl(char *str)
 	size_t	ret_str_idx;
 	size_t	str_idx;
 
-	endl_idx = 1;
+	endl_idx = 0;
 	while (str[endl_idx] != '\n' && str[endl_idx] != '\0')
 		endl_idx++;
-	ret_str = malloc(sizeof(char) * (endl_idx + 1));
+	ret_str = malloc(sizeof(char) * (endl_idx + 2));
 	if (!ret_str)
 		return (NULL);
 	ret_str_idx = 0;
@@ -91,17 +91,21 @@ char	*save_backup(char *str)
 	size_t	len;
 	size_t	ret_str_idx;
 
-	// printf("util str : %s\n", str);
-	len = 1;
+	// 12\nㅠㅠ
+	// sdfjklasdf
+	// sj
+	len = 0;
 	while (str[len] != '\n' && str[len] != '\0')
 		len++;
-	ret_str = malloc(sizeof(char) * (ft_strlen(str) - len + 1));
+	// printf("len : %ld\n", len);
+	ret_str = malloc(sizeof(char) * (ft_strlen(str) - len));
 	if (!ret_str)
 		return (NULL);
 	ret_str_idx = 0;
+	len++;
 	while (len < ft_strlen(str))
 		ret_str[ret_str_idx++] = str[len++];
 	ret_str[ret_str_idx] = '\0';
-	// printf("util ret_str : %s\n", ret_str);
+	free(str);
 	return (ret_str);
 }
