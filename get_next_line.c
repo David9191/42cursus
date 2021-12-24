@@ -6,7 +6,7 @@
 /*   By: jislim <jislim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 02:01:47 by jislim            #+#    #+#             */
-/*   Updated: 2021/12/24 21:06:03 by jislim           ###   ########.fr       */
+/*   Updated: 2021/12/25 02:48:27 by jislim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,14 +27,7 @@ char	*get_line(int fd, char *backup)
 		buf[check_read] = '\0';
 		backup = ft_strjoin(backup, buf);
 	}
-	if (check_read == 0)
-	{
-		ret_buf = backup;
-		return (ret_buf);
-	}
-	ret_buf = get_line_endl(backup);
-	if (!ret_buf)
-		return (NULL);
+	ret_buf = backup;
 	return (ret_buf);
 }
 
@@ -49,15 +42,23 @@ char	*get_next_line(int fd)
 	buf = get_line(fd, backup);
 	if (!buf)
 		return (NULL);
-	backup += loc_nl(backup);
+	buf = get_line_endl(buf);
+	backup = save_backup(backup);
 	return (buf);
 }
 
 int	main(void)
 {
-	char	*buf;
-	int fd = open("hello.txt", O_RDWR);
+	char	*buf = "start\n";
+	int		fd;
 
-	buf = get_next_line(fd);
-	printf("%s\n", buf);
+	fd = open("hello.txt", O_RDWR);
+	while (1)
+	{
+		buf = get_next_line(fd);
+		if (!ft_strlen(buf))
+			break ;
+		printf("%s\n", buf);
+		free(buf);
+	}
 }

@@ -39,15 +39,22 @@ char	*get_next_line(int fd)
 	if (!backup)
 		return (NULL);
 	line = ft_get_line(backup);
-	backup = ft_new_backup(backup);
+	backup = ft_new_left_str(backup);
 	return (line);
 }
 
 int	main(void)
 {
-	char	*buf;
-	int fd = open("hello.txt", O_RDWR);
+	char	*buf = "start\n";
+	int		fd;
 
-	buf = get_next_line(fd);
-	printf("%s\n", buf);
+	fd = open("hello.txt", O_RDWR);
+	while (1)
+	{
+		buf = get_next_line(fd);
+		if (!ft_strlen(buf))
+			break ;
+		printf("%s\n", buf);
+		free(buf);
+	}
 }

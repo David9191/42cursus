@@ -6,7 +6,7 @@
 /*   By: jislim <jislim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 02:01:45 by jislim            #+#    #+#             */
-/*   Updated: 2021/12/24 21:05:28 by jislim           ###   ########.fr       */
+/*   Updated: 2021/12/25 02:48:38 by jislim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,14 +27,14 @@ int	ft_strchr(const char *s, int c)
 
 size_t	ft_strlen(const char *s)
 {
-	size_t	i;
+	size_t	idx;
 
-	i = 0;
+	idx = 0;
 	if (!s)
 		return (0);
-	while (s[i] != '\0')
-		i++;
-	return (i);
+	while (s[idx] != '\0')
+		idx++;
+	return (idx);
 }
 
 char	*ft_strjoin(char *dest, char *src)
@@ -60,6 +60,7 @@ char	*ft_strjoin(char *dest, char *src)
 	}
 	ret_str[dst_idx + src_idx] = '\0';
 	free(dest);
+	dest = NULL;
 	return (ret_str);
 }
 
@@ -78,18 +79,29 @@ char	*get_line_endl(char *str)
 		return (NULL);
 	ret_str_idx = 0;
 	str_idx = 0;
-	while (str[str_idx] != '\0')
+	while (ret_str_idx <= endl_idx)
 		ret_str[ret_str_idx++] = str[str_idx++];
 	ret_str[ret_str_idx] = '\0';
 	return (ret_str);
 }
 
-size_t	loc_nl(char *str)
+char	*save_backup(char *str)
 {
+	char	*ret_str;
 	size_t	len;
+	size_t	ret_str_idx;
 
+	// printf("util str : %s\n", str);
 	len = 1;
-	while (str[len] != '\n')
+	while (str[len] != '\n' && str[len] != '\0')
 		len++;
-	return (len);
+	ret_str = malloc(sizeof(char) * (ft_strlen(str) - len + 1));
+	if (!ret_str)
+		return (NULL);
+	ret_str_idx = 0;
+	while (len < ft_strlen(str))
+		ret_str[ret_str_idx++] = str[len++];
+	ret_str[ret_str_idx] = '\0';
+	// printf("util ret_str : %s\n", ret_str);
+	return (ret_str);
 }
