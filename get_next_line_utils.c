@@ -6,7 +6,7 @@
 /*   By: jislim <jislim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 02:01:45 by jislim            #+#    #+#             */
-/*   Updated: 2021/12/24 01:40:41 by jislim           ###   ########.fr       */
+/*   Updated: 2021/12/24 21:05:28 by jislim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ char	*get_line_endl(char *str)
 	size_t	str_idx;
 
 	endl_idx = 1;
-	while (str[endl_idx] != '\n')
+	while (str[endl_idx] != '\n' && str[endl_idx] != '\0')
 		endl_idx++;
 	ret_str = malloc(sizeof(char) * (endl_idx + 1));
 	if (!ret_str)

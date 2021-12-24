@@ -6,7 +6,7 @@
 /*   By: jislim <jislim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 02:01:47 by jislim            #+#    #+#             */
-/*   Updated: 2021/12/24 20:39:47 by jislim           ###   ########.fr       */
+/*   Updated: 2021/12/24 21:06:03 by jislim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,18 @@ char	*get_line(int fd, char *backup)
 	int		check_read;
 
 	check_read = 1;
-	while (!ft_strchr(backup, '\n'))
+	while (!ft_strchr(backup, '\n') && check_read != 0)
 	{
 		check_read = read(fd, buf, BUFFER_SIZE);
 		if (check_read < 0)
 			return (NULL);
 		buf[check_read] = '\0';
 		backup = ft_strjoin(backup, buf);
+	}
+	if (check_read == 0)
+	{
+		ret_buf = backup;
+		return (ret_buf);
 	}
 	ret_buf = get_line_endl(backup);
 	if (!ret_buf)
