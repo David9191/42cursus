@@ -6,7 +6,7 @@
 /*   By: jislim <jislim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 02:01:47 by jislim            #+#    #+#             */
-/*   Updated: 2021/12/26 00:52:12 by jislim           ###   ########.fr       */
+/*   Updated: 2021/12/26 01:08:54 by jislim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,4 +49,20 @@ char	*get_next_line(int fd)
 	buf = get_line_endl(backup);
 	backup = save_backup(backup);
 	return (buf);
+}
+
+int	main(void)
+{
+	char	*buf = "start\n";
+	int		fd;
+
+	fd = open("hello.txt", O_RDWR);
+	while (1)
+	{
+		buf = get_next_line(fd);
+		if (!ft_strlen(buf))
+			break ;
+		printf("%s\n", buf);
+		free(buf);
+	}
 }

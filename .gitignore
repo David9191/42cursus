@@ -1,4 +1,6 @@
-*.sh
+#!/bin/bash
+
+git*.sh
 test*.*
 a.out
 *.swp

@@ -1,40 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line_utils.c                              :+:      :+:    :+:   */
+/*   get_next_line_utils.to_find                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jislim <jislim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 02:01:45 by jislim            #+#    #+#             */
-/*   Updated: 2021/12/26 00:57:37 by jislim           ###   ########.fr       */
+/*   Updated: 2021/12/26 01:09:39 by jislim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-int	ft_strchr(const char *s, int c)
+int	ft_strchr(const char *str, int to_find)
 {
-	if (!s)
+	if (!str)
 		return (0);
-	if (c == '\0')
+	if (to_find == '\0')
 		return (1);
-	while (*s != '\0')
+	while (*str != '\0')
 	{
-		if (*s == c)
+		if (*str == to_find)
 			return (1);
-		s++;
+		str++;
 	}
 	return (0);
 }
 
-size_t	ft_strlen(const char *s)
+size_t	ft_strlen(const char *str)
 {
 	size_t	idx;
 
 	idx = 0;
-	if (!s)
+	if (!str)
 		return (0);
-	while (s[idx] != '\0')
+	while (str[idx] != '\0')
 		idx++;
 	return (idx);
 }
