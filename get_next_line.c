@@ -6,7 +6,7 @@
 /*   By: jislim <jislim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 02:01:47 by jislim            #+#    #+#             */
-/*   Updated: 2021/12/25 04:16:33 by jislim           ###   ########.fr       */
+/*   Updated: 2021/12/26 00:52:12 by jislim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +31,8 @@ char	*get_line(int fd, char *backup)
 		}
 		buf[check_read] = '\0';
 		backup = ft_strjoin(backup, buf);
-		// printf("backup : %s\n", backup);
 	}
 	free(buf);
-	// printf("ret_buf : %s\n", ret_buf);
 	return (backup);
 }
 
@@ -43,34 +41,12 @@ char	*get_next_line(int fd)
 	static char	*backup;
 	char		*buf;
 
-	if (fd < 0 || BUFFER_SIZE < 0)
+	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
-	// backup = malloc(sizeof(char) * BUFFER_SIZE + 1);
 	backup = get_line(fd, backup);
-	// printf("backup : %s\n", backup); // 전체 다 들어옴.
 	if (!backup)
 		return (NULL);
 	buf = get_line_endl(backup);
-	// printf("backup : %s\n", backup); 전체 다 유지.
-	// printf("buf : %s\n", buf);
 	backup = save_backup(backup);
-	// printf("backup : %s\n", backup);
 	return (buf);
-}
-
-int	main(void)
-{
-	char	*buf = "\n";
-	int		fd;
-	int		cnt = 3;
-
-	fd = open("hello.txt", O_RDWR);
-	while (cnt--)
-	{
-		buf = get_next_line(fd);
-		if (!ft_strlen(buf))
-			break ;
-		printf("%s\n", buf);
-		free(buf);
-	}
 }

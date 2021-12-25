@@ -6,7 +6,7 @@
 /*   By: jislim <jislim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 02:01:45 by jislim            #+#    #+#             */
-/*   Updated: 2021/12/25 04:16:05 by jislim           ###   ########.fr       */
+/*   Updated: 2021/12/26 00:50:56 by jislim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,13 @@ char	*ft_strjoin(char *dest, char *src)
 	char	*ret_str;
 	size_t	dst_idx;
 	size_t	src_idx;
-
+	if (!dest)
+	{
+		dest = (char *)malloc(1 * sizeof(char));
+		dest[0] = '\0';
+	}
+	if (!dest || !src)
+		return (NULL);
 	ret_str = malloc(sizeof(char) * ft_strlen(dest) + ft_strlen(src) + 1);
 	if (!ret_str)
 		return (NULL);

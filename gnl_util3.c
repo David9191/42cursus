@@ -30,84 +30,84 @@ char	*ft_strchr3(char *s, int c)
 	return (0);
 }
 
-char	*ft_strjoin3(char *left_str, char *buff)
+char	*ft_strjoin3(char *dest, char *src)
 {
 	size_t	i;
 	size_t	j;
 	char	*str;
 
-	if (!left_str)
+	if (!dest)
 	{
-		left_str = (char *)malloc(1 * sizeof(char));
-		left_str[0] = '\0';
+		dest = (char *)malloc(1 * sizeof(char));
+		dest[0] = '\0';
 	}
-	if (!left_str || !buff)
+	if (!dest || !src)
 		return (NULL);
-	str = malloc(sizeof(char) * ((ft_strlen(left_str) + ft_strlen(buff)) + 1));
+	str = malloc(sizeof(char) * ((ft_strlen(dest) + ft_strlen(src)) + 1));
 	if (str == NULL)
 		return (NULL);
 	i = -1;
 	j = 0;
-	if (left_str)
-		while (left_str[++i] != '\0')
-			str[i] = left_str[i];
-	while (buff[j] != '\0')
-		str[i++] = buff[j++];
-	str[ft_strlen(left_str) + ft_strlen(buff)] = '\0';
-	free(left_str);
+	if (dest)
+		while (dest[++i] != '\0')
+			str[i] = dest[i];
+	while (src[j] != '\0')
+		str[i++] = src[j++];
+	str[ft_strlen(dest) + ft_strlen(src)] = '\0';
+	free(dest);
 	return (str);
 }
 
-char	*ft_get_line(char *left_str)
+char	*ft_get_line(char *dest)
 {
 	int		i;
 	char	*str;
 
 	i = 0;
-	if (!left_str[i])
+	if (!dest[i])
 		return (NULL);
-	while (left_str[i] && left_str[i] != '\n')
+	while (dest[i] && dest[i] != '\n')
 		i++;
 	str = (char *)malloc(sizeof(char) * (i + 2));
 	if (!str)
 		return (NULL);
 	i = 0;
-	while (left_str[i] && left_str[i] != '\n')
+	while (dest[i] && dest[i] != '\n')
 	{
-		str[i] = left_str[i];
+		str[i] = dest[i];
 		i++;
 	}
-	if (left_str[i] == '\n')
+	if (dest[i] == '\n')
 	{
-		str[i] = left_str[i];
+		str[i] = dest[i];
 		i++;
 	}
 	str[i] = '\0';
 	return (str);
 }
 
-char	*ft_new_left_str(char *left_str)
+char	*ft_new_left_str(char *dest)
 {
 	int		i;
 	int		j;
 	char	*str;
 
 	i = 0;
-	while (left_str[i] && left_str[i] != '\n')
+	while (dest[i] && dest[i] != '\n')
 		i++;
-	if (!left_str[i])
+	if (!dest[i])
 	{
-		free(left_str);
+		free(dest);
 		return (NULL);
 	}
-	str = (char *)malloc(sizeof(char) * (ft_strlen(left_str) - i + 1));
+	str = (char *)malloc(sizeof(char) * (ft_strlen(dest) - i + 1));
 	if (!str)
 		return (NULL);
 	i++;
 	j = 0;
-	while (left_str[i])
-		str[j++] = left_str[i++];
+	while (dest[i])
+		str[j++] = dest[i++];
 	str[j] = '\0';
-	free(left_str);
+	free(dest);
 	return (str);
 }
