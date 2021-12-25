@@ -6,7 +6,7 @@
 /*   By: jislim <jislim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 02:01:45 by jislim            #+#    #+#             */
-/*   Updated: 2021/12/26 00:50:56 by jislim           ###   ########.fr       */
+/*   Updated: 2021/12/26 00:57:37 by jislim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ char	*ft_strjoin(char *dest, char *src)
 	char	*ret_str;
 	size_t	dst_idx;
 	size_t	src_idx;
+
 	if (!dest)
 	{
 		dest = (char *)malloc(1 * sizeof(char));
@@ -90,13 +91,9 @@ char	*save_backup(char *str)
 	size_t	len;
 	size_t	ret_str_idx;
 
-	// 12\nㅠㅠ
-	// sdfjklasdf
-	// sj
 	len = 0;
 	while (str[len] != '\n' && str[len] != '\0')
 		len++;
-	// printf("len : %ld\n", len);
 	if (!str[len])
 	{
 		free(str);
