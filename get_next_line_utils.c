@@ -12,17 +12,20 @@
 
 #include "get_next_line.h"
 
-int	ft_strchr(const char *str, int to_find)
+size_t	ft_strchr(const char *str, int to_find)
 {
+	size_t	len;
+
+	len = 0;
 	if (!str)
 		return (0);
 	if (to_find == '\0')
 		return (1);
-	while (*str != '\0')
+	while (str[len] != '\0')
 	{
-		if (*str == to_find)
-			return (1);
-		str++;
+		if (str[len] == to_find)
+			return (len);
+		len++;
 	}
 	return (0);
 }
@@ -91,10 +94,8 @@ char	*save_backup(char *str)
 	size_t	len;
 	size_t	ret_str_idx;
 
-	len = 0;
-	while (str[len] != '\n' && str[len] != '\0')
-		len++;
-	if (!str[len])
+	len = ft_strchr(str, '\n');
+	if (!str || !len)
 	{
 		free(str);
 		return (NULL);
