@@ -45,6 +45,13 @@ char	*ft_strjoin(char *dest, char *src)
 	size_t	dst_idx;
 	size_t	src_idx;
 
+	if (!dest)
+	{
+		dest = (char *)malloc(sizeof(char) * 1);
+		*dest = '\0';
+	}
+	if (!dest)
+		return (NULL);
 	ret_str = malloc(sizeof(char) * ft_strlen(dest) + ft_strlen(src) + 1);
 	if (!ret_str)
 		return (NULL);
