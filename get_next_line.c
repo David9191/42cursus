@@ -6,11 +6,21 @@
 /*   By: jislim <jislim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 02:01:47 by jislim            #+#    #+#             */
-/*   Updated: 2021/12/27 03:00:19 by jislim           ###   ########.fr       */
+/*   Updated: 2021/12/28 02:18:05 by jislim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
+
+// 18765
+
+// 21234
+
+// 38765
+
+// 41234
+
+// 58765
 
 char	*get_line(int fd, char *backup)
 {
@@ -21,10 +31,11 @@ char	*get_line(int fd, char *backup)
 	if (!buf)
 		return (NULL);
 	check_read = 1;
+	// printf("backup : %s\n", backup);
 	while (!ft_strchr(backup, '\n') && check_read != 0)
 	{
 		check_read = read(fd, buf, BUFFER_SIZE);
-		if (check_read < 0)
+		if ((check_read == 0 && !buf) || check_read < 0)
 		{
 			free(buf);
 			return (NULL);
@@ -32,6 +43,7 @@ char	*get_line(int fd, char *backup)
 		buf[check_read] = '\0';
 		backup = ft_strjoin(backup, buf);
 	}
+	// printf("backup : %s\n", backup);
 	free(buf);
 	return (backup);
 }
@@ -46,8 +58,11 @@ char	*get_next_line(int fd)
 	backup = get_line(fd, backup);
 	if (!backup)
 		return (NULL);
+	// printf("backup : %s", backup);
 	buf = get_line_endl(backup);
 	backup = save_backup(backup);
+	if (backup == NULL)
+		return (NULL);
 	return (buf);
 }
 
@@ -62,7 +77,7 @@ int	main(void)
 		buf = get_next_line(fd);
 		if (!ft_strlen(buf))
 			break ;
-		printf("%s\n", buf);
+		printf("%s", buf);
 		free(buf);
 	}
 }

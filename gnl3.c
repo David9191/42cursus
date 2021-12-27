@@ -1,8 +1,5 @@
-
 #include "get_next_line.h"
 #include <unistd.h>
-//#include <stdio.h>
-//#include <fcntl.h>
 
 char	*ft_read_to_backup(int fd, char *backup)
 {
@@ -54,7 +51,7 @@ int	main(void)
 		buf = get_next_line(fd);
 		if (!ft_strlen(buf))
 			break ;
-		printf("%s\n", buf);
+		printf("%s", buf);
 		free(buf);
 	}
 }
