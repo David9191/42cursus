@@ -31,9 +31,4 @@ char	*ft_strjoin(char *dest, char *src);
 char	*get_line_endl(char *str);
 char	*save_backup(char *str);
 
-char	*ft_strchr3(char *s, int c);
-char	*ft_strjoin3(char *left_str, char *buff);
-char	*ft_get_line(char *left_str);
-char	*ft_new_left_str(char *left_str);
-
 #endif
