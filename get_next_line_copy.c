@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line_copy.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jislim <jislim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/13 02:01:47 by jislim            #+#    #+#             */
-/*   Updated: 2022/01/25 20:07:35 by jislim           ###   ########.fr       */
+/*   Created: 2022/01/25 18:38:45 by jislim            #+#    #+#             */
+/*   Updated: 2022/01/25 20:04:27 by jislim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,6 @@ char	*get_line(int fd, char *backup)
 	if (!buf)
 		return (NULL);
 	check_read = 1;
-	// printf("backup : %s\n", backup);
-
 	while (!ft_strchr(backup, '\n') && check_read != 0)
 	{
 		check_read = read(fd, buf, BUFFER_SIZE);
@@ -34,7 +32,6 @@ char	*get_line(int fd, char *backup)
 		buf[check_read] = '\0';
 		backup = ft_strjoin(backup, buf);
 	}
-	// printf("backup : %s\n", backup);
 	free(buf);
 	return (backup);
 }
@@ -44,12 +41,11 @@ char	*get_next_line(int fd)
 	static char	*backup;
 	char		*buf;
 
-	if (fd == -1 || fd > OPEN_MAX || BUFFER_SIZE <= 0)
+	if (fd == -1 || BUFFER_SIZE < 0)
 		return (NULL);
 	backup = get_line(fd, backup);
 	if (!backup)
 		return (NULL);
-	// printf("backup : %s", backup);
 	buf = get_line_endl(backup);
 	backup = save_backup(backup);
 	if (backup == NULL)
