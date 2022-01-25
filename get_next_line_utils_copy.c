@@ -6,7 +6,7 @@
 /*   By: jislim <jislim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 02:01:45 by jislim            #+#    #+#             */
-/*   Updated: 2022/01/25 20:57:56 by jislim           ###   ########.fr       */
+/*   Updated: 2022/01/25 21:23:52 by jislim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,6 @@ char	*save_backup(char *str)
 	size_t	len;
 	size_t	ret_str_idx;
 
-	// len = ft_strchr(str, '\n');
 	len = 0;
 	while (str[len] != '\n' && str[len])
 		len++;
@@ -105,7 +104,7 @@ char	*save_backup(char *str)
 	if (!ret_str)
 		return (NULL);
 	ret_str_idx = 0;
-	len++;
+	len++; // \n 한 칸 뒤로 이동시켜줌.
 	while (str[len])
 		ret_str[ret_str_idx++] = str[len++];
 	ret_str[ret_str_idx] = '\0';
