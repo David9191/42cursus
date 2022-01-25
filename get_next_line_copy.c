@@ -6,7 +6,7 @@
 /*   By: jislim <jislim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/25 18:38:45 by jislim            #+#    #+#             */
-/*   Updated: 2022/01/25 20:04:27 by jislim           ###   ########.fr       */
+/*   Updated: 2022/01/25 20:16:51 by jislim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ char	*get_line(int fd, char *backup)
 	free(buf);
 	return (backup);
 }
-
+// fd : 3, BUFFER_SIZE = 10
 char	*get_next_line(int fd)
 {
 	static char	*backup;

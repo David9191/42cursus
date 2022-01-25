@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line_utils copy.c                         :+:      :+:    :+:   */
+/*   get_next_line_utils_copy.c                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jislim <jislim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 02:01:45 by jislim            #+#    #+#             */
-/*   Updated: 2022/01/25 19:02:21 by jislim           ###   ########.fr       */
+/*   Updated: 2022/01/25 20:57:56 by jislim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	ft_strchr(const char *str, int to_find)
 	while (str[len] != '\0')
 	{
 		if (str[len] == to_find)
-			return (len);
+			return (len + 1);
 		len++;
 	}
 	return (0);
@@ -45,14 +45,14 @@ char	*ft_strjoin(char *dest, char *src)
 	char	*ret_str;
 	size_t	dst_idx;
 	size_t	src_idx;
-
-	if (!dest)
+	// printf("dest's address : %p\n", dest);
+	if (!dest) // 처음에 backup만들어 주기.
 	{
 		dest = (char *)malloc(sizeof(char) * 1);
+		if (!dest)
+			return (NULL);
 		*dest = '\0';
 	}
-	if (!dest)
-		return (NULL);
 	ret_str = malloc(sizeof(char) * ft_strlen(dest) + ft_strlen(src) + 1);
 	if (!ret_str)
 		return (NULL);
@@ -92,8 +92,11 @@ char	*save_backup(char *str)
 	size_t	len;
 	size_t	ret_str_idx;
 
-	len = ft_strchr(str, '\n');
-	if (!str || !len)
+	// len = ft_strchr(str, '\n');
+	len = 0;
+	while (str[len] != '\n' && str[len])
+		len++;
+	if (!str)
 	{
 		free(str);
 		return (NULL);

@@ -6,7 +6,7 @@
 /*   By: jislim <jislim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 02:01:45 by jislim            #+#    #+#             */
-/*   Updated: 2022/01/25 18:43:51 by jislim           ###   ########.fr       */
+/*   Updated: 2022/01/25 20:57:07 by jislim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ int	ft_strchr(const char *str, int to_find)
 	len = 0;
 	if (!str)
 		return (0);
+	if (to_find == '\0')
+		return (1);
 	while (str[len] != '\0')
 	{
 		if (str[len] == to_find)
