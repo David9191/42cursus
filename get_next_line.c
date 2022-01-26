@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jislim <jislim@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jislim <jislim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 02:01:47 by jislim            #+#    #+#             */
-/*   Updated: 2022/01/25 21:03:48 by jislim           ###   ########.fr       */
+/*   Updated: 2022/01/26 22:10:26 by jislim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ char	*get_next_line(int fd)
 	static char	*backup;
 	char		*buf;
 
-	if (fd == -1 || fd > OPEN_MAX || BUFFER_SIZE <= 0)
+	if (fd == -1 || BUFFER_SIZE <= 0 /*|| fd > OPEN_MAX - window error*/)
 		return (NULL);
 	backup = get_line(fd, backup);
 	if (!backup)
