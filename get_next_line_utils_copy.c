@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils_copy.c                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jislim <jislim@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jislim <jislim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 02:01:45 by jislim            #+#    #+#             */
-/*   Updated: 2022/01/25 21:23:52 by jislim           ###   ########.fr       */
+/*   Updated: 2022/01/27 01:42:49 by jislim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,13 +93,13 @@ char	*save_backup(char *str)
 	size_t	ret_str_idx;
 
 	len = 0;
-	while (str[len] != '\n' && str[len])
-		len++;
 	if (!str)
 	{
 		free(str);
 		return (NULL);
 	}
+	while (str[len] != '\n' && str[len])
+		len++;
 	ret_str = malloc(sizeof(char) * (ft_strlen(str) - len));
 	if (!ret_str)
 		return (NULL);
