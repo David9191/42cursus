@@ -6,7 +6,7 @@
 /*   By: jislim <jislim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/25 18:38:45 by jislim            #+#    #+#             */
-/*   Updated: 2022/01/28 21:25:37 by jislim           ###   ########.fr       */
+/*   Updated: 2022/01/29 23:58:51 by jislim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ char	*get_next_line(int fd)
 	return (buf);
 }
 // empty line 고치기
+// add comment
 // int	main(void)
 // {
 // 	char	*buf = "start\n";
