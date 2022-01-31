@@ -6,7 +6,7 @@
 /*   By: jislim <jislim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/25 18:38:45 by jislim            #+#    #+#             */
-/*   Updated: 2022/02/01 00:22:38 by jislim           ###   ########.fr       */
+/*   Updated: 2022/02/01 00:37:04 by jislim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ char	*get_line(int fd, char *backup)
 	{
 		check_read = read(fd, buf, BUFFER_SIZE);
 		// printf("%d\n%p\n%d\n", check_read, buf, buf[0]);
-		if ((check_read == 0 && !buf) || check_read < 0)
+		if ((check_read == 0) || check_read < 0)
 		{
 			free(buf);
 			return (NULL);
@@ -66,7 +66,7 @@ int	main(void)
 	char	*buf = "start\n";
 	int		fd;
 
-	fd = open("hello.txt", O_RDWR);
+	fd = open("hello2.txt", O_RDWR);
 	while (1)
 	{
 		buf = get_next_line(fd);
