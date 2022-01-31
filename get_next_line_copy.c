@@ -6,7 +6,7 @@
 /*   By: jislim <jislim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/25 18:38:45 by jislim            #+#    #+#             */
-/*   Updated: 2022/02/01 00:10:49 by jislim           ###   ########.fr       */
+/*   Updated: 2022/02/01 00:11:45 by jislim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ char	*get_line(int fd, char *backup)
 	while (!ft_strchr(backup, '\n') && check_read != 0)
 	{
 		check_read = read(fd, buf, BUFFER_SIZE);
-		printf("%d\n%p\n%d\n", check_read, buf, buf[0]);
+		// printf("%d\n%p\n%d\n", check_read, buf, buf[0]);
 		// if ((check_read == 0 && !buf) || check_read < 0) // check_read가 0이거나 없는 파일이거나
 		// {
 		// 	free(buf);
