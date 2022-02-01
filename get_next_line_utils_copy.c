@@ -6,13 +6,13 @@
 /*   By: jislim <jislim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 02:01:45 by jislim            #+#    #+#             */
-/*   Updated: 2022/01/27 01:42:49 by jislim           ###   ########.fr       */
+/*   Updated: 2022/02/01 17:55:46 by jislim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-int	ft_strchr(const char *str, int to_find)
+char	*ft_strchr(const char *str, int to_find)
 {
 	int	len;
 
@@ -22,7 +22,7 @@ int	ft_strchr(const char *str, int to_find)
 	while (str[len] != '\0')
 	{
 		if (str[len] == to_find)
-			return (len + 1);
+			return ((char *)&str[len]);
 		len++;
 	}
 	return (0);

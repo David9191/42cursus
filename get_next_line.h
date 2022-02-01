@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jislim <jislim@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jislim <jislim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 02:01:38 by jislim            #+#    #+#             */
-/*   Updated: 2022/01/25 20:16:58 by jislim           ###   ########.fr       */
+/*   Updated: 2022/02/01 17:55:06 by jislim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@
 
 char	*get_next_line(int fd);
 size_t	ft_strlen(const char *s);
-int		ft_strchr(const char *s, int c);
+char	*ft_strchr(const char *s, int c);
 char	*ft_strjoin(char *dest, char *src);
 char	*get_line_endl(char *str);
 char	*save_backup(char *str);
