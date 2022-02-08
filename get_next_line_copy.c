@@ -6,7 +6,7 @@
 /*   By: jislim <jislim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/25 18:38:45 by jislim            #+#    #+#             */
-/*   Updated: 2022/02/04 21:39:22 by jislim           ###   ########.fr       */
+/*   Updated: 2022/02/09 22:59:23 by jislim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,18 +61,18 @@ char	*get_next_line(int fd)
 }
 // empty line 고치기
 
-// int	main(void)
-// {
-// 	char	*buf = "start\n";
-// 	int		fd;
+int	main(void)
+{
+	char	*buf = "start\n";
+	int		fd;
 
-// 	fd = open("hello.txt", O_RDWR);
-// 	while (1)
-// 	{
-// 		buf = get_next_line(fd);
-// 		if (!ft_strlen(buf))
-// 			break ;
-// 		printf("%s", buf);
-// 		free(buf);
-// 	}
-// }
+	fd = open("hello.txt", O_RDWR);
+	while (1)
+	{
+		buf = get_next_line(fd);
+		if (!ft_strlen(buf))
+			break ;
+		printf("%s", buf);
+		free(buf);
+	}
+}
