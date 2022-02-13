@@ -1,32 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf_usnbr.c                                  :+:      :+:    :+:   */
+/*   ft_putusnbr_fd.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jislim <jislim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/31 17:14:13 by jislim            #+#    #+#             */
-/*   Updated: 2022/05/01 00:36:59 by jislim           ###   ########.fr       */
+/*   Created: 2021/11/22 14:03:14 by jislim            #+#    #+#             */
+/*   Updated: 2022/03/31 23:31:57 by jislim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	len_usnbr(unsigned int us_nbr)
+void	put_usnbr_fd(unsigned int n, int fd)
 {
-	int	len;
+	unsigned int	p_i;
 
-	len = 0;
-	if (us_nbr >= 10)
-		len = len_usnbr(us_nbr / 10);
-	return (++len);
+	p_i = (n % 10) + '0';
+	if (n > 9)
+		put_usnbr_fd((n / 10), fd);
+	write(fd, &p_i, 1);
 }
 
-int	print_usnbr(unsigned int us_nbr)
+void	ft_putusnbr_fd(unsigned int n, int fd)
 {
-	int	len;
-
-	ft_putusnbr_fd(us_nbr, 1);
-	len = len_usnbr(us_nbr);
-	return (len);
+	if (fd < 0)
+		return ;
+	else
+		put_usnbr_fd(n, fd);
 }

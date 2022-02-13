@@ -1,32 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf_usnbr.c                                  :+:      :+:    :+:   */
+/*   ft_lstiter.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jislim <jislim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/31 17:14:13 by jislim            #+#    #+#             */
-/*   Updated: 2022/05/01 00:36:59 by jislim           ###   ########.fr       */
+/*   Created: 2021/11/27 02:07:57 by jislim            #+#    #+#             */
+/*   Updated: 2021/12/06 00:03:13 by jislim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	len_usnbr(unsigned int us_nbr)
+void	ft_lstiter(t_list *lst, void (*f)(void *))
 {
-	int	len;
-
-	len = 0;
-	if (us_nbr >= 10)
-		len = len_usnbr(us_nbr / 10);
-	return (++len);
-}
-
-int	print_usnbr(unsigned int us_nbr)
-{
-	int	len;
-
-	ft_putusnbr_fd(us_nbr, 1);
-	len = len_usnbr(us_nbr);
-	return (len);
+	if (lst == NULL || f == NULL)
+		return ;
+	while (lst != NULL)
+	{
+		f(lst -> content);
+		lst = lst -> next;
+	}
 }

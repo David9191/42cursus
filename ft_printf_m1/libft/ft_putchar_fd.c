@@ -1,32 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf_usnbr.c                                  :+:      :+:    :+:   */
+/*   ft_putchar_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jislim <jislim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/31 17:14:13 by jislim            #+#    #+#             */
-/*   Updated: 2022/05/01 00:36:59 by jislim           ###   ########.fr       */
+/*   Created: 2021/11/21 20:20:59 by jislim            #+#    #+#             */
+/*   Updated: 2021/12/12 00:50:09 by jislim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	len_usnbr(unsigned int us_nbr)
+void	ft_putchar_fd(char c, int fd)
 {
-	int	len;
-
-	len = 0;
-	if (us_nbr >= 10)
-		len = len_usnbr(us_nbr / 10);
-	return (++len);
-}
-
-int	print_usnbr(unsigned int us_nbr)
-{
-	int	len;
-
-	ft_putusnbr_fd(us_nbr, 1);
-	len = len_usnbr(us_nbr);
-	return (len);
+	if (fd < 0 && c == '\0')
+		return ;
+	write(fd, &c, 1);
 }

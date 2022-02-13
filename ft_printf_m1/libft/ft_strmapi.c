@@ -1,32 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf_usnbr.c                                  :+:      :+:    :+:   */
+/*   ft_strmapi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jislim <jislim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/31 17:14:13 by jislim            #+#    #+#             */
-/*   Updated: 2022/05/01 00:36:59 by jislim           ###   ########.fr       */
+/*   Created: 2021/11/21 19:14:17 by jislim            #+#    #+#             */
+/*   Updated: 2021/12/07 15:51:49 by jislim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	len_usnbr(unsigned int us_nbr)
+char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
-	int	len;
+	char	*str;
+	size_t	len;
+	size_t	i;
 
-	len = 0;
-	if (us_nbr >= 10)
-		len = len_usnbr(us_nbr / 10);
-	return (++len);
-}
-
-int	print_usnbr(unsigned int us_nbr)
-{
-	int	len;
-
-	ft_putusnbr_fd(us_nbr, 1);
-	len = len_usnbr(us_nbr);
-	return (len);
+	if (s == NULL || f == NULL)
+		return (NULL);
+	len = ft_strlen(s);
+	str = (char *)malloc(sizeof(char) * (len + 1));
+	if (!str)
+		return (NULL);
+	i = 0;
+	while (i < len)
+	{
+		str[i] = f(i, s[i]);
+		i++;
+	}
+	str[i] = '\0';
+	return (str);
 }

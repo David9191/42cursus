@@ -38,12 +38,9 @@ int	move_pStackA_to_pStackB(LinkedStack *pStackA, LinkedStack *pStackB, int chun
 	StackNode	node;
 
 	num = 0;
-	ft_printf("cnt : %d\n", pStackA->currentElementCount);
 	while (pStackA->currentElementCount)
 	{
 		data = pStackA->pTopElement->data;
-		// data++;
-		ft_printf("data : %d\n", data);
 		node.data = data;
 		if (data <= num)
 		{
@@ -56,9 +53,8 @@ int	move_pStackA_to_pStackB(LinkedStack *pStackA, LinkedStack *pStackB, int chun
 			push_swap_rb(pStackB);
 			num++;
 		}
-		else if (num + chunk < data)
+		else if (data > num + chunk)
 			push_swap_ra(pStackA);
-		// else if 2번째로 2번 들어감
 	}
 	return (1);
 }

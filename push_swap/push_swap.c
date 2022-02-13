@@ -18,11 +18,12 @@ int	main(int argc, char **argv)
 	for (int i = 0; i < argc - 1; i++)
 		ft_printf("%d | ", arr[i]);
 	pStackA = pStackA_indexing(arr);
-	ft_printf("\ncrnt cnt : %d\n", pStackA->currentElementCount);
+	ft_printf("\nA crnt cnt : %d\n", pStackA->currentElementCount);
 	// for (int i = 0; pStackA->pTopElement; i--)
 	// 	ft_printf("pStackA's TOP DATA : %d\n", popLS(pStackA));
 	move_pStackA_to_pStackB(pStackA, pStackB, 2);
-	// for (int i = pStackB->currentElementCount; i; i--)
-	// 	ft_printf("pStackB's TOP DATA : %d\n", popLS(pStackB));
+	ft_printf("\nB crnt cnt : %d\n", pStackB->currentElementCount);
+	for (int i = pStackB->currentElementCount; i; i--)
+		ft_printf("pStackB's TOP DATA : %d\n", popLS(pStackB));
 	return (0);
 }

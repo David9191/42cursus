@@ -1,27 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf_str.c                                    :+:      :+:    :+:   */
+/*   ft_printf_char.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jislim <jislim@student.42seoul.kr>         +#+  +:+       +#+        */
+/*   By: jislim <jislim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/30 15:07:52 by jislim            #+#    #+#             */
-/*   Updated: 2022/05/01 00:36:52 by jislim           ###   ########.fr       */
+/*   Created: 2022/03/31 17:12:40 by jislim            #+#    #+#             */
+/*   Updated: 2022/04/05 14:11:28 by jislim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_printf.h"
 
-int	print_str(char *str)
+int	print_char(int ch)
 {
-	int	len;
-
-	if (!str)
-	{
-		ft_putstr_fd("(null)", 1);
-		return (6);
-	}
-	ft_putstr_fd(str, 1);
-	len = ft_strlen(str);
-	return (len);
+	ft_putchar_fd((char)ch, 1);
+	return (1);
 }
