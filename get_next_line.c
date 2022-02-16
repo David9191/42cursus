@@ -6,7 +6,7 @@
 /*   By: jislim <jislim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 02:01:47 by jislim            #+#    #+#             */
-/*   Updated: 2022/02/15 23:17:24 by jislim           ###   ########.fr       */
+/*   Updated: 2022/02/16 23:25:51 by jislim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,18 +56,18 @@ char	*get_next_line(int fd)
 	return (buf);
 }
 
-// int	main(void)
-// {
-// 	char	*buf = "start\n";
-// 	int		fd;
+int	main(void)
+{
+	char	*buf = "start\n";
+	int		fd;
 
-// 	fd = open("hello.txt", O_RDWR);
-// 	while (1)
-// 	{
-// 		buf = get_next_line(fd);
-// 		if (!ft_strlen(buf))
-// 			break ;
-// 		printf("%s", buf);
-// 		free(buf);
-// 	}
-// }
+	fd = open("hello.txt", O_RDWR);
+	while (1)
+	{
+		buf = get_next_line(fd);
+		if (!ft_strlen(buf))
+			break ;
+		printf("%s", buf);
+		free(buf);
+	}
+}
