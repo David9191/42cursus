@@ -6,7 +6,7 @@
 /*   By: jislim <jislim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 02:01:45 by jislim            #+#    #+#             */
-/*   Updated: 2022/02/23 02:35:31 by jislim           ###   ########.fr       */
+/*   Updated: 2022/02/23 02:51:30 by jislim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,11 +49,13 @@ char	*ft_strjoin(char *dest, char *src)
 	if (!dest) // 처음에 backup만들어 주기.
 	{
 		dest = (char *)malloc(sizeof(char) * 1);
-		if (!dest)
-			return (NULL);
+		// if (!dest)
+		// 	return (NULL);
 		*dest = '\0';
 	}
-	ret_str = malloc(sizeof(char) * ft_strlen(dest) + ft_strlen(src) + 1);
+	if (!dest || !src)
+		return (NULL);
+	ret_str = malloc(sizeof(char) * ((ft_strlen(dest) + ft_strlen(src)) + 1));
 	if (!ret_str)
 		return (NULL);
 	dst_idx = -1;
@@ -67,6 +69,7 @@ char	*ft_strjoin(char *dest, char *src)
 	return (ret_str);
 }
 
+// 여기부터 다시보기
 char	*get_line_endl(char *str)
 {
 	char	*ret_str;
