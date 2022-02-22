@@ -6,7 +6,7 @@
 /*   By: jislim <jislim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/25 18:38:45 by jislim            #+#    #+#             */
-/*   Updated: 2022/02/23 00:21:54 by jislim           ###   ########.fr       */
+/*   Updated: 2022/02/23 00:33:58 by jislim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ char	*get_line(int fd, char *backup)
 	{
 		check_read = read(fd, buf, BUFFER_SIZE);
 		// printf("%d\n%p\n%d\n", check_read, buf, buf[0]);
-		if ((check_read == 0) || check_read < 0)
+		if (check_read == -1)
 		{
 			free(buf);
 			return (NULL);
@@ -55,8 +55,6 @@ char	*get_next_line(int fd)
 		return (NULL);
 	buf = get_line_endl(backup);
 	backup = save_backup(backup);
-	if (backup == NULL)
-		return (NULL);
 	return (buf);
 }
 // empty line 고치기

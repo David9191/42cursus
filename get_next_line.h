@@ -6,7 +6,7 @@
 /*   By: jislim <jislim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 02:01:38 by jislim            #+#    #+#             */
-/*   Updated: 2022/02/17 21:11:15 by jislim           ###   ########.fr       */
+/*   Updated: 2022/02/23 00:56:37 by jislim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@
 # endif
 
 char	*get_next_line(int fd);
-size_t	ft_strlen(const char *s);
-int		ft_strchr(const char *s, int c);
+size_t	ft_strlen(char *s);
+char	*ft_strchr(char *s, int c);
 char	*ft_strjoin(char *dest, char *src);
 char	*get_line_endl(char *str);
 char	*save_backup(char *str);
