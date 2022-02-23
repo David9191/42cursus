@@ -6,7 +6,7 @@
 /*   By: jislim <jislim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/23 00:14:15 by jislim            #+#    #+#             */
-/*   Updated: 2022/02/23 00:15:30 by jislim           ###   ########.fr       */
+/*   Updated: 2022/02/23 23:06:50 by jislim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,8 +76,8 @@ char	*ft_get_line(char *left_str)
 	char	*str;
 
 	i = 0;
-	if (!left_str[i])
-		return (NULL);
+	// if (!left_str[i])
+	// 	return (NULL);
 	while (left_str[i] && left_str[i] != '\n')
 		i++;
 	str = (char *)malloc(sizeof(char) * (i + 2));
