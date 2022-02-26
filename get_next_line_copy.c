@@ -12,6 +12,8 @@
 
 #include "get_next_line.h"
 
+// 위에 추가 함수 더 있음.
+
 char	*get_line(int fd, char *backup)
 {
 	char	*buf;
