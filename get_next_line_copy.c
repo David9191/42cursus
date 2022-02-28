@@ -3,18 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_copy.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jislim <jislim@student.42seoul.kr>         +#+  +:+       +#+        */
+/*   By: jislim <jisung9105@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/25 18:38:45 by jislim            #+#    #+#             */
-/*   Updated: 2022/02/27 21:31:59 by jislim           ###   ########.fr       */
+/*   Updated: 2022/02/28 20:54:46 by jislim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-
-// 위에 추가 함수 더 있음.
-// 없어도 됨. m1에서만 오류뜬 거였음.
-// 과카몰리에서만 통과하면 됨.
 
 char	*get_line(int fd, char *backup)
 {
@@ -34,7 +30,6 @@ char	*get_line(int fd, char *backup)
 	while (!ft_strchr(backup, '\n') && check_read != 0)
 	{
 		check_read = read(fd, buf, BUFFER_SIZE);
-		// printf("%d\n%p\n%d\n", check_read, buf, buf[0]);
 		if (check_read == -1)
 		{
 			free(buf);
@@ -46,7 +41,7 @@ char	*get_line(int fd, char *backup)
 	free(buf);
 	return (backup);
 }
-// fd : 3, BUFFER_SIZE = 10
+
 char	*get_next_line(int fd)
 {
 	static char	*backup;
@@ -61,7 +56,6 @@ char	*get_next_line(int fd)
 	backup = save_backup(backup);
 	return (buf);
 }
-// empty line 고치기
 
 // int	main(void)
 // {

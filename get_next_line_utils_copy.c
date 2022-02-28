@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils_copy.c                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jislim <jislim@student.42seoul.kr>         +#+  +:+       +#+        */
+/*   By: jislim <jisung9105@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 02:01:45 by jislim            #+#    #+#             */
-/*   Updated: 2022/02/24 23:19:53 by jislim           ###   ########.fr       */
+/*   Updated: 2022/02/28 21:25:28 by jislim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,6 @@ char	*ft_strjoin(char *dest, char *src)
 	if (!dest) // 처음에 backup만들어 주기.
 	{
 		dest = (char *)malloc(sizeof(char) * 1);
-		// if (!dest)
-		// 	return (NULL);
 		*dest = '\0';
 	}
 	if (!dest || !src) // instead 52-53 lines
@@ -73,18 +71,24 @@ char	*ft_strjoin(char *dest, char *src)
 char	*get_line_endl(char *str)
 {
 	char	*ret_str;
-	size_t	endl_idx;
 	size_t	idx;
 
-	endl_idx = 0;
-	while (str[endl_idx] != '\n' && str[endl_idx])
-		endl_idx++;
-	ret_str = malloc(sizeof(char) * (endl_idx + 2));
+	idx = 0;
+	if (!str[idx])
+		return (NULL);
+	while (str[idx] != '\n' && str[idx])
+		idx++;
+	ret_str = malloc(sizeof(char) * (idx + 2));
 	if (!ret_str)
 		return (NULL);
-	idx = -1;
-	while (++idx <= endl_idx)
+	idx = 0;
+	while (str[idx] && str[idx] != '\n')
+	{
 		ret_str[idx] = str[idx];
+		idx++;
+	}
+	if (str[idx] == '\n')
+		ret_str[idx++] = '\n';
 	ret_str[idx] = '\0';
 	return (ret_str);
 }
@@ -92,24 +96,25 @@ char	*get_line_endl(char *str)
 char	*save_backup(char *str)
 {
 	char	*ret_str;
-	size_t	len;
+	size_t	idx;
 	size_t	ret_str_idx;
 
-	len = 0;
-	if (!str)
+	// abcdef\nabc
+	idx = 0;
+	while (str[idx] && str[idx] != '\n')
+		idx++;
+	if (!str[idx]) // 만약 뉴라인이 없다면 그냥 내보내기(저장할 게  없으니까)
 	{
 		free(str);
 		return (NULL);
 	}
-	while (str[len] != '\n' && str[len])
-		len++;
-	ret_str = malloc(sizeof(char) * (ft_strlen(str) - len));
+	ret_str = malloc(sizeof(char) * (ft_strlen(str) - idx));
 	if (!ret_str)
 		return (NULL);
 	ret_str_idx = 0;
-	len++; // \n 한 칸 뒤로 이동시켜줌.
-	while (str[len])
-		ret_str[ret_str_idx++] = str[len++];
+	idx++; // \n 한 칸 뒤로 이동시켜줌.
+	while (str[idx])
+		ret_str[ret_str_idx++] = str[idx++];
 	ret_str[ret_str_idx] = '\0';
 	free(str);
 	return (ret_str);
