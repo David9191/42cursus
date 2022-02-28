@@ -6,7 +6,7 @@
 /*   By: jislim <jisung9105@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/25 18:38:45 by jislim            #+#    #+#             */
-/*   Updated: 2022/02/28 20:54:46 by jislim           ###   ########.fr       */
+/*   Updated: 2022/02/28 21:31:55 by jislim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,6 @@ char	*get_line(int fd, char *backup)
 	buf = malloc(sizeof(char) * (BUFFER_SIZE + 1));
 	if (!buf)
 		return (NULL);
-	// check_read = read(fd, buf, BUFFER_SIZE);
-	// if (check_read == 0)
-	// {
-	// 	free(buf);
-	// 	return (NULL);
-	// }
 	check_read = 1;
 	while (!ft_strchr(backup, '\n') && check_read != 0)
 	{
