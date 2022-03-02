@@ -3,34 +3,32 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jislim <jislim@student.42seoul.kr>         +#+  +:+       +#+        */
+/*   By: jislim <jisung9105@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 02:01:45 by jislim            #+#    #+#             */
-/*   Updated: 2022/02/01 17:57:13 by jislim           ###   ########.fr       */
+/*   Updated: 2022/03/02 21:46:55 by jislim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-int	ft_strchr(const char *str, int to_find)
+char	*ft_strchr(char *str, int to_find)
 {
 	int	len;
 
 	len = 0;
 	if (!str)
 		return (0);
-	if (to_find == '\0')
-		return (1);
 	while (str[len] != '\0')
 	{
 		if (str[len] == to_find)
-			return (len); // 이러면 '\n'이 0번째 있을 때 에러남.
+			return ((char *)&str[len]);
 		len++;
 	}
 	return (0);
 }
 
-size_t	ft_strlen(const char *str)
+size_t	ft_strlen(char *str)
 {
 	size_t	idx;
 
@@ -47,15 +45,14 @@ char	*ft_strjoin(char *dest, char *src)
 	char	*ret_str;
 	size_t	dst_idx;
 	size_t	src_idx;
-
 	if (!dest)
 	{
 		dest = (char *)malloc(sizeof(char) * 1);
 		*dest = '\0';
 	}
-	if (!dest)
+	if (!dest || !src)
 		return (NULL);
-	ret_str = malloc(sizeof(char) * ft_strlen(dest) + ft_strlen(src) + 1);
+	ret_str = malloc(sizeof(char) * ((ft_strlen(dest) + ft_strlen(src)) + 1));
 	if (!ret_str)
 		return (NULL);
 	dst_idx = -1;
@@ -72,18 +69,24 @@ char	*ft_strjoin(char *dest, char *src)
 char	*get_line_endl(char *str)
 {
 	char	*ret_str;
-	size_t	endl_idx;
 	size_t	idx;
 
-	endl_idx = 0;
-	while (str[endl_idx] != '\n' && str[endl_idx])
-		endl_idx++;
-	ret_str = malloc(sizeof(char) * (endl_idx + 2));
+	idx = 0;
+	if (!str[idx])
+		return (NULL);
+	while (str[idx] != '\n' && str[idx])
+		idx++;
+	ret_str = malloc(sizeof(char) * (idx + 2));
 	if (!ret_str)
 		return (NULL);
-	idx = -1;
-	while (++idx <= endl_idx)
+	idx = 0;
+	while (str[idx] && str[idx] != '\n')
+	{
 		ret_str[idx] = str[idx];
+		idx++;
+	}
+	if (str[idx] == '\n')
+		ret_str[idx++] = '\n';
 	ret_str[idx] = '\0';
 	return (ret_str);
 }
@@ -91,22 +94,24 @@ char	*get_line_endl(char *str)
 char	*save_backup(char *str)
 {
 	char	*ret_str;
-	size_t	len;
+	size_t	idx;
 	size_t	ret_str_idx;
 
-	len = ft_strchr(str, '\n');
-	if (!str || !len)
+	idx = 0;
+	while (str[idx] && str[idx] != '\n')
+		idx++;
+	if (!str[idx])
 	{
 		free(str);
 		return (NULL);
 	}
-	ret_str = malloc(sizeof(char) * (ft_strlen(str) - len));
+	ret_str = malloc(sizeof(char) * (ft_strlen(str) - idx));
 	if (!ret_str)
 		return (NULL);
 	ret_str_idx = 0;
-	len++;
-	while (str[len])
-		ret_str[ret_str_idx++] = str[len++];
+	idx++;
+	while (str[idx])
+		ret_str[ret_str_idx++] = str[idx++];
 	ret_str[ret_str_idx] = '\0';
 	free(str);
 	return (ret_str);

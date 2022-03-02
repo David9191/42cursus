@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jislim <jislim@student.42seoul.kr>         +#+  +:+       +#+        */
+/*   By: jislim <jisung9105@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 02:01:47 by jislim            #+#    #+#             */
-/*   Updated: 2022/02/23 00:20:43 by jislim           ###   ########.fr       */
+/*   Updated: 2022/03/02 21:45:44 by jislim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,10 @@ char	*get_line(int fd, char *backup)
 	if (!buf)
 		return (NULL);
 	check_read = 1;
-	// printf("backup : %s\n", backup);
 	while (!ft_strchr(backup, '\n') && check_read != 0)
 	{
 		check_read = read(fd, buf, BUFFER_SIZE);
-		if (check_read < 0)
+		if (check_read == -1)
 		{
 			free(buf);
 			return (NULL);
@@ -33,7 +32,6 @@ char	*get_line(int fd, char *backup)
 		buf[check_read] = '\0';
 		backup = ft_strjoin(backup, buf);
 	}
-	// printf("backup : %s\n", backup);
 	free(buf);
 	return (backup);
 }
@@ -43,31 +41,12 @@ char	*get_next_line(int fd)
 	static char	*backup;
 	char		*buf;
 
-	if (fd == -1 || BUFFER_SIZE <= 0 /*|| fd > OPEN_MAX - window error*/)
+	if (fd == -1 || BUFFER_SIZE < 0)
 		return (NULL);
 	backup = get_line(fd, backup);
 	if (!backup)
 		return (NULL);
-	// printf("backup : %s", backup);
 	buf = get_line_endl(backup);
 	backup = save_backup(backup);
-	if (backup == NULL)
-		return (NULL);
 	return (buf);
 }
-
-// int	main(void)
-// {
-// 	char	*buf = "start\n";
-// 	int		fd;
-
-// 	fd = open("hello.txt", O_RDWR);
-// 	while (1)
-// 	{
-// 		buf = get_next_line(fd);
-// 		if (!ft_strlen(buf))
-// 			break ;
-// 		printf("%s", buf);
-// 		free(buf);
-// 	}
-// }

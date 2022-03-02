@@ -6,7 +6,7 @@
 /*   By: jislim <jisung9105@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 02:01:45 by jislim            #+#    #+#             */
-/*   Updated: 2022/03/01 22:23:38 by jislim           ###   ########.fr       */
+/*   Updated: 2022/03/02 21:45:18 by jislim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,6 @@ char	*ft_strjoin(char *dest, char *src)
 	return (ret_str);
 }
 
-// here 여기부터 다시보기
 char	*get_line_endl(char *str)
 {
 	char	*ret_str;
