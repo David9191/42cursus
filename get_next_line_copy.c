@@ -6,7 +6,7 @@
 /*   By: jislim <jisung9105@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/25 18:38:45 by jislim            #+#    #+#             */
-/*   Updated: 2022/03/02 21:40:24 by jislim           ###   ########.fr       */
+/*   Updated: 2022/03/03 21:58:04 by jislim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,10 @@ char	*get_line(int fd, char *backup)
 		return (NULL);
 	check_read = 1;
 	while (!ft_strchr(backup, '\n') && check_read != 0)
+	// \n이 있는 곳까지 또는 '\n'이 없는 경우에는 끝까지 읽겠다.
 	{
 		check_read = read(fd, buf, BUFFER_SIZE);
-		if (check_read == -1)
+		if (check_read == -1) // when return read function -1?
 		{
 			free(buf);
 			return (NULL);
@@ -55,9 +56,10 @@ char	*get_next_line(int fd)
 // {
 // 	char	*buf = "start\n";
 // 	int		fd;
+// 	int		repeat = 7;
 
 // 	fd = open("hello.txt", O_RDWR);
-// 	while (1)
+// 	while (repeat--)
 // 	{
 // 		buf = get_next_line(fd);
 // 		if (!ft_strlen(buf))
