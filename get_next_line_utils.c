@@ -6,7 +6,7 @@
 /*   By: jislim <jisung9105@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 02:01:45 by jislim            #+#    #+#             */
-/*   Updated: 2022/03/02 22:09:41 by jislim           ###   ########.fr       */
+/*   Updated: 2022/03/04 16:04:21 by jislim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,29 +40,30 @@ size_t	ft_strlen(char *str)
 	return (idx);
 }
 
-char	*ft_strjoin(char *dest, char *src)
+char	*ft_strjoin(char *backup, char *buf)
 {
 	char	*ret_str;
-	size_t	dst_idx;
-	size_t	src_idx;
-	if (!dest)
+	size_t	ret_idx;
+	size_t	buf_idx;
+	
+	if (!backup)
 	{
-		dest = (char *)malloc(sizeof(char) * 1);
-		if (!dest)
+		backup = (char *)malloc(sizeof(char) * 1);
+		if (!backup)
 			return (NULL);
-		*dest = '\0';
+		*backup = '\0';
 	}
-	ret_str = malloc(sizeof(char) * ((ft_strlen(dest) + ft_strlen(src)) + 1));
+	ret_str = malloc(sizeof(char) * ((ft_strlen(backup) + ft_strlen(buf)) + 1));
 	if (!ret_str)
 		return (NULL);
-	dst_idx = -1;
-	while (dest[++dst_idx] != '\0')
-		ret_str[dst_idx] = dest[dst_idx];
-	src_idx = -1;
-	while (src[++src_idx] != '\0')
-		ret_str[dst_idx++] = src[src_idx];
-	ret_str[dst_idx] = '\0';
-	free(dest);
+	ret_idx = -1;
+	while (backup[++ret_idx] != '\0')
+		ret_str[ret_idx] = backup[ret_idx];
+	buf_idx = -1;
+	while (buf[++buf_idx] != '\0')
+		ret_str[ret_idx++] = buf[buf_idx];
+	ret_str[ret_idx] = '\0';
+	free(backup);
 	return (ret_str);
 }
 
@@ -94,24 +95,24 @@ char	*get_line_endl(char *str)
 char	*save_backup(char *str)
 {
 	char	*ret_str;
-	size_t	idx;
+	size_t	str_idx;
 	size_t	ret_str_idx;
 
-	idx = 0;
-	while (str[idx] && str[idx] != '\n')
-		idx++;
-	if (!str[idx])
+	str_idx = 0;
+	while (str[str_idx] && str[str_idx] != '\n')
+		str_idx++;
+	if (!str[str_idx])
 	{
 		free(str);
 		return (NULL);
 	}
-	ret_str = malloc(sizeof(char) * (ft_strlen(str) - idx));
+	ret_str = malloc(sizeof(char) * (ft_strlen(str) - str_idx));
 	if (!ret_str)
 		return (NULL);
 	ret_str_idx = 0;
-	idx++;
-	while (str[idx])
-		ret_str[ret_str_idx++] = str[idx++];
+	str_idx++;
+	while (str[str_idx])
+		ret_str[ret_str_idx++] = str[str_idx++];
 	ret_str[ret_str_idx] = '\0';
 	free(str);
 	return (ret_str);
