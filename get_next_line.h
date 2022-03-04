@@ -6,7 +6,7 @@
 /*   By: jislim <jisung9105@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 02:01:38 by jislim            #+#    #+#             */
-/*   Updated: 2022/03/04 16:08:36 by jislim           ###   ########.fr       */
+/*   Updated: 2022/03/04 16:29:39 by jislim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 #  define BUFFER_SIZE 42
 # endif
 
-char    *get_next_line(int fd);
+char	*get_next_line(int fd);
 size_t	ft_strlen(char *s);
 size_t	ft_strchr(char *s, int c);
 char	*ft_strjoin(char *dest, char *src);
