@@ -6,38 +6,64 @@
 /*   By: jislim <jisung9105@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/20 23:52:23 by jislim            #+#    #+#             */
-/*   Updated: 2022/03/01 22:24:31 by jislim           ###   ########.fr       */
+/*   Updated: 2022/03/04 21:46:14 by jislim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "gnl2.h"
 
-size_t	ft_strlen(const char *str)
+size_t	ft_strchr(char *backup, int to_find)
 {
 	size_t	idx;
-
+	
+	if (!backup)
+		return (NULL);
 	idx = 0;
+	while (backup[idx])
+	{
+		if (backup[idx] == to_find)
+			return (idx + 1);
+		idx++;
+	}
+	return (0);
+}
+
+size_t	ft_strlen(char *str)
+{
+	size_t	len;
+
 	if (!str)
 		return (NULL);
-	while (str[idx])
-		idx++;
-	return (idx);
+	len = 0;
+	while (str[len])
+		len++;
+	return (len);
 }
 
-char	*ft_strchr(const char *s, int c)
+char	*strjoin(char *backup, char *buf)
 {
-	int	i;
+	char	*ret_str;
+	int		ret_str_idx;
+	int		buf_idx;
 
-	i = 0;
-	if (!s)
-		return (NULL);
-	if (c == '\0')
-		return ((char *)&s[ft_strlen(s)]);
-	while (s[i])
+	if (!backup)
 	{
-		if (s[i] == (char)c)
-			return ((char *)&s[i]);
-		i++;
+		backup = malloc(sizeof(char) * 1);
+		if (!backup)
+			return (NULL);
+		*backup = '\0';
 	}
-	return (NULL);
+	ret_str = malloc(sizeof(char) * (ft_strlen(backup) + ft_strlen(buf) + 1));
+	if (!ret_str)
+		return (NULL);
+	ret_str_idx = -1;
+	while (backup[++ret_str_idx])
+		ret_str[ret_str_idx] = backup[ret_str_idx];
+	buf_idx = 0;
+	while (buf[buf_idx])
+		ret_str[ret_str_idx++] = buf[buf_idx++];
+	ret_str[ret_str_idx] = '\0'; // here
+	free(backup);
+	return (ret_str);
 }
+
