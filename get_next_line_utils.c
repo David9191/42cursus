@@ -6,7 +6,7 @@
 /*   By: jislim <jisung9105@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 02:01:45 by jislim            #+#    #+#             */
-/*   Updated: 2022/03/04 16:04:21 by jislim           ###   ########.fr       */
+/*   Updated: 2022/03/04 16:04:51 by jislim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ char	*ft_strjoin(char *backup, char *buf)
 	char	*ret_str;
 	size_t	ret_idx;
 	size_t	buf_idx;
-	
+
 	if (!backup)
 	{
 		backup = (char *)malloc(sizeof(char) * 1);
