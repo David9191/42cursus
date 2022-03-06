@@ -57,9 +57,8 @@ new line
 <br>
 EOF(End Of File)에 도달하였고 '\n'이 존재하지 않을 때를 제외하고,<br>
 함수가 반환하는 문자열 한 줄에는 \n이 포함되어야 합니다.
-<br>
+<br><br>
 
 >## get_next_line Tester
-
 <br>
 https://github.com/Tripouille/gnlTester
