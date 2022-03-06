@@ -3,6 +3,6 @@ test*.*
 a.out
 *.swp
 *.o
-*.txt
+#*.txt
 main.c
 main*.*
