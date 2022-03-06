@@ -6,7 +6,7 @@
 /*   By: jislim <jisung9105@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 02:01:38 by jislim            #+#    #+#             */
-/*   Updated: 2022/03/04 16:29:39 by jislim           ###   ########.fr       */
+/*   Updated: 2022/03/06 20:04:38 by jislim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,6 @@
 # define GET_NEXT_LINE_H
 # include <stdlib.h>
 # include <unistd.h>
-# include <stdio.h> // for printf function
-# include <fcntl.h> // for open function
 
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 42

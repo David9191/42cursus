@@ -6,11 +6,13 @@
 /*   By: jislim <jisung9105@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/25 18:38:45 by jislim            #+#    #+#             */
-/*   Updated: 2022/03/04 15:09:10 by jislim           ###   ########.fr       */
+/*   Updated: 2022/03/06 19:06:18 by jislim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
+#include <fcntl.h>
+#include <stdio.h>
 
 char	*get_line(int fd, char *backup)
 {
@@ -56,10 +58,9 @@ int	main(void)
 {
 	char	*buf = "start\n";
 	int		fd;
-	int		repeat = 7;
 
 	fd = open("hello.txt", O_RDWR);
-	while (repeat--)
+	while (1)
 	{
 		buf = get_next_line(fd);
 		if (!ft_strlen(buf))
