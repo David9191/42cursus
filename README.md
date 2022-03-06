@@ -41,15 +41,16 @@ line
 
 new line
 ```
-<br>
-
 위 상황이라고 가정하면 gnl함수 호출 시 "new line"을 반환해야 합니다.
+<br><br>
+
 >## get_next_line 사전지식
 
 <br>
 * 파일디스크립터 [velog]:(https://dev-ahn.tistory.com/96)<br>
 * read함수, open함수<br>
 * 정적변수<br>
+<br>
 
 >## get_next_line 주의사항
 
