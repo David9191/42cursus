@@ -6,6 +6,7 @@ int ft_printf(const char *, ...);
 int main(void)
 {
 	printf();
+	// va관련 함수들 공부하기
 }
 
-int 
+int
