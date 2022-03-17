@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdarg.h>
 #include <unistd.h>
-// int printf(const char * __restrict, ...) __printflike(1, 2);
+
 int ft_printf(const char *, ...);
 
 void	printfNum(int args, ...)
@@ -13,7 +13,6 @@ void	printfNum(int args, ...)
 	for (int i = 0; i < args; i++)
 	{
 		num = va_arg(ap, int);
-
 		printf("%d ", num);
 	}
 	va_end(ap);
