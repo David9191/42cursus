@@ -6,16 +6,16 @@ int ft_printf(const char *, ...);
 
 void	printfNum(int args, ...)
 {
-	va_list ap;
+	va_list ap; // 가변인자 포인터
 	int		num;
 
-	va_start(ap, args);
+	va_start(ap, args); // 포인터 시작지점 지정
 	for (int i = 0; i < args; i++)
 	{
-		num = va_arg(ap, int);
-		printf("%d ", num);
+		num = va_arg(ap, int); // int의 크기만큼 순방향 이동
+		printf("%d ", num); // args 다음 거 출력
 	}
-	va_end(ap);
+	va_end(ap); // ap = NULL;
 	printf("\n");
 }
 
