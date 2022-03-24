@@ -24,3 +24,34 @@ va_end : 가변 인자 처리가 끝났을 때
 cspdiuxX%
 man 3 printf / man 3 stdarg
 int ft_printf(const char *format, ...);
+
+c : The int argument is converted to an unsigned char,
+	and the resulting character is written.
+s : The char * argument is expected to be a pointer to an array of character type
+	(pointer to a string).  Characters from the array are written up to (but not includ-
+	ing) a terminating NUL character; if a precision is specified, no more than the num-
+	ber specified are written.  If a precision is given, no null character need be
+	present; if the precision is not specified, or is greater than the size of the array,
+	the array must contain a terminating NUL character.
+p : The void * pointer argument is printed in hexadecimal (as if by `%#x' or `%#lx').
+d : a decimal integer (assumes base 10)
+i : a decimal integer
+u : int to unsigend int
+x : Hexadecimal representation lowercase
+X : Hexadecimal representation uppercase
+% : A `%' is written.  No argument is converted.  The complete conversion specification
+	is `%%'.
+
+
+difference between d and i
+
+https://www.geeksforgeeks.org/difference-d-format-specifier-c-language/
+%d and %i behavior is different in scanf
+%d assume base 10 while %i auto detects the base. Therefore,
+both specifiers behaves differently while they are used with an input specifier.
+So, 012 would be 10 with %i but 12 with %d.
+
+https://www.tutorialspoint.com/difference-between-d-and-i-format-specifier-in-c-language
+there is no difference in printf() function output while printing a number using %d or %i
+but using scanf the difference occurs.
+scanf() function detects base using %i but assumes base 10 using %d.
