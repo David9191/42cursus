@@ -8,12 +8,17 @@
 va_list : 가변 인자 목록.
 가변 인자의 메모리 주소를 저장하는 포인터
 
+void va_start(va_list ap, last);
 va_start : 가변 인자를 가져올 수 있도록
 포인터를 설정
 
+type va_arg(va_list ap, type);
 va_arg : 가변 인자 포인터에서
 특정 자료형 크기만큼 값을 가져옴
 
+void va_copy(va_list dest, va_list src);
+
+void va_end(va_list ap);
 va_end : 가변 인자 처리가 끝났을 때
 포인터를 NULL로 초기화
 
