@@ -11,8 +11,6 @@
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-#include <fcntl.h>
-#include <stdio.h>
 
 char	*get_line(int fd, char *backup)
 {
@@ -52,28 +50,4 @@ char	*get_next_line(int fd)
 	backup = save_backup(backup);
 	//new\nline -< hello.txt
 	return (buf);
-}
-
-int	main(void)
-{
-	char	*buf = "start\n";
-	int		fd;
-
-	fd = open("hello.txt", O_RDWR);
-	while (1)
-	{
-		buf = get_next_line(fd);
-		if (!ft_strlen(buf))
-		{
-			free(buf);
-			while (1)
-				;	
-			return (0);
-		}
-		printf("%s", buf);
-		free(buf);
-	}
-	while (1)
-		;
-	return (0);
 }

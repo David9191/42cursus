@@ -106,7 +106,7 @@ char	*save_backup(char *str)
 		free(str);
 		return (NULL);
 	}
-	ret_str = malloc(sizeof(char) * (ft_strlen(str) 8 - str_idx 3));
+	ret_str = malloc(sizeof(char) * (ft_strlen(str) - str_idx));
 	if (!ret_str)
 		return (NULL);
 	ret_str_idx = 0;
@@ -115,6 +115,5 @@ char	*save_backup(char *str)
 		ret_str[ret_str_idx++] = str[str_idx++];
 	ret_str[ret_str_idx] = '\0';
 	free(str);
-	// ret_str = line
 	return (ret_str);
 }
