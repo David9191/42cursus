@@ -5,16 +5,8 @@
 
 int	ft_printf(const char *format, ...)
 {
-	int	idx;
-	int	*p_idx = &idx;
+	va_list	ap;
 
-	printf("%s\n", format);
-	printf("%%\n");
-	printf("%n", p_idx); // prints nothing / just curious
-	printf("%4$s %3$d %1$d %2$d", 10, 20, 30, "fourth subsequent argument");
-	// optional filed. notation n$ means n번째 후속인자를 선택할거다.
-
-	// printf("hello \0 world\0"); error
 	return (0);
 }
 
