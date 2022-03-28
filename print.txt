@@ -30,6 +30,7 @@ cspdiuxX%
 man 3 printf / man 3 stdarg
 int ft_printf(const char *format, ...);
 
+c 문자 출력
 d, i랑 똑같이 구현하기
 p, x, X 비슷하게 구현하기
 % 그냥 %출력
