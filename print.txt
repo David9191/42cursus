@@ -67,3 +67,89 @@ https://www.tutorialspoint.com/difference-between-d-and-i-format-specifier-in-c-
 there is no difference in printf() function output while printing a number using %d or %i
 but using scanf the difference occurs.
 scanf() function detects base using %i but assumes base 10 using %d.
+
+ft_putnbr_fd.c
+
+int	main(void)
+{
+	// printf("%d\n", 2147483648);
+	// ft_putnbr_fd(2147483648, 1); // 애초에 매개인자로 넘길 때 타입이 달라서 안 됨. 에러로 막아줌.
+}
+
+--------------------------
+not good
+char	*printf_hexa(void *v_ptr)
+{
+	unsigned long long	ad;
+	unsigned long long	hexa_c;
+	unsigned int		hexa_idx;
+	char				*hexa;
+
+	ad = (unsigned long long)v_ptr;
+	printf("%llu\n", ad);
+	hexa = (char *)malloc(sizeof(char) * 13);
+	if (!hexa)
+		return (NULL);
+	hexa_idx = 11;
+	while (hexa_idx-- >= 0)
+	{
+		hexa_c = ad % 16;
+		if (hexa_c >= 0 && hexa_c < 10)
+			hexa[hexa_idx] = (char)('0' + hexa_c);
+		else if (hexa_c >= 10 && hexa_c < 16)
+			hexa[hexa_idx] = (char)('a' + hexa_c - 10);
+		printf("ad : %llu, hexa_c : %llu, hexa[%u] : %c\n", ad, hexa_c, hexa_idx, hexa[hexa_idx]);
+		ad /= 16;
+	}
+	hexa[12] = '\0';
+	return (hexa);
+}
+
+
+int	main(void)
+{
+	unsigned int	a = 2147483647;
+	unsigned int	*b = &a;
+	char			*str;
+
+	printf("%p\t%p\t%lu\n", &a, b, sizeof(b));
+	str = printf_hexa(b);
+	if (str)
+	{
+		write(1, "0x", 2);
+		printf("%s\n", str);
+	}
+	return (0);
+}
+
+----------------------------
+good
+int	main(void)
+{
+	unsigned int a = 2147483647;
+	unsigned int *b = &a;
+	unsigned long long	ad = (unsigned long long)b;
+	char *hexa = (char *)malloc(sizeof(char) * 13);
+	int	hexa_idx = 11;
+
+	while (hexa_idx >= 0)
+	{
+		char c = ad % 16;
+		if (c >= 0 && c < 10)
+			hexa[hexa_idx] = c + '0';
+		else if (c >= 10 && c < 16)
+			hexa[hexa_idx] = c - 10 + 'a';
+		hexa_idx -= 1;
+		if (ad >= 16)
+			ad /= 16;
+	}
+	hexa[12] = '\0';
+	write(1, "0x", 2);
+	while (*hexa)
+	{
+		write(1, hexa, 1);
+		hexa++;
+	}
+	printf("\n%p", b);
+	return (0);
+}
