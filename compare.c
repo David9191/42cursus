@@ -3,16 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   compare.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jislim <jislim@student.42seoul.kr>         +#+  +:+       +#+        */
+/*   By: jislim <jislim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 21:17:36 by jislim            #+#    #+#             */
-/*   Updated: 2022/03/29 01:41:12 by jislim           ###   ########.fr       */
+/*   Updated: 2022/03/29 14:27:55 by jislim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <unistd.h>
 #include "ft_printf.h"
 
 int	is_zero(char *str)
@@ -37,6 +34,7 @@ char	*printf_hexa(void *v_ptr)
 	if (!hexa)
 		return (NULL);
 	hexa_idx = 15;
+
 	while (hexa_idx >= 0)
 	{
 		hexa_c = (char)(ad % 16);
@@ -48,9 +46,13 @@ char	*printf_hexa(void *v_ptr)
 		ad /= 16;
 	}
 	hexa[16] = '\0';
+
+	char	*str;
+	str = hexa; // 이전의 hexa의 메모리 누수가 나지 않기 위함.
 	if (hexa[0] == '0')
 		hexa = ft_substr(hexa, is_zero(hexa), (ft_strlen(hexa) - is_zero(hexa)));
 	hexa = ft_strjoin("0x", hexa);
+	free(str);
 	return (hexa);
 }
 
@@ -69,5 +71,6 @@ int	main(void)
 		while (*str)
 			write(1, str++, 1);
 	free(p);
+	printf("\n%u\n", -1);
 	return (0);
 }
