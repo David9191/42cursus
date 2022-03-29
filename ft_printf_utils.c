@@ -1,42 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
+/*   ft_printf_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jislim <jislim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/22 14:03:14 by jislim            #+#    #+#             */
-/*   Updated: 2022/03/30 01:29:13 by jislim           ###   ########.fr       */
+/*   Created: 2022/03/30 00:57:31 by jislim            #+#    #+#             */
+/*   Updated: 2022/03/30 01:15:22 by jislim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_printf.h"
 
-void	put_nbr_fd(int n, int fd)
+void	hexa_print(unsigned long n, char d)
 {
-	int	p_i;
+	char	c;
 
-	p_i = (n % 10) + '0';
-	if (n > 9)
-		put_nbr_fd((n / 10), fd);
-	write(fd, &p_i, 1);
-}
-
-void	ft_putnbr_fd(int n, int fd)
-{
-	if (fd < 0)
-		return ;
-	if (n == -2147483648)
-	{
-		write(fd, "-2147483648", 11);
-		return ;
-	}
-	else if (n < 0)
-	{
-		n *= -1;
-		write(fd, "-", 1);
-		put_nbr_fd(n, fd);
-	}
-	else
-		put_nbr_fd(n, fd);
+	c = n % 16;
+	if (n >= 16)
+		hexa_print(n / 16, d);
+	if (c >= 0 && c < 10)
+		c += '0';
+	else if (d == 'X' && c >= 10 && c < 16)
+		c = c - 10 + 'A';
+	else if ((d == 'x' || d == 'p')
+            && (c >= 10 && c < 16))
+		c = c - 10 + 'a';
+	write(1, &c, 1);
 }

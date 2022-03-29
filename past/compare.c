@@ -3,13 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   compare.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jislim <jislim@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jislim <jislim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 21:17:36 by jislim            #+#    #+#             */
-/*   Updated: 2022/03/29 19:37:08 by jislim           ###   ########.fr       */
+/*   Updated: 2022/03/30 00:49:57 by jislim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
 #include "ft_printf.h"
 
 int	is_zero(char *str)
@@ -29,13 +32,12 @@ char	*printf_hexa(void *v_ptr)
 	char				*hexa;
 	char				hexa_c;
 
-	// printf("\nhexa : %p\n", v_ptr);
 	ad = (unsigned long long)v_ptr;
 	hexa = (char *)malloc(sizeof(char) * 17);
 	if (!hexa)
 		return (NULL);
 	hexa_idx = 15;
-
+	
 	while (hexa_idx >= 0)
 	{
 		hexa_c = (char)(ad % 16);
@@ -73,6 +75,5 @@ char	*printf_hexa(void *v_ptr)
 // 		while (*str)
 // 			write(1, str++, 1);
 // 	free(p);
-// 	printf("\n%u\n", -1);
 // 	return (0);
 // }

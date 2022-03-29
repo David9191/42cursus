@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: jislim <jisung9105@gmail.com>              +#+  +:+       +#+         #
+#    By: jislim <jislim@student.42seoul.kr>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/17 00:08:36 by jislim            #+#    #+#              #
-#    Updated: 2022/03/17 00:18:13 by jislim           ###   ########.fr        #
+#    Updated: 2022/03/29 23:51:21 by jislim           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,9 +25,6 @@ SRCS =	ft_isalpha.c ft_isdigit.c ft_isalnum.c ft_isascii.c \
 		ft_strjoin.c ft_strtrim.c ft_split.c ft_itoa.c ft_strmapi.c \
 		ft_striteri.c ft_putchar_fd.c ft_putstr_fd.c ft_putendl_fd.c ft_putnbr_fd.c
 OBJS = $(SRCS:.c=.o)
-
-# BONUS = 
-# BONUS_OBJS = $(BONUS:.c=.o)
 
 all : $(NAME)
 

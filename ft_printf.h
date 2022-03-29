@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jislim <jislim@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jislim <jislim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 21:18:21 by jislim            #+#    #+#             */
-/*   Updated: 2022/03/29 18:09:36 by jislim           ###   ########.fr       */
+/*   Updated: 2022/03/30 01:14:23 by jislim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,7 @@ void	ft_lstclear(t_list **lst, void (*del)(void *));
 void	ft_lstiter(t_list *lst, void (*f)(void *));
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
 
+void	hexa_print(unsigned long n, char d);
 char	*printf_hexa(void *v_ptr);
 
 #endif
