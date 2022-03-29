@@ -1,44 +1,83 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <unistd.h>
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jislim <jislim@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/03/29 14:32:19 by jislim            #+#    #+#             */
+/*   Updated: 2022/03/29 19:33:25 by jislim           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-// cspdiuxX%
+#include "ft_printf.h"
 
-// int	ft_printf(const char *format, ...)
-// {
-// 	va_list	ap;
+void	x_print(unsigned int n, char d)
+{
+	char	c;
 
-// 	return (0);
-// }
-	// printf("%p\t%p\t%lu\n", &a, b, sizeof(b));
-	// printf("%x\t%X\n", 10, 150);
+	c = n % 16;
+	if (n >= 16)
+	{
+		n /= 16;
+		x_print(n, d);
+	}
+	if (c >= 0 && c < 10)
+		c += '0';
+	else if (d == 'x' && c >= 10 && c < 16)
+		c = c - 10 + 'a';
+	else if (d == 'X' && c >= 10 && c < 16)
+		c = c - 10 + 'A';
+	write(1, &c, 1);
+}
+
+int	ft_printf(const char *format, ...)
+{
+	char		*str;
+	int			idx;
+	va_list		ap;
+
+	va_start(ap, format);
+	idx = 0;
+	while (format[idx] != '\0')
+	{
+		if (format[idx] == '%' && format[idx + 1] == 's')
+		{
+			ft_putstr_fd(va_arg(ap, char *), 1);
+			idx += 2;
+		}
+		else if (format[idx] == '%' && format[idx + 1] == 'p')
+		{
+			str = printf_hexa(va_arg(ap, void *));
+			ft_putstr_fd(str, 1);
+			idx += 2;
+		}
+		else if (format[idx] == '%' && format[idx + 1] == 'c')
+		{
+			ft_putchar_fd(va_arg(ap, int), 1);
+			idx += 2;
+		}
+		else if (format[idx] == '%' && (format[idx + 1] == 'x' || format[idx + 1] == 'X'))
+		{
+			x_print(va_arg(ap, unsigned int), format[idx + 1]);
+			idx += 2;
+		}
+		else if (format[idx] == '%' && format[idx + 1] == '%')
+		{
+			write(1, "%%", 1);
+			idx += 2;
+		}
+		else
+			write(1, &format[idx++], 1);
+	}
+	va_end(ap);
+	return (0);
+}
 
 int	main(void)
 {
-	unsigned int a = 2147483647;
-	unsigned int *b = &a;
-	unsigned long long	ad = (unsigned long long)b;
-	char *hexa = (char *)malloc(sizeof(char) * 13);
-	int	hexa_idx = 11;
+	ft_printf("%%%cft_print\n--------------------\n%s %p\n%s\n%x\n%X\n\n", '-', "hello world!", (void *)-1, "개행 굿", 123456789, 123456789);
+	printf("%%%cprint\n--------------------\n%s %p\n%s\n%x\n%X", '-', "hello world!", (void *)-1, "개행 굿", 123456789, 123456789);
 
-	while (hexa_idx >= 0)
-	{
-		char hexa_c = ad % 16;
-		if (hexa_c >= 0 && hexa_c < 10)
-			hexa[hexa_idx] = hexa_c + '0';
-		else if (hexa_c >= 10 && hexa_c < 16)
-			hexa[hexa_idx] = hexa_c - 10 + 'a';
-		hexa_idx -= 1;
-		if (ad >= 16)
-			ad /= 16;
-	}
-	hexa[12] = '\0';
-	write(1, "0x", 2);
-	while (*hexa)
-	{
-		write(1, hexa, 1);
-		hexa++;
-	}
-	printf("\n%p", b);
 	return (0);
 }

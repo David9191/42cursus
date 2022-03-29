@@ -32,7 +32,6 @@ int main(void)
 	// printfNum(2, 10, 20);
 	// printfNum(3, 10, 20, 30);
 	printfNum("%s", "Hello world");
-	// 이 경우에는 args = 4, 출력은 10, 20, 30, 40이 출력됨.
 
 	return (0);
 }

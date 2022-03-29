@@ -6,7 +6,7 @@
 /*   By: jislim <jislim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 21:17:36 by jislim            #+#    #+#             */
-/*   Updated: 2022/03/29 14:27:55 by jislim           ###   ########.fr       */
+/*   Updated: 2022/03/29 18:11:44 by jislim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ char	*printf_hexa(void *v_ptr)
 	char				*hexa;
 	char				hexa_c;
 
+	// printf("\nhexa : %p\n", v_ptr);
 	ad = (unsigned long long)v_ptr;
 	hexa = (char *)malloc(sizeof(char) * 17);
 	if (!hexa)
@@ -48,7 +49,7 @@ char	*printf_hexa(void *v_ptr)
 	hexa[16] = '\0';
 
 	char	*str;
-	str = hexa; // 이전의 hexa의 메모리 누수가 나지 않기 위함.
+	str = hexa; // 이전 hexa의 메모리 누수가 나지 않기 위함.
 	if (hexa[0] == '0')
 		hexa = ft_substr(hexa, is_zero(hexa), (ft_strlen(hexa) - is_zero(hexa)));
 	hexa = ft_strjoin("0x", hexa);
@@ -56,21 +57,21 @@ char	*printf_hexa(void *v_ptr)
 	return (hexa);
 }
 
-int	main(void)
-{
-	unsigned int	a = 2147483647;
-	unsigned int	*b = &a;
-	char			*str;
-	// printf("%p\n", (void *) -1);
-	// printf("%p\n", (void *)1);
-	// str = printf_hexa((void *)1);
-	printf("%p\n", b);
-	str = printf_hexa(b);
-	char	*p = str;
-	if (str)
-		while (*str)
-			write(1, str++, 1);
-	free(p);
-	printf("\n%u\n", -1);
-	return (0);
-}
+// int	main(void)
+// {
+// 	unsigned int	a = 2147483647;
+// 	unsigned int	*b = &a;
+// 	char			*str;
+// 	// printf("%p\n", (void *) -1);
+// 	// printf("%p\n", (void *)1);
+// 	// str = printf_hexa((void *)1);
+// 	printf("%p\n", b);
+// 	str = printf_hexa(b);
+// 	char	*p = str;
+// 	if (str)
+// 		while (*str)
+// 			write(1, str++, 1);
+// 	free(p);
+// 	printf("\n%u\n", -1);
+// 	return (0);
+// }
