@@ -6,7 +6,7 @@
 /*   By: jislim <jislim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 14:32:19 by jislim            #+#    #+#             */
-/*   Updated: 2022/03/29 19:33:25 by jislim           ###   ########.fr       */
+/*   Updated: 2022/03/29 19:39:04 by jislim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,33 +42,21 @@ int	ft_printf(const char *format, ...)
 	while (format[idx] != '\0')
 	{
 		if (format[idx] == '%' && format[idx + 1] == 's')
-		{
 			ft_putstr_fd(va_arg(ap, char *), 1);
-			idx += 2;
-		}
 		else if (format[idx] == '%' && format[idx + 1] == 'p')
-		{
 			str = printf_hexa(va_arg(ap, void *));
-			ft_putstr_fd(str, 1);
-			idx += 2;
-		}
 		else if (format[idx] == '%' && format[idx + 1] == 'c')
-		{
 			ft_putchar_fd(va_arg(ap, int), 1);
-			idx += 2;
-		}
 		else if (format[idx] == '%' && (format[idx + 1] == 'x' || format[idx + 1] == 'X'))
-		{
 			x_print(va_arg(ap, unsigned int), format[idx + 1]);
-			idx += 2;
-		}
 		else if (format[idx] == '%' && format[idx + 1] == '%')
-		{
 			write(1, "%%", 1);
-			idx += 2;
-		}
 		else
+		{
 			write(1, &format[idx++], 1);
+			continue ;
+		}
+		idx += 2;
 	}
 	va_end(ap);
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: jislim <jislim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 21:17:36 by jislim            #+#    #+#             */
-/*   Updated: 2022/03/29 18:11:44 by jislim           ###   ########.fr       */
+/*   Updated: 2022/03/29 19:37:08 by jislim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ char	*printf_hexa(void *v_ptr)
 	if (hexa[0] == '0')
 		hexa = ft_substr(hexa, is_zero(hexa), (ft_strlen(hexa) - is_zero(hexa)));
 	hexa = ft_strjoin("0x", hexa);
+	ft_putstr_fd(hexa, 1);
 	free(str);
 	return (hexa);
 }
