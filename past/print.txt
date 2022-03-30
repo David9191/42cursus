@@ -73,3 +73,7 @@ scanf() function detects base using %i but assumes base 10 using %d.
 %x Prints a number in hexadecimal (base 16) lowercase format.
 %X Prints a number in hexadecimal (base 16) uppercase format.
 %% Prints a percent sign.
+
+printf에서 %d나 %i의 경우에 2147483648을 넘겨주면 에러나고
+제 ft_printf에서 2147483648을 주면 va_arg(ap, int)에서 -2147483648을 리턴해주던데
+어디서 얘를 잡아줘야 될까요...??ㅠㅠ
