@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jislim <jislim@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jislim <jislim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 14:32:19 by jislim            #+#    #+#             */
-/*   Updated: 2022/03/31 20:20:06 by jislim           ###   ########.fr       */
+/*   Updated: 2022/03/31 23:37:54 by jislim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,10 +73,12 @@ int	main(void)
 {
 	int	a = 2147483647;
 	// ft_printf("%%\n%c\n%c\n", '%', '-');
-	ft_printf("%% %c\n %s\t %p\n %d %i\n %x\n %X\n %u\n\n",
-	'-', "hello world!", &a, a, a, 56789, 56789, -1);
-	// printf("%%%cprint\n-----------\n%s\t%p\n%d	%i\n%s\n%x\n%X\n%u",
-	// '-', "hello world!", "hello world!", a, a, "개행 굿", 56789, 56789, -1);
+	// ft_printf("%% %c\n %s\t %p\n %d %i\n %x\n %X\n %u\n\n",
+	// '-', "hello world!", &a, a, a, 56789, 56789, -1);
+	ft_printf("%%%cft_print\n-----------\n%s\t%p\n%d	%i\n%s\n%x\n%X\n%u\n\n",
+	'-', "hello world!", "hello world!", a, a, "개행 굿", 56789, 56789, -1);
+	printf("%%%cprint\n-----------\n%s\t%p\n%d	%i\n%s\n%x\n%X\n%u",
+	'-', "hello world!", "hello world!", a, a, "개행 굿", 56789, 56789, -1);
 	// ft_printf("%d", 2147483648); 이 경우 어떻게 할거임? 고려하지마? 다른 분은 이 경우 뭐 나오는지 물어봐야겠다.
 	// -2147483648이 나왔다. 나도 그냥 하면 될 거 같다. 고려 안해도 됨. 위의 일자로부터 2일 후.
 	// 뭔가 ap를 들고 다니면 에러가 나는 것 같다...
