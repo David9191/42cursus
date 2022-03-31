@@ -6,7 +6,7 @@
 /*   By: jislim <jislim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 21:18:21 by jislim            #+#    #+#             */
-/*   Updated: 2022/03/30 13:59:01 by jislim           ###   ########.fr       */
+/*   Updated: 2022/03/31 19:21:54 by jislim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,13 @@ void	ft_lstclear(t_list **lst, void (*del)(void *));
 void	ft_lstiter(t_list *lst, void (*f)(void *));
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
 
-void	hexa_print(unsigned long n, char d);
+int	print_usnbr(unsigned int us_nbr);
+int	print_str(char *str);
+int	print_hexa(unsigned int hexa);
+int	print_nbr(int nbr);
+int	print_char(int ch);
+int	print_hexa_ptr(unsigned long hexa);
+
 char	*printf_hexa(void *v_ptr);
 
 #endif
