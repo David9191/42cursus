@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_putusnbr_fd.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jislim <jislim@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jislim <jislim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 14:03:14 by jislim            #+#    #+#             */
-/*   Updated: 2022/03/30 14:36:29 by jislim           ###   ########.fr       */
+/*   Updated: 2022/03/31 23:31:57 by jislim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,6 @@ void	ft_putusnbr_fd(unsigned int n, int fd)
 {
 	if (fd < 0)
 		return ;
-	else if (n < 0)
-	{
-		n *= -1;
-		write(fd, "-", 1);
-		put_usnbr_fd(n, fd);
-	}
 	else
 		put_usnbr_fd(n, fd);
 }
