@@ -6,43 +6,50 @@
 #    By: jislim <jislim@student.42seoul.kr>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/17 00:08:36 by jislim            #+#    #+#              #
-#    Updated: 2022/03/29 23:51:21 by jislim           ###   ########.fr        #
+#    Updated: 2022/04/02 23:32:00 by jislim           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = libftprintf.a
-AR = ar
-ARFLAGS = -rcs
-CC = gcc
-CFLAGS = -Wall -Wextra -Werror
-RM = rm -f
+NAME		= libftprintf.a
+SRCS	= ft_printf.c
 
-SRCS =	ft_isalpha.c ft_isdigit.c ft_isalnum.c ft_isascii.c \
-		ft_isprint.c ft_strlen.c ft_memset.c ft_bzero.c ft_memcpy.c \
-		ft_memmove.c ft_strlcpy.c ft_strlcat.c ft_toupper.c ft_tolower.c \
-		ft_strchr.c ft_strrchr.c ft_strncmp.c ft_memchr.c ft_memcmp.c \
-		ft_strnstr.c ft_atoi.c ft_calloc.c ft_strdup.c ft_substr.c \
-		ft_strjoin.c ft_strtrim.c ft_split.c ft_itoa.c ft_strmapi.c \
-		ft_striteri.c ft_putchar_fd.c ft_putstr_fd.c ft_putendl_fd.c ft_putnbr_fd.c
-OBJS = $(SRCS:.c=.o)
+SRCS_B	=
 
-all : $(NAME)
+OBJS	= ${SRCS:.c=.o}
 
-$(NAME) : $(OBJS)
-	$(AR) $(ARFLAGS) $@ $^
+OBJS_B	= ${SRCS_B:.c=.o}
 
-%.o : %.c
-	$(CC) $(CFLAG) -c $< -o $@
+NAME	= libftprintf.a
 
-clean :
-	$(RM) $(OBJS) $(BONUS_OBJS)
+RM 		= rm -f
 
-fclean : clean
-	$(RM) $(NAME)
+AR		= ar rc
 
-re : fclean $(NAME)
+define libft_call
+		cd libft && $(MAKE) $(1) && cd ..
+endef
 
-bonus : $(BONUS_OBJS)
-	$(AR) $(ARFLAGS) $(NAME) $^
+.c.o:
+		gcc -Wall -Wextra -Werror -c $< -o ${<:.c=.o}
 
-.PHONY : all clean fclean re bonus
+all:	${NAME}
+
+${NAME}:	${OBJS}
+		$(call libft_call, all)
+		${AR} ${NAME} ${OBJS}
+
+bonus: 		${OBJS_B}
+		$(call libft_call, all)
+		${AR} ${NAME} ${OBJS_B}
+
+clean:
+		$(call libft_call, clean)
+		${RM} ${OBJS} ${OBJS_B}
+
+fclean:		clean
+		$(call libft_call, fclean)
+		${RM}	${NAME}
+
+re: 		fclean all
+
+.PHONY: 	all bonus clean fclean re
