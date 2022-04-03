@@ -6,14 +6,14 @@
 /*   By: jislim <jislim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 21:17:36 by jislim            #+#    #+#             */
-/*   Updated: 2022/03/30 00:49:57 by jislim           ###   ########.fr       */
+/*   Updated: 2022/04/03 23:06:41 by jislim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
-#include "ft_printf.h"
+#include "../includes/ft_printf.h"
 
 int	is_zero(char *str)
 {
@@ -37,7 +37,7 @@ char	*printf_hexa(void *v_ptr)
 	if (!hexa)
 		return (NULL);
 	hexa_idx = 15;
-	
+
 	while (hexa_idx >= 0)
 	{
 		hexa_c = (char)(ad % 16);

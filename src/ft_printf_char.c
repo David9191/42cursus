@@ -1,32 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf_nbr.c                                    :+:      :+:    :+:   */
+/*   ft_printf_char.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jislim <jislim@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jislim <jislim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/30 15:08:04 by jislim            #+#    #+#             */
-/*   Updated: 2022/03/31 18:59:50 by jislim           ###   ########.fr       */
+/*   Created: 2022/03/31 17:12:40 by jislim            #+#    #+#             */
+/*   Updated: 2022/04/03 23:06:50 by jislim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "../includes/ft_printf.h"
 
-int	len_nbr(int nbr)
+int	print_char(int ch)
 {
-	int	len;
-
-	len = 0;
-	if (nbr >= 10)
-		len = len_nbr(nbr / 10);
-	return (++len);
-}
-
-int	print_nbr(int nbr)
-{
-	int	len;
-
-	ft_putnbr_fd(nbr, 1);
-	len = len_nbr(nbr);
-	return (len);
+	ft_putchar_fd((char)ch, 1);
+	return (1);
 }

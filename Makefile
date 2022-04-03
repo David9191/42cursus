@@ -6,50 +6,57 @@
 #    By: jislim <jislim@student.42seoul.kr>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/17 00:08:36 by jislim            #+#    #+#              #
-#    Updated: 2022/04/02 23:32:00 by jislim           ###   ########.fr        #
+#    Updated: 2022/04/03 23:10:54 by jislim           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME		= libftprintf.a
-SRCS	= ft_printf.c
+LIBFT = ./libft/libft.a
 
-SRCS_B	=
+N_TEMP = temp.a
 
-OBJS	= ${SRCS:.c=.o}
+NAME = libftprintf.a
 
-OBJS_B	= ${SRCS_B:.c=.o}
+SRCS =  src/ft_printf.c \
+		src/ft_printf_char.c \
+		src/ft_printf_hexa_ptr.c \
+		src/ft_printf_hexa.c \
+		src/ft_printf_nbr.c \
+		src/ft_printf_str.c \
+		src/ft_printf_usnbr.c \
+		src/ft_printf.c \
 
-NAME	= libftprintf.a
+SURPL_O =	src/ft_printf.o \
+			src/ft_printf_char.o \
+			src/ft_printf_hexa_ptr.o \
+			src/ft_printf_hexa.o \
+			src/ft_printf_nbr.o \
+			src/ft_printf_str.o \
+			src/ft_printf_usnbr.o \
+			src/ft_printf.o \
 
-RM 		= rm -f
+CC = gcc
 
-AR		= ar rc
+FLAGS = -c -Wall -Wextra -Werror
 
-define libft_call
-		cd libft && $(MAKE) $(1) && cd ..
-endef
+INCLUDES = -I./includes
 
-.c.o:
-		gcc -Wall -Wextra -Werror -c $< -o ${<:.c=.o}
+OBJS = $(SRCS:.c=.o)
 
-all:	${NAME}
+$(NAME): $(OBJS)
+	$(MAKE) -C ./libft
+	cp libft/libft.a $(NAME)
+	$(CC) $(FLAGS) $(INCLUDES) $(SRCS)
+	ar -rcs $(NAME) $(OBJS)
 
-${NAME}:	${OBJS}
-		$(call libft_call, all)
-		${AR} ${NAME} ${OBJS}
+all : $(NAME)
 
-bonus: 		${OBJS_B}
-		$(call libft_call, all)
-		${AR} ${NAME} ${OBJS_B}
+clean :
+	$(MAKE) clean -C ./libft
+	rm -rf $(SURPL_O)
+	rm -rf $(OBJS)
 
-clean:
-		$(call libft_call, clean)
-		${RM} ${OBJS} ${OBJS_B}
+fclean : clean
+	$(MAKE) fclean -C ./libft
+	rm -rf $(NAME)
 
-fclean:		clean
-		$(call libft_call, fclean)
-		${RM}	${NAME}
-
-re: 		fclean all
-
-.PHONY: 	all bonus clean fclean re
+re : fclean all

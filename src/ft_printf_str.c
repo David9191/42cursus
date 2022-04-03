@@ -1,19 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf_char.c                                   :+:      :+:    :+:   */
+/*   ft_printf_str.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jislim <jislim@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jislim <jislim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/31 17:12:40 by jislim            #+#    #+#             */
-/*   Updated: 2022/03/31 19:28:54 by jislim           ###   ########.fr       */
+/*   Created: 2022/03/30 15:07:52 by jislim            #+#    #+#             */
+/*   Updated: 2022/04/03 23:07:01 by jislim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "../includes/ft_printf.h"
 
-int	print_char(int ch)
+int	print_str(char *str)
 {
-	ft_putchar_fd((char)ch, 1);
-	return (1);
+	int	len;
+
+	if (!str)
+		return (0);
+	ft_putstr_fd(str, 1);
+	len = ft_strlen(str);
+	return (len);
 }

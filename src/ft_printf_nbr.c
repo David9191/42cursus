@@ -1,32 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf_usnbr.c                                  :+:      :+:    :+:   */
+/*   ft_printf_nbr.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jislim <jislim@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jislim <jislim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/31 17:14:13 by jislim            #+#    #+#             */
-/*   Updated: 2022/03/31 19:16:09 by jislim           ###   ########.fr       */
+/*   Created: 2022/03/30 15:08:04 by jislim            #+#    #+#             */
+/*   Updated: 2022/04/03 23:06:59 by jislim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "../includes/ft_printf.h"
 
-int	len_usnbr(unsigned int us_nbr)
+int	len_nbr(int nbr)
 {
 	int	len;
 
 	len = 0;
-	if (us_nbr >= 10)
-		len = len_usnbr(us_nbr / 10);
+	if (nbr >= 10)
+		len = len_nbr(nbr / 10);
 	return (++len);
 }
 
-int	print_usnbr(unsigned int us_nbr)
+int	print_nbr(int nbr)
 {
 	int	len;
 
-	ft_putusnbr_fd(us_nbr, 1);
-	len = len_usnbr(us_nbr);
+	ft_putnbr_fd(nbr, 1);
+	len = len_nbr(nbr);
 	return (len);
 }
