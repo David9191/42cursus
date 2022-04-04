@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf_hexa_ptr.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jislim <jislim@student.42seoul.kr>         +#+  +:+       +#+        */
+/*   By: jislim <jislim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 17:30:14 by jislim            #+#    #+#             */
-/*   Updated: 2022/04/03 23:06:53 by jislim           ###   ########.fr       */
+/*   Updated: 2022/04/04 18:56:37 by jislim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
 
-int	ptr_decimal_to_hexa(unsigned long hex)
+int	decimal_to_hexa(unsigned long hex)
 {
 	int		len;
 	char	ch;
@@ -20,7 +20,7 @@ int	ptr_decimal_to_hexa(unsigned long hex)
 	len = 0;
 	ch = hex % 16;
 	if (hex >= 16)
-		len = ptr_decimal_to_hexa(hex / 16);
+		len = decimal_to_hexa(hex / 16);
 	if (ch >= 0 && ch < 10)
 		ch += '0';
 	else if (ch >= 10 && ch < 16)
@@ -35,6 +35,6 @@ int	print_hexa_ptr(unsigned long hexa)
 
 	len = 2;
 	write(1, "0x", 2);
-	len += ptr_decimal_to_hexa(hexa);
+	len += decimal_to_hexa(hexa);
 	return (len);
 }
