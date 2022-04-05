@@ -6,15 +6,16 @@
 #    By: jislim <jislim@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/17 00:08:36 by jislim            #+#    #+#              #
-#    Updated: 2022/04/05 14:09:12 by jislim           ###   ########.fr        #
+#    Updated: 2022/04/05 15:23:30 by jislim           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-LIBFT = ./libft/libft.a
-
-N_TEMP = temp.a
-
 NAME = libftprintf.a
+AR = ar
+ARFLAGS = -rcs
+CC = gcc
+FLAGS = -Wall -Wextra -Werror
+RM = rm -rf
 
 SRCS =  ./src/ft_printf.c \
 		./src/ft_printf_char.c \
@@ -23,41 +24,24 @@ SRCS =  ./src/ft_printf.c \
 		./src/ft_printf_nbr.c \
 		./src/ft_printf_str.c \
 		./src/ft_printf_usnbr.c \
-		./src/ft_printf.c \
-
-SURPL_O =	./src/ft_printf.o \
-			./src/ft_printf_char.o \
-			./src/ft_printf_hexa_ptr.o \
-			./src/ft_printf_hexa.o \
-			./src/ft_printf_nbr.o \
-			./src/ft_printf_str.o \
-			./src/ft_printf_usnbr.o \
-			./src/ft_printf.o \
-
-CC = gcc
-
-FLAGS = -c -Wall -Wextra -Werror
-
+		./src/ft_printf.c
 OBJS = $(SRCS:.c=.o)
-
-$(NAME): $(OBJS)
-	$(MAKE) -C ./libft
-	cp libft/libft.a $(NAME)
-	$(CC) $(FLAGS) $(SRCS)
-	ar -rcs $(NAME) $(OBJS)
 
 all : $(NAME)
 
+$(NAME): $(OBJS)
+	$(MAKE) --directory ./libft
+	cp libft/libft.a $@
+	$(AR) $(ARFLAGS) $@ $^
+
 clean :
-	$(MAKE) clean -C ./libft
-	rm -rf $(SURPL_O)
-	rm -rf $(OBJS)
-	cd ..
-	rm -rf $(SURPL_O)
-	rm -rf $(OBJS)
+	$(MAKE) clean --directory ./libft
+	$(RM) $(OBJS)
 
 fclean : clean
-	$(MAKE) fclean -C ./libft
-	rm -rf $(NAME)
+	$(MAKE) fclean --directory ./libft
+	$(RM) $(NAME)
 
 re : fclean all
+
+.PHONY : all clean fclean re bonus
