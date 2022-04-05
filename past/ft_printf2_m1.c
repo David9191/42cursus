@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf2_m1.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jislim <jislim@student.42seoul.kr>         +#+  +:+       +#+        */
+/*   By: jislim <jislim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 14:32:19 by jislim            #+#    #+#             */
-/*   Updated: 2022/04/03 23:06:48 by jislim           ###   ########.fr       */
+/*   Updated: 2022/04/05 14:12:37 by jislim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/ft_printf.h"
+#include "../src/ft_printf.h"
 
 int	breidge_format(va_list *ap, char conv)
 {
@@ -69,20 +69,20 @@ int	ft_printf(const char *format, ...)
 	return (cnt_print);
 }
 
-int	main(void)
-{
-	int	a = 2147483647;
-	// ft_printf("%%\n%c\n%c\n", '%', '-');
-	// ft_printf("%% %c\n %s\t %p\n %d %i\n %x\n %X\n %u\n\n",
-	// '-', "hello world!", &a, a, a, 56789, 56789, -1);
-	int b = ft_printf("%%%cft_print\n-----------\n%s\t%p\n%d	%i\n%s\n%x\n%X\n%u\n\n",
-	'-', "hello world!", "hello world!", a, a, "개행 굿", 56789, 56789, -1);
-	int c = printf("%%%cprint\n-----------\n%s\t%p\n%d	%i\n%s\n%x\n%X\n%u",
-	'-', "hello world!", "hello world!", a, a, "개행 굿", 56789, 56789, -1);
-	printf("\n\n%d %d", b, c);
-	// ft_printf("%d", 2147483648); 이 경우 어떻게 할거임? 고려하지마? 다른 분은 이 경우 뭐 나오는지 물어봐야겠다.
-	// -2147483648이 나왔다. 나도 그냥 하면 될 거 같다. 고려 안해도 됨. 위의 일자로부터 2일 후.
-	// 뭔가 ap를 들고 다니면 에러가 나는 것 같다...
-	// nono 들고 다녀도 됨.
-	return (0);
-}
+// int	main(void)
+// {
+// 	int	a = 2147483647;
+// 	// ft_printf("%%\n%c\n%c\n", '%', '-');
+// 	// ft_printf("%% %c\n %s\t %p\n %d %i\n %x\n %X\n %u\n\n",
+// 	// '-', "hello world!", &a, a, a, 56789, 56789, -1);
+// 	int b = ft_printf("%%%cft_print\n-----------\n%s\t%p\n%d	%i\n%s\n%x\n%X\n%u\n\n",
+// 	'-', "hello world!", "hello world!", a, a, "개행 굿", 56789, 56789, -1);
+// 	int c = printf("%%%cprint\n-----------\n%s\t%p\n%d	%i\n%s\n%x\n%X\n%u",
+// 	'-', "hello world!", "hello world!", a, a, "개행 굿", 56789, 56789, -1);
+// 	printf("\n\n%d %d", b, c);
+// 	// ft_printf("%d", 2147483648); 이 경우 어떻게 할거임? 고려하지마? 다른 분은 이 경우 뭐 나오는지 물어봐야겠다.
+// 	// -2147483648이 나왔다. 나도 그냥 하면 될 거 같다. 고려 안해도 됨. 위의 일자로부터 2일 후.
+// 	// 뭔가 ap를 들고 다니면 에러가 나는 것 같다...
+// 	// nono 들고 다녀도 됨.
+// 	return (0);
+// }

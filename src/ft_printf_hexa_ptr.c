@@ -6,11 +6,11 @@
 /*   By: jislim <jislim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 17:30:14 by jislim            #+#    #+#             */
-/*   Updated: 2022/04/04 18:56:37 by jislim           ###   ########.fr       */
+/*   Updated: 2022/04/05 14:11:35 by jislim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/ft_printf.h"
+#include "ft_printf.h"
 
 int	decimal_to_hexa(unsigned long hex)
 {

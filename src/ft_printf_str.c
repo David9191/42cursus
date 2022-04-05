@@ -6,11 +6,11 @@
 /*   By: jislim <jislim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/30 15:07:52 by jislim            #+#    #+#             */
-/*   Updated: 2022/04/04 17:35:11 by jislim           ###   ########.fr       */
+/*   Updated: 2022/04/05 14:11:53 by jislim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/ft_printf.h"
+#include "ft_printf.h"
 
 int	print_str(char *str)
 {

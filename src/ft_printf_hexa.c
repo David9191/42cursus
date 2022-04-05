@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf_hexa.hexa                                   :+:      :+:    :+:   */
+/*   ft_printf_hexa.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jislim <jislim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/30 15:08:12 by jislim            #+#    #+#             */
-/*   Updated: 2022/03/31 17:30:20 by jislim           ###   ########.fr       */
+/*   Updated: 2022/04/05 14:11:06 by jislim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/ft_printf.h"
+#include "ft_printf.h"
 
 int	decimal_to_hexa_upper(unsigned int hex)
 {

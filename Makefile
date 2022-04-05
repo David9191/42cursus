@@ -6,7 +6,7 @@
 #    By: jislim <jislim@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/17 00:08:36 by jislim            #+#    #+#              #
-#    Updated: 2022/04/04 20:02:13 by jislim           ###   ########.fr        #
+#    Updated: 2022/04/05 14:09:12 by jislim           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,14 +38,12 @@ CC = gcc
 
 FLAGS = -c -Wall -Wextra -Werror
 
-INCLUDES = -I./includes
-
 OBJS = $(SRCS:.c=.o)
 
 $(NAME): $(OBJS)
 	$(MAKE) -C ./libft
 	cp libft/libft.a $(NAME)
-	$(CC) $(FLAGS) $(INCLUDES) $(SRCS)
+	$(CC) $(FLAGS) $(SRCS)
 	ar -rcs $(NAME) $(OBJS)
 
 all : $(NAME)

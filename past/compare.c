@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   compare.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jislim <jislim@student.42seoul.kr>         +#+  +:+       +#+        */
+/*   By: jislim <jislim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 21:17:36 by jislim            #+#    #+#             */
-/*   Updated: 2022/04/03 23:06:41 by jislim           ###   ########.fr       */
+/*   Updated: 2022/04/05 14:11:53 by jislim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
-#include "../includes/ft_printf.h"
+#include "ft_printf.h"
 
 int	is_zero(char *str)
 {

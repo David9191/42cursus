@@ -6,11 +6,11 @@
 /*   By: jislim <jislim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/30 15:08:04 by jislim            #+#    #+#             */
-/*   Updated: 2022/04/04 18:44:50 by jislim           ###   ########.fr       */
+/*   Updated: 2022/04/05 14:11:58 by jislim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/ft_printf.h"
+#include "ft_printf.h"
 
 int	len_nbr(int nbr)
 {

@@ -6,11 +6,11 @@
 /*   By: jislim <jislim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 14:32:19 by jislim            #+#    #+#             */
-/*   Updated: 2022/04/04 20:42:12 by jislim           ###   ########.fr       */
+/*   Updated: 2022/04/05 14:11:22 by jislim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/ft_printf.h"
+#include "ft_printf.h"
 
 int	breidge_format(va_list ap, char conv)
 {
@@ -36,17 +36,13 @@ int	breidge_format(va_list ap, char conv)
 
 int	ft_printf_hub(va_list ap, const char *format, int cnt_print)
 {
-	int	check;
 	int	idx;
 
 	idx = 0;
 	while (format[idx] != '\0')
 	{
 		if (format[idx] == '%')
-		{
-			check = breidge_format(ap, format[++idx]);
-			cnt_print += check;
-		}
+			cnt_print += breidge_format(ap, format[++idx]);
 		else
 			cnt_print += print_char(format[idx]);
 		idx++;
@@ -59,8 +55,6 @@ int	ft_printf(const char *format, ...)
 	va_list	ap;
 	int		cnt_print;
 
-	if (!format || !(*format))
-		return (0);
 	va_start(ap, format);
 	cnt_print = ft_printf_hub(ap, format, 0);
 	va_end(ap);

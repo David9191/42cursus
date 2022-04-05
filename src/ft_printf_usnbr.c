@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf_usnbr.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jislim <jislim@student.42seoul.kr>         +#+  +:+       +#+        */
+/*   By: jislim <jislim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 17:14:13 by jislim            #+#    #+#             */
-/*   Updated: 2022/04/03 23:07:04 by jislim           ###   ########.fr       */
+/*   Updated: 2022/04/05 14:11:53 by jislim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/ft_printf.h"
+#include "ft_printf.h"
 
 int	len_usnbr(unsigned int us_nbr)
 {
