@@ -54,3 +54,4 @@ dkms.conf
 a.out
 .DS_Store
 *.swp
+*.json

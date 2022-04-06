@@ -1,10 +1,5 @@
 {
-	"C_Cpp.default.cStandard": "c99",
 	"files.associations": {
-		"stdio.h": "c",
-		"stdlib.h": "c",
-		"ft_printf.h": "c",
-		"unistd.h": "c",
-		"libft.h": "c"
+		"ft_printf.h": "c"
 	}
 }
