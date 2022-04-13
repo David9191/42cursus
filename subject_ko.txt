@@ -90,7 +90,6 @@ Your script must always be able to display the following information:
 - 서버의 현재 사용 가능한 메모리 및 사용률(백분율).
 - The current available memory on your server and its utilization rate as a percentage.
 - 프로세서의 현재 사용률을
-- \
 - 백분율로 표시합니다.
 - The current utilization rate of your processors as a percentage
 - 마지막 재부팅 날짜 및 시간.
