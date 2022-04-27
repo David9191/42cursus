@@ -50,3 +50,9 @@ modules.order
 Module.symvers
 Mkfile.old
 dkms.conf
+
+# custom
+a.out
+.DS_Store
+*.swp
+*.json
