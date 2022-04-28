@@ -81,4 +81,27 @@ int		print_char(int ch);
 int		print_hexa_ptr(unsigned long hexa);
 char	*printf_hexa(void *v_ptr);
 
+
+typedef struct StackNodeType
+{
+	struct	StackNodeType	*pLink;
+	int						data;
+} StackNode;
+
+typedef struct LinkedStackType
+{
+	StackNode	*pTopElement;
+	int			currentElementCount;
+} LinkedStack;
+
+LinkedStack	*createLinkedStack();
+int			pushLS(LinkedStack *pStack, StackNode element);
+int			popLS(LinkedStack *pStack);
+int			peekLS(LinkedStack *pStack);
+void		deleteLinkedStack(LinkedStack *pStack);
+int			isLinkedStackEmpty(LinkedStack *pStack);
+
+#define TRUE		1
+#define FALSE		0
+
 #endif
