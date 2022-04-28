@@ -84,14 +84,14 @@ char	*printf_hexa(void *v_ptr);
 
 typedef struct StackNodeType
 {
-	struct	StackNodeType	*pLink;
 	int						data;
+	struct	StackNodeType	*pLink;
 } StackNode;
 
 typedef struct LinkedStackType
 {
-	StackNode	*pTopElement;
 	int			currentElementCount;
+	StackNode	*pTopElement;
 } LinkedStack;
 
 LinkedStack	*createLinkedStack();

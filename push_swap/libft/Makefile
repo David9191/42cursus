@@ -6,7 +6,7 @@
 #    By: jislim <jislim@student.42seoul.kr>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/30 15:26:40 by jislim            #+#    #+#              #
-#    Updated: 2022/04/28 01:08:37 by jislim           ###   ########.fr        #
+#    Updated: 2022/04/29 00:27:18 by jislim           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ AR = ar
 ARFLAGS = -rcs
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror -I.
-RM = rm -f
+RM = rm -rf
 
 SRCS =	ft_isalpha.c ft_isdigit.c ft_isalnum.c ft_isascii.c \
 		ft_isprint.c ft_strlen.c ft_memset.c ft_bzero.c ft_memcpy.c \
@@ -43,7 +43,7 @@ $(NAME) : $(OBJS)
 	$(CC) $(CFLAG) -c $< -o $@
 
 clean :
-	$(RM) $(OBJS) $(BONUS_OBJS)
+	$(RM) $(OBJS) $(BONUS_OBJS) *.gch
 
 fclean : clean
 	$(RM) $(NAME)
