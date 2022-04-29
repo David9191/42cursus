@@ -17,7 +17,7 @@ $(NAME): $(OBJS)
 	$(CC) $(FLAGS) $(NAME)
 
 debug :
-	$(CC) $(FLAGS) push_swap_test.c push_swap_utils.c ./libft/*.c -g
+	$(CC) $(FLAGS) push_swap.c push_swap_utils.c push_swap_utils2.c ./libft/*.c -g
 
 clean :
 	$(MAKE) clean --directory ./libft -s

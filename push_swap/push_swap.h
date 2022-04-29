@@ -26,9 +26,9 @@ int			push_swap_rb(LinkedStack *pStackB);
 int			push_swap_rra(LinkedStack *pStackA);
 int			push_swap_rrb(LinkedStack *pStackB);
 
-// int			*parsing(char **str);
-// LinkedStack	*pStackA_indexing(int *arr);
-// LinkedStack	*move_pStackA_to_pStackB(LinkedStack *pStackA, LinkedStack *pStackB);
-// LinkedStack	*move_pStackB_to_pStackA(LinkedStack *pStackA, LinkedStack *pStackB);
+int			*parsing(int argc, char **argv);
+LinkedStack	*pStackA_indexing(int *arr);
+int			move_pStackA_to_pStackB(LinkedStack *pStackA, LinkedStack *pStackB, int chunk);
+int			move_pStackB_to_pStackA(LinkedStack *pStackA, LinkedStack *pStackB);
 
 #endif
