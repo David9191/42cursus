@@ -50,7 +50,7 @@ int push_swap_pb(LinkedStack *pStackA, LinkedStack *pStackB)
 	StackNode	node;
 	int			check;
 
-	if (!pStackA || 1 > pStackB->currentElementCount)
+	if (!pStackA || 1 > pStackA->currentElementCount)
 		return (0);
 	node.data = popLS(pStackA);
 	check = pushLS(pStackB, node);

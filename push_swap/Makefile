@@ -14,14 +14,14 @@ $(NAME): $(OBJS)
 	$(MAKE) --directory ./libft -s
 	cp libft/libft.a $@
 	$(AR) $(ARFLAGS) $@ $^
-	$(CC) $(FLAGS) $(NAME)
+	$(CC) $(FLAGS) push_swap.c push_swap_utils.c push_swap_utils2.c libft/*.c
 
 debug :
-	$(CC) $(FLAGS) push_swap.c push_swap_utils.c push_swap_utils2.c ./libft/*.c -g
+	$(CC) $(FLAGS) push_swap.c push_swap_utils.c push_swap_utils2.c libft/*.c -g
 
 clean :
 	$(MAKE) clean --directory ./libft -s
-	$(RM) $(OBJS) a.out *.gch
+	$(RM) -rf $(OBJS) a.out *.gch a.out.dSYM
 
 fclean : clean
 	$(MAKE) fclean --directory ./libft -s

@@ -19,9 +19,8 @@ int	main(int argc, char **argv)
 		ft_printf("%d | ", arr[i]);
 	pStackA = pStackA_indexing(arr);
 	ft_printf("\ncrnt cnt : %d\n", pStackA->currentElementCount);
-	for (int i = pStackA->currentElementCount; i; i--)
-		ft_printf("pStackA's TOP DATA : %d\n", popLS(pStackA));
-
+	// for (int i = 0; pStackA->pTopElement; i--)
+	// 	ft_printf("pStackA's TOP DATA : %d\n", popLS(pStackA));
 	move_pStackA_to_pStackB(pStackA, pStackB, 2);
 	// for (int i = pStackB->currentElementCount; i; i--)
 	// 	ft_printf("pStackB's TOP DATA : %d\n", popLS(pStackB));

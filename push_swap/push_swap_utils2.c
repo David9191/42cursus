@@ -33,18 +33,18 @@ LinkedStack	*pStackA_indexing(int *arr)
 }
 int	move_pStackA_to_pStackB(LinkedStack *pStackA, LinkedStack *pStackB, int chunk)
 {
-	int	num;
-	int	data;
+	int			num;
+	int			data;
+	StackNode	node;
 
-	if (!pStackA || !pStackB)
-		return (0);
 	num = 0;
-	data = 1;
-	while (pStackA->pTopElement || data)
+	ft_printf("cnt : %d\n", pStackA->currentElementCount);
+	while (pStackA->currentElementCount)
 	{
 		data = pStackA->pTopElement->data;
-		int c = pStackA->currentElementCount;
-		if (!c) return (0);
+		// data++;
+		ft_printf("data : %d\n", data);
+		node.data = data;
 		if (data <= num)
 		{
 			push_swap_pb(pStackA, pStackB);
@@ -58,6 +58,7 @@ int	move_pStackA_to_pStackB(LinkedStack *pStackA, LinkedStack *pStackB, int chun
 		}
 		else if (num + chunk < data)
 			push_swap_ra(pStackA);
+		// else if 2번째로 2번 들어감
 	}
 	return (1);
 }
