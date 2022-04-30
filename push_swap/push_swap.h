@@ -6,7 +6,7 @@
 /*   By: jislim <jislim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/28 01:06:54 by jislim            #+#    #+#             */
-/*   Updated: 2022/04/29 02:28:37 by jislim           ###   ########.fr       */
+/*   Updated: 2022/05/01 01:22:33 by jislim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int			push_swap_rra(LinkedStack *pStackA);
 int			push_swap_rrb(LinkedStack *pStackB);
 
 int			*parsing(int argc, char **argv);
-LinkedStack	*pStackA_indexing(int *arr);
+LinkedStack	*pStackA_indexing(int *arr, int argc);
 int			move_pStackA_to_pStackB(LinkedStack *pStackA, LinkedStack *pStackB, int chunk);
 int			move_pStackB_to_pStackA(LinkedStack *pStackA, LinkedStack *pStackB);
 

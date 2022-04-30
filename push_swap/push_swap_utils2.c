@@ -5,7 +5,7 @@ int	*parsing(int argc, char **argv)
 	int	*arr;
 	int	idx;
 
-	arr = malloc(sizeof(int) * argc);
+	arr = malloc(sizeof(int) * (argc + 1));
 	idx = 0;
 	while (idx < argc)
 	{
@@ -15,15 +15,18 @@ int	*parsing(int argc, char **argv)
 	}
 	return (arr);
 }
-LinkedStack	*pStackA_indexing(int *arr)
+LinkedStack	*pStackA_indexing(int *arr, int argc)
 {
+	// 정렬 후, 인덱싱 처리를 해주자.
 	LinkedStack	*pStackA;
 	StackNode	node;
 
 	if (!arr)
 		return (NULL);
 	pStackA = createLinkedStack();
-	while (*arr)
+	// argc 받아온 이유는 도저히 인트포인터의 총 길이를 못구하겠어서.
+	// *arr로 하면 데이터가 0이면 while이 안돈다..
+	while (argc--)
 	{
 		node.data = *arr;
 		pushLS(pStackA, node);
@@ -38,23 +41,35 @@ int	move_pStackA_to_pStackB(LinkedStack *pStackA, LinkedStack *pStackB, int chun
 	StackNode	node;
 
 	num = 0;
+	ft_printf("초기 cnt : %d\n", pStackA->currentElementCount);
 	while (pStackA->currentElementCount)
 	{
 		data = pStackA->pTopElement->data;
+		// data++;
 		node.data = data;
 		if (data <= num)
 		{
+			ft_printf("cnt : %d, ", pStackA->currentElementCount);
+			ft_printf("data : %d, num : %d, pb\n", data, num);
 			push_swap_pb(pStackA, pStackB);
 			num++;
 		}
 		else if (num < data && data <= num + chunk)
 		{
+			ft_printf("cnt : %d, ", pStackA->currentElementCount);
+			ft_printf("data : %d, num : %d, pb, ra\n", data, num);
 			push_swap_pb(pStackA, pStackB);
 			push_swap_rb(pStackB);
 			num++;
 		}
 		else if (data > num + chunk)
+		{
+			ft_printf("cnt : %d, ", pStackA->currentElementCount);
+			ft_printf("BBBBB cnt : %d, ", pStackB->currentElementCount);
+			ft_printf("data : %d, num : %d, ra\n", data, num);
 			push_swap_ra(pStackA);
+		}
+		// else if 2번째로 2번 들어감
 	}
 	return (1);
 }
