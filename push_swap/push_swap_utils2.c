@@ -15,10 +15,30 @@ int	*parsing(int argc, char **argv)
 	}
 	return (arr);
 }
-LinkedStack	*pStackA_indexing(int *arr, int argc)
+int	pStackA_indexing(LinkedStack *pStackA)
+{
+	StackNode	*node;
+	StackNode	*next;
+
+	if (!pStackA)
+		return (FALSE);
+	node = pStackA->pTopElement;
+	next = node->pLink;
+	while (next)
+	{
+		if (node->data < next->data)
+		{
+			node->index--;
+			next->index++;
+		}
+		next = next->pLink;
+	}
+	return (TRUE);
+}
+LinkedStack	*create_pStackA(int *arr, int argc)
 {
 	// 정렬 후, 인덱싱 처리를 해주자.
-	// ⬆️안 됨. 왜? 정렬할려면 스택을 엄청 많이 바꿔야됨.
+	// ⬆안 됨. 왜? 정렬할려면 스택을 엄청 많이 바꿔야됨.
 	LinkedStack	*pStackA;
 	StackNode	node;
 
@@ -30,9 +50,13 @@ LinkedStack	*pStackA_indexing(int *arr, int argc)
 	while (argc--)
 	{
 		node.data = *arr;
-		node.index = 0;
-		pushLS(pStackA, node);
+		node.index = pStackA->currentElementCount;
+		int check = pushLS(pStackA, node);
+		if (check == FALSE)
+			printf("FUCK");
 		// 여기다가 인덱싱 처리 함수 추가?
+		if (node.index > 1)
+			pStackA_indexing(pStackA);
 		arr++;
 	}
 	return (pStackA);
@@ -40,36 +64,36 @@ LinkedStack	*pStackA_indexing(int *arr, int argc)
 int	move_pStackA_to_pStackB(LinkedStack *pStackA, LinkedStack *pStackB, int chunk)
 {
 	int			num;
-	int			data;
+	int			index;
 	StackNode	node;
 
 	num = 0;
 	ft_printf("초기 cnt : %d\n", pStackA->currentElementCount);
 	while (pStackA->currentElementCount)
 	{
-		data = pStackA->pTopElement->data;
-		// data++;
-		node.data = data;
-		if (data <= num)
+		index = pStackA->pTopElement->index;
+		// index++;
+		node.index = index;
+		if (index <= num)
 		{
 			ft_printf("cnt : %d, ", pStackA->currentElementCount);
-			ft_printf("data : %d, num : %d, pb\n", data, num);
+			ft_printf("index : %d, num : %d, pb\n", index, num);
 			push_swap_pb(pStackA, pStackB);
 			num++;
 		}
-		else if (num < data && data <= num + chunk)
+		else if (num < index && index <= num + chunk)
 		{
 			ft_printf("cnt : %d, ", pStackA->currentElementCount);
-			ft_printf("data : %d, num : %d, pb, ra\n", data, num);
+			ft_printf("index : %d, num : %d, pb, ra\n", index, num);
 			push_swap_pb(pStackA, pStackB);
 			push_swap_rb(pStackB);
 			num++;
 		}
-		else if (data > num + chunk)
+		else if (index > num + chunk)
 		{
 			ft_printf("cnt : %d, ", pStackA->currentElementCount);
 			ft_printf("BBBBB cnt : %d, ", pStackB->currentElementCount);
-			ft_printf("data : %d, num : %d, ra\n", data, num);
+			ft_printf("index : %d, num : %d, ra\n", index, num);
 			push_swap_ra(pStackA);
 		}
 		// else if 2번째로 2번 들어감

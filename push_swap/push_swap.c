@@ -18,21 +18,35 @@ int	main(int argc, char **argv)
 	arr = parsing(argc - 1, argv);
 	// for (int i = 0; i < argc - 1; i++)
 	// 	ft_printf("%d | ", arr[i]);
-	pStackA = pStackA_indexing(arr, argc - 1);
+	pStackA = create_pStackA(arr, argc - 1);
+	StackNode	*nodeA = pStackA->pTopElement;
+	while (nodeA)
+	{
+		printf("index : %d\n", nodeA->index);
+		nodeA = nodeA->pLink;
+	}
 	ft_printf("\nA crnt cnt : %d\n", pStackA->currentElementCount);
 	// for (int i = 0; pStackA->pTopElement; i--)
 	// 	ft_printf("pStackA's TOP DATA : %d\n", popLS(pStackA));
 	move_pStackA_to_pStackB(pStackA, pStackB, 15);
 	ft_printf("\nB crnt cnt : %d\n", pStackB->currentElementCount);
-	// for (int i = pStackB->currentElementCount; i; i--)
+	// for (int i = pStackB->currentElementCount; i; i--)a
 	// 	ft_printf("pStackB's TOP DATA : %d\n", popLS(pStackB));
+	StackNode *nodeB = pStackB->pTopElement;
 	for (int i = 0; i < argc - 1; i++)
 	{
-		int d = popLS(pStackB);
+		int d = nodeB->index;
 		ft_printf("%d : ", d);
-		for (; d; d--)
+		while (d--)
 			ft_printf("|");
-		ft_printf("\n");	
-	}	
+		ft_printf("\n");
+		nodeB = nodeB->pLink;
+	}
+	// while (nodeB)
+	// {
+	// 	printf("index : %d\n", nodeB->index);
+	// 	nodeB = nodeB->pLink;
+	// }
+	system("leaks a.out | grep leaked");
 	return (0);
 }

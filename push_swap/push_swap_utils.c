@@ -32,13 +32,13 @@ int push_swap_sb(LinkedStack *pStackB)
 // Do nothing if b is empty.
 int push_swap_pa(LinkedStack *pStackA, LinkedStack *pStackB)
 {
-	StackNode	node;
+	StackNode	*node;
 	int			check;
 
 	if (!pStackB || 1 > pStackB->currentElementCount)
 		return (0);
-	node.data = popLS(pStackB);
-	check = pushLS(pStackA, node);
+	node = popLS(pStackB);
+	check = pushLS(pStackA, *node);
 	if (!check)
 		return (0);
 	return (1);
@@ -47,13 +47,17 @@ int push_swap_pa(LinkedStack *pStackA, LinkedStack *pStackB)
 // Do nothing if a is empty.
 int push_swap_pb(LinkedStack *pStackA, LinkedStack *pStackB)
 {
-	StackNode	node;
+	StackNode	*node;
 	int			check;
 
 	if (!pStackA || 1 > pStackA->currentElementCount)
 		return (0);
-	node.data = popLS(pStackA);
-	check = pushLS(pStackB, node);
+	node = popLS(pStackA);
+	check = pushLS(pStackB, *node);
+	free (node); // popLS에서 free하면 이미 메모리 반환 후 이므로 쓰레기 값이 들어감.
+	// free 했을 시 -> Process 12544: 0 leaks for 0 total leaked bytes.
+	// free 안했을 시 -> Process 12416: 100 leaks for 1600 total leaked bytes.
+	// 클러스터 맥에서 a push_swap.c push_swap_util* ./libft/*.c -g3 -fsanitize=address 해보기
 	if (!check)
 		return (0);
 	return (1);

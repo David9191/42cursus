@@ -21,42 +21,31 @@ int	pushLS(LinkedStack *pStack, StackNode element)
 	node = malloc(sizeof(StackNode));
 	if (!node)
 		return (FALSE);
-	node->data = element.data;
-	// pStack->pTopElement == NULL인 경우. 즉, 스택을 막 생성한 상태.
-	if (!(pStack->pTopElement))
-	{
-		node->pLink = NULL;
-		pStack->pTopElement = node;
-	}
-	else
-	{
-		node->pLink = pStack->pTopElement;
-		pStack->pTopElement = node;
-	}
+	*node = element;
+	node->pLink = pStack->pTopElement;
+	pStack->pTopElement = node;
 	pStack->currentElementCount += 1;
 	return (TRUE);
 }
 
-int	popLS(LinkedStack *pStack)
+StackNode	*popLS(LinkedStack *pStack)
 {
-	StackNode	*del;
-	int			rt_data;
+	StackNode	*rt_node;
 
 	if (!pStack || !(pStack->currentElementCount))
 		return (FALSE);
-	rt_data = peekLS(pStack);
-	del = pStack->pTopElement;
+	rt_node = pStack->pTopElement;
 	pStack->pTopElement = pStack->pTopElement->pLink;
-	free (del);
+	// free (rt_node);
 	pStack->currentElementCount -= 1;
-	return (rt_data);
+	return (rt_node);
 }
 
-int	peekLS(LinkedStack *pStack)
+StackNode	*peekLS(LinkedStack *pStack)
 {
 	if (!pStack || !(pStack->currentElementCount))
 		return (FALSE);
-	return (pStack->pTopElement->data);
+	return (pStack->pTopElement);
 }
 
 void	deleteLinkedStack(LinkedStack *pStack)

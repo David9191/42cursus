@@ -97,8 +97,8 @@ typedef struct LinkedStackType
 
 LinkedStack	*createLinkedStack();
 int			pushLS(LinkedStack *pStack, StackNode element);
-int			popLS(LinkedStack *pStack);
-int			peekLS(LinkedStack *pStack);
+StackNode	*popLS(LinkedStack *pStack);
+StackNode	*peekLS(LinkedStack *pStack);
 void		deleteLinkedStack(LinkedStack *pStack);
 int			isLinkedStackEmpty(LinkedStack *pStack);
 
