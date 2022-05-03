@@ -1,9 +1,8 @@
 #include "push_swap.h"
 
-int	main(int argc, char **argv)
+int	main()
 {
-	// in case : s 1 2 3 4 5
-	ft_printf("argc : %d\n", argc); // argc == 6
-	for (size_t i = 0; argv[i]; i++)
-		ft_printf("argv[%d] : %s\n", i, argv[i]);
+	int	arr[] = { 100, 500, 300, 400, 200 };
+	// 1. 스택에 추가한다.
+	// 2. 그 후 스택에 맨 위에 애를 맨 끝까지 돌면서 자기보다 크면 인덱스++
 }

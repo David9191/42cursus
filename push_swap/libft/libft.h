@@ -85,6 +85,7 @@ char	*printf_hexa(void *v_ptr);
 typedef struct StackNodeType
 {
 	int						data;
+	int						index;
 	struct	StackNodeType	*pLink;
 } StackNode;
 

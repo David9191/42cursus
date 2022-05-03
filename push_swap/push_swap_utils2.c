@@ -5,7 +5,7 @@ int	*parsing(int argc, char **argv)
 	int	*arr;
 	int	idx;
 
-	arr = malloc(sizeof(int) * (argc + 1));
+	arr = malloc(sizeof(int) * argc);
 	idx = 0;
 	while (idx < argc)
 	{
@@ -18,6 +18,7 @@ int	*parsing(int argc, char **argv)
 LinkedStack	*pStackA_indexing(int *arr, int argc)
 {
 	// 정렬 후, 인덱싱 처리를 해주자.
+	// ⬆️안 됨. 왜? 정렬할려면 스택을 엄청 많이 바꿔야됨.
 	LinkedStack	*pStackA;
 	StackNode	node;
 
@@ -29,7 +30,9 @@ LinkedStack	*pStackA_indexing(int *arr, int argc)
 	while (argc--)
 	{
 		node.data = *arr;
+		node.index = 0;
 		pushLS(pStackA, node);
+		// 여기다가 인덱싱 처리 함수 추가?
 		arr++;
 	}
 	return (pStackA);
