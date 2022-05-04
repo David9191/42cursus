@@ -111,7 +111,7 @@ int	move_pStackB_to_pStackA(LinkedStack *pStackA, LinkedStack *pStackB)
 	while (pStackB->pTopElement != NULL)
 	{
 		max = (pStackB->currentElementCount) - 1;
-		if (is_max_in_top(pStackB))
+		if (max_is_top(pStackB))
 			while (max != pStackB->pTopElement->index)
 				push_swap_rb(pStackB);
 		else
@@ -121,7 +121,7 @@ int	move_pStackB_to_pStackA(LinkedStack *pStackA, LinkedStack *pStackB)
 	}
 	return(TRUE);
 }
-int	is_max_in_top(LinkedStack *pStackB)
+int	max_is_top(LinkedStack *pStackB)
 {
 	StackNode	*node;
 	int			half;

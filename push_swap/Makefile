@@ -5,7 +5,7 @@ CC = gcc
 FLAGS = -Wall -Wextra -Werror
 RM = rm -rf
 
-SRCS =  push_swap.c push_swap_utils.c push_swap_test.c
+SRCS =  push_swap.c push_swap_utils.c push_swap_utils2.c push_swap_test.c
 OBJS = $(SRCS:.c=.o)
 
 all : $(NAME)

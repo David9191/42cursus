@@ -17,6 +17,16 @@ int	main(int argc, char **argv)
 		chunk = 30;
 	arr = parsing(argc - 1, argv);
 	pStackA = create_pStackA(arr, argc - 1);
+	StackNode *nodeA = pStackA->pTopElement;
+	for (int i = 0; i < argc - 1; i++)
+	{
+		int d = nodeA->index;
+		ft_printf("%d : ", d);
+		while (d--)
+			ft_printf(".");
+		ft_printf("\n");
+		nodeA = nodeA->pLink;
+	}
 	// StackNode	*nodeA = pStackA->pTopElement;
 	// while (nodeA)
 	// {
@@ -42,7 +52,7 @@ int	main(int argc, char **argv)
 	// 	nodeB = nodeB->pLink;
 	// }
 	move_pStackB_to_pStackA(pStackA, pStackB);
-	StackNode *nodeA = pStackA->pTopElement;
+	nodeA = pStackA->pTopElement;
 	for (int i = 0; i < argc - 1; i++)
 	{
 		int d = nodeA->index;
@@ -52,6 +62,8 @@ int	main(int argc, char **argv)
 		ft_printf("\n");
 		nodeA = nodeA->pLink;
 	}
-	system("leaks a.out | grep leaked");
+	deleteLinkedStack(pStackA);
+	deleteLinkedStack(pStackB);
+	// system("leaks a.out");
 	return (0);
 }

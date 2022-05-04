@@ -38,7 +38,12 @@ int push_swap_pa(LinkedStack *pStackA, LinkedStack *pStackB)
 	if (!pStackB || 1 > pStackB->currentElementCount)
 		return (0);
 	node = popLS(pStackB);
+	if (!node)
+		return (0);
 	check = pushLS(pStackA, *node);
+	// 여기서 free를 안해주면 메인에서 deleteStack해도 이미 node는 pStack에 포함되어 있지 않기 때문에
+	// free를 못해줌.
+	free (node);
 	if (!check)
 		return (0);
 	return (1);
@@ -53,6 +58,8 @@ int push_swap_pb(LinkedStack *pStackA, LinkedStack *pStackB)
 	if (!pStackA || 1 > pStackA->currentElementCount)
 		return (0);
 	node = popLS(pStackA);
+	if (!node)
+		return (0);
 	check = pushLS(pStackB, *node);
 	free (node); // popLS에서 free하면 이미 메모리 반환 후 이므로 쓰레기 값이 들어감.
 	// free 했을 시 -> Process 12544: 0 leaks for 0 total leaked bytes.
