@@ -23,7 +23,8 @@ int	pStackA_indexing(LinkedStack *pStackA)
 	if (!pStackA)
 		return (FALSE);
 	node = pStackA->pTopElement;
-	next = node->pLink;
+	// next = node->pLink;로 하면 맨 마지막의 pLink는 NULL이니까 안들어감.
+	next = node;
 	while (next)
 	{
 		if (node->data < next->data)
@@ -51,11 +52,9 @@ LinkedStack	*create_pStackA(int *arr, int argc)
 	{
 		node.data = *arr;
 		node.index = pStackA->currentElementCount;
-		int check = pushLS(pStackA, node);
-		if (check == FALSE)
-			printf("FUCK");
+		pushLS(pStackA, node);
 		// 여기다가 인덱싱 처리 함수 추가?
-		if (node.index > 1)
+		if (node.index > 0)
 			pStackA_indexing(pStackA);
 		arr++;
 	}
@@ -68,7 +67,7 @@ int	move_pStackA_to_pStackB(LinkedStack *pStackA, LinkedStack *pStackB, int chun
 	StackNode	node;
 
 	num = 0;
-	ft_printf("초기 cnt : %d\n", pStackA->currentElementCount);
+	// ft_printf("초기 cnt : %d\n", pStackA->currentElementCount);
 	while (pStackA->currentElementCount)
 	{
 		index = pStackA->pTopElement->index;
@@ -76,42 +75,68 @@ int	move_pStackA_to_pStackB(LinkedStack *pStackA, LinkedStack *pStackB, int chun
 		node.index = index;
 		if (index <= num)
 		{
-			ft_printf("cnt : %d, ", pStackA->currentElementCount);
-			ft_printf("index : %d, num : %d, pb\n", index, num);
+			// ft_printf("cnt : %d, ", pStackA->currentElementCount);
+			// ft_printf("index : %d, num : %d, pb\n", index, num);
 			push_swap_pb(pStackA, pStackB);
 			num++;
 		}
 		else if (num < index && index <= num + chunk)
 		{
-			ft_printf("cnt : %d, ", pStackA->currentElementCount);
-			ft_printf("index : %d, num : %d, pb, ra\n", index, num);
+			// ft_printf("cnt : %d, ", pStackA->currentElementCount);
+			// ft_printf("index : %d, num : %d, pb, ra\n", index, num);
 			push_swap_pb(pStackA, pStackB);
 			push_swap_rb(pStackB);
 			num++;
 		}
 		else if (index > num + chunk)
 		{
-			ft_printf("cnt : %d, ", pStackA->currentElementCount);
-			ft_printf("BBBBB cnt : %d, ", pStackB->currentElementCount);
-			ft_printf("index : %d, num : %d, ra\n", index, num);
+			// ft_printf("cnt : %d, ", pStackA->currentElementCount);
+			// ft_printf("BBBBB cnt : %d, ", pStackB->currentElementCount);
+			// ft_printf("index : %d, num : %d, ra\n", index, num);
 			push_swap_ra(pStackA);
 		}
 		// else if 2번째로 2번 들어감
 	}
 	return (1);
 }
-// int	move_pStackB_to_pStackA(LinkedStack *pStackA, LinkedStack *pStackB)
-// {
-// 	int	half;
-// 	int	idx;
+int	move_pStackB_to_pStackA(LinkedStack *pStackA, LinkedStack *pStackB)
+{
+	int	idx;
+	int	max;
 
-// 	if (!pStackA || !pStackB)
-// 		return (NULL);
-// 	half = (pStackB->currentElementCount) / 2;
-// 	idx = 0;
-// 	while (pStackB->currentElementCount)
-// 	{
+	if (!pStackA || !pStackB)
+		return (FALSE);
+	idx = 0;
+	// pStackB->pTopElement->index얘랑 따로 변수로 만들어서 하는 거랑 시간비교 해보기.
+	while (pStackB->pTopElement != NULL)
+	{
+		max = (pStackB->currentElementCount) - 1;
+		if (is_max_in_top(pStackB))
+			while (max != pStackB->pTopElement->index)
+				push_swap_rb(pStackB);
+		else
+			while (max != pStackB->pTopElement->index)
+				push_swap_rrb(pStackB);
+		push_swap_pa(pStackA, pStackB);
+	}
+	return(TRUE);
+}
+int	is_max_in_top(LinkedStack *pStackB)
+{
+	StackNode	*node;
+	int			half;
+	int			max;
 
-// 	}
-// 	push_swap_pa(pStackA, pStackB);
-// }
+	if (!pStackB)
+		return (FALSE);
+	node = pStackB->pTopElement;
+	half = (pStackB->currentElementCount) / 2;
+	max = (pStackB->currentElementCount) - 1;
+	while (half--)
+	{
+		if (max == node->index)
+			return (TRUE);
+		node = node->pLink;
+	}
+	return (FALSE);
+}
