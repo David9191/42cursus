@@ -1,19 +1,44 @@
 #include "push_swap.h"
 
-int	*parsing(int argc, char **argv)
+int	ft_atoi(const char *nptr)
 {
-	int	*arr;
-	int	idx;
+	int					sign;
+	unsigned long long	result;
+	unsigned long long	long_min;
 
-	arr = malloc(sizeof(int) * argc);
-	idx = 0;
-	while (idx < argc)
+	sign = 1;
+	result = 0;
+	long_min = LONG_MIN * -1ULL;
+	while ((*nptr >= 9 && *nptr <= 13) || *nptr == ' ')
+		nptr++;
+	if (*nptr == '+' || *nptr == '-')
 	{
-		// 왜 idx + 1? argv[0]은 a.out(실행파일이 담겨있음.)
-		arr[idx] = ft_atoi(argv[idx + 1]);
-		idx++;
+		if (*nptr == '-')
+			sign *= -1;
+		nptr++;
 	}
-	return (arr);
+	while (*nptr >= '0' && *nptr <= '9')
+		result = (result * 10) + (*(nptr++) - '0');
+	if (result > LONG_MAX && sign == 1)
+		return (-1);
+	else if (result > long_min && sign == -1)
+		return (0);
+	return ((int)result * sign);
+}
+t_arr	*parsing(char *str)
+{
+	t_arr	s_arr;
+	int		*arr;
+	int		size;
+	int		result;
+
+	s_arr = malloc(sizeof(t_arr));
+	while (*str)
+	{
+		result = ft_atoi(str);
+	}
+	// arr = malloc(sizeof(int) * argc);
+	return (s_arr);
 }
 int	pStackA_indexing(LinkedStack *pStackA)
 {

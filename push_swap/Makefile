@@ -27,6 +27,8 @@ fclean : clean
 	$(MAKE) fclean --directory ./libft -s
 	$(RM) $(NAME)
 
-re : fclean all
+re :
+	make fclean
+	make all
 
 .PHONY : all clean fclean re bonus
