@@ -1,44 +1,51 @@
 #include "push_swap.h"
 
-int	ft_atoi(const char *nptr)
+int	*parsing(int argc, char **argv)
 {
-	int					sign;
-	unsigned long long	result;
-	unsigned long long	long_min;
+	// int	idx;
 
-	sign = 1;
-	result = 0;
-	long_min = LONG_MIN * -1ULL;
-	while ((*nptr >= 9 && *nptr <= 13) || *nptr == ' ')
-		nptr++;
-	if (*nptr == '+' || *nptr == '-')
-	{
-		if (*nptr == '-')
-			sign *= -1;
-		nptr++;
-	}
-	while (*nptr >= '0' && *nptr <= '9')
-		result = (result * 10) + (*(nptr++) - '0');
-	if (result > LONG_MAX && sign == 1)
-		return (-1);
-	else if (result > long_min && sign == -1)
-		return (0);
-	return ((int)result * sign);
-}
-t_arr	*parsing(char *str)
-{
-	t_arr	s_arr;
-	int		*arr;
-	int		size;
-	int		result;
 
-	s_arr = malloc(sizeof(t_arr));
-	while (*str)
-	{
-		result = ft_atoi(str);
-	}
-	// arr = malloc(sizeof(int) * argc);
-	return (s_arr);
+	// idx = 0;
+	// while (idx < argc)
+	// {
+	// 	// 왜 idx + 1? argv[0]은 a.out(실행파일이 담겨있음.)
+	// 	arr[idx] = ft_atoi(argv[idx + 1]);
+	// 	idx++;
+	// }
+	// return (arr);
+	
+	// int	*data;
+	// if (strchr(argv[i], ' ')
+	// 	str_input(argv[i], &data);
+	// 	str_input
+	// 		char	**str;
+	// 		str = split(parameter_str, ' ');
+	// 		if (!str) return (FALSE); || exit();
+	// 		while
+	// 			check_input(str[i], &data);
+	// else
+	// 	check_input(argv[i], &data);
+	// 	check_input
+	// 		check int range
+	// 		long long	num;
+	// 		int			*i;
+	// 		int			len;
+
+	// 		len = ft_strlen(s);
+	// 		len -= (s[0] == '-' || s[0] == '+');
+	// 		num = ft_atoll(s);
+	// 		if (!(ft_isnum(s) && len == ft_numlen(num)))
+	// 			error_exit();
+	// 		if (num > 2147483647 || num < -2147483648)
+	// 			error_exit();
+	// 		if (check_dup(*a, num))
+	// 			error_exit();
+	// 		i = (int *) malloc(sizeof(int));
+	// 		if (!i)
+	// 			exit(EXIT_FAILURE);
+	// 		*i = num;
+	// 		ft_lstadd_back(a, ft_lstnew(i));
+	return (TRUE);
 }
 int	pStackA_indexing(LinkedStack *pStackA)
 {
