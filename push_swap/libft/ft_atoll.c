@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoll.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jislim <jislim@student.42seoul.kr>         +#+  +:+       +#+        */
+/*   By: jislim <jislim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 17:18:42 by jislim            #+#    #+#             */
-/*   Updated: 2022/05/16 18:03:14 by jislim           ###   ########.fr       */
+/*   Updated: 2022/05/24 20:59:05 by jislim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ long long	ft_atoll(const char *nptr)
 			return (-1);
 	}
 	if ((result > LONG_MAX && sign == 1)
-		|| result > LONG_MAX + 1 && sign == -1)
+		|| (result - 1 > LONG_MAX && sign == -1))
 		return (-1);
 	return (result * sign);
 }

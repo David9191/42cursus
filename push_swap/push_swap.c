@@ -1,12 +1,25 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   push_swap.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jislim <jislim@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/05/24 19:44:11 by jislim            #+#    #+#             */
+/*   Updated: 2022/05/24 21:35:24 by jislim           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 int	main(int argc, char **argv)
 {
-	LinkedStack	*pStackA;
-	LinkedStack	*pStackB = createLinkedStack();
-	int			num;
-	int			chunk;
-	int			*arr;
+	t_linked_satck	*p_stack_a;
+	t_linked_satck	*p_stack_b;
+	t_stacknode		*node_a;
+	int				num;
+	int				chunk;
+	int				*arr;
 
 	ft_printf("argc : %d\n", argc - 1);
 	if (argc < 2)
@@ -16,54 +29,56 @@ int	main(int argc, char **argv)
 	if (argc - 1 == 500)
 		chunk = 30;
 	arr = parsing(argc - 1, argv);
-	pStackA = create_pStackA(arr, argc - 1);
-	StackNode *nodeA = pStackA->pTopElement;
+	p_stack_a = create_p_stack_a(arr, argc - 1);
+	node_a = p_stack_a->p_top_element;
 	for (int i = 0; i < argc - 1; i++)
 	{
-		int d = nodeA->index;
-		ft_printf("%d : ", d);
+		int d = node_a->index;
+		ft_printf("%3d : ", d);
 		while (d--)
 			ft_printf(".");
 		ft_printf("\n");
-		nodeA = nodeA->pLink;
+		node_a = node_a->p_link;
 	}
-	// StackNode	*nodeA = pStackA->pTopElement;
-	// while (nodeA)
+	// t_stacknode	*node_a = p_stack_a->p_top_element;
+	// while (node_a)
 	// {
-	// 	printf("index : %d\n", nodeA->index);
-	// 	nodeA = nodeA->pLink;
+	// 	printf("index : %d\n", node_a->index);
+	// 	node_a = node_a->p_link;
 	// }
-	ft_printf("\nA crnt cnt : %d\n", pStackA->currentElementCount);
-	move_pStackA_to_pStackB(pStackA, pStackB, 15);
-	ft_printf("\nB crnt cnt : %d\n", pStackB->currentElementCount);
-	StackNode *nodeB = pStackB->pTopElement;
+	ft_printf("\nA crnt cnt : %d\n", p_stack_a->current_element_cnt);
+	p_stack_b = create_linked_stack();
+	move_p_stack_a_to_p_stack_b(p_stack_a, p_stack_b, 15);
+	ft_printf("\nB crnt cnt : %d\n", p_stack_b->current_element_cnt);
+	t_stacknode *node_b = p_stack_b->p_top_element;
 	for (int i = 0; i < argc - 1; i++)
 	{
-		int d = nodeB->index;
-		ft_printf("%d : ", d);
+		int d = node_b->index;
+		// ft_printf("%d : ", d);
 		while (d--)
 			ft_printf(".");
 		ft_printf("\n");
-		nodeB = nodeB->pLink;
+		node_b = node_b->p_link;
 	}
-	// while (nodeB)
+	// while (node_b)
 	// {
-	// 	printf("index : %d\n", nodeB->index);
-	// 	nodeB = nodeB->pLink;
+	// 	printf("index : %d\n", node_b->index);
+	// 	node_b = node_b->p_link;
 	// }
-	move_pStackB_to_pStackA(pStackA, pStackB);
-	nodeA = pStackA->pTopElement;
+	ft_printf("\n\n");
+	move_p_stack_b_to_p_stack_a(p_stack_a, p_stack_b);
+	node_a = p_stack_a->p_top_element;
 	for (int i = 0; i < argc - 1; i++)
 	{
-		int d = nodeA->index;
-		ft_printf("%d : ", d);
+		int d = node_a->index;
+		// ft_printf("%d : ", d);
 		while (d--)
 			ft_printf(".");
 		ft_printf("\n");
-		nodeA = nodeA->pLink;
+		node_a = node_a->p_link;
 	}
-	deleteLinkedStack(pStackA);
-	deleteLinkedStack(pStackB);
+	delete_linked_stack(p_stack_a);
+	delete_linked_stack(p_stack_b);
 	// system("leaks a.out");
 	return (0);
 }

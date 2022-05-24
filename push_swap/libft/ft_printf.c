@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jislim <jislim@student.42seoul.kr>         +#+  +:+       +#+        */
+/*   By: jislim <jislim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 14:32:19 by jislim            #+#    #+#             */
-/*   Updated: 2022/05/01 00:37:03 by jislim           ###   ########.fr       */
+/*   Updated: 2022/05/24 20:28:04 by jislim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	breidge_format(va_list *ap, char conv)
+int	breidge_format(va_list ap, char conv)
 {
 	int	check;
 
@@ -20,21 +20,21 @@ int	breidge_format(va_list *ap, char conv)
 	if (conv == '%')
 		check += print_char('%');
 	else if (conv == 'c')
-		check += print_char(va_arg(*ap, int));
+		check += print_char(va_arg(ap, int));
 	else if (conv == 's')
-		check += print_str(va_arg(*ap, char *));
+		check += print_str(va_arg(ap, char *));
 	else if (conv == 'd' || conv == 'i')
-		check += print_nbr(va_arg(*ap, int));
+		check += print_nbr(va_arg(ap, int));
 	else if (conv == 'u')
-		check += print_usnbr(va_arg(*ap, unsigned int));
+		check += print_usnbr(va_arg(ap, unsigned int));
 	else if (conv == 'x' || conv == 'X')
-		check += print_hexa(va_arg(*ap, unsigned int), conv);
+		check += print_hexa(va_arg(ap, unsigned int), conv);
 	else if (conv == 'p')
-		check += print_hexa_ptr(va_arg(*ap, unsigned long));
+		check += print_hexa_ptr(va_arg(ap, unsigned long));
 	return (check);
 }
 
-int	ft_printf_hub(va_list *ap, const char *format, int cnt_print)
+int	ft_printf_hub(va_list ap, const char *format, int cnt_print)
 {
 	int	idx;
 
@@ -56,7 +56,7 @@ int	ft_printf(const char *format, ...)
 	int		cnt_print;
 
 	va_start(ap, format);
-	cnt_print = ft_printf_hub(&ap, format, 0);
+	cnt_print = ft_printf_hub(ap, format, 0);
 	va_end(ap);
 	return (cnt_print);
 }
