@@ -6,7 +6,7 @@
 /*   By: jislim <jislim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 19:44:11 by jislim            #+#    #+#             */
-/*   Updated: 2022/05/24 21:35:24 by jislim           ###   ########.fr       */
+/*   Updated: 2022/05/25 21:26:06 by jislim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,15 @@ int	main(int argc, char **argv)
 	}
 	delete_linked_stack(p_stack_a);
 	delete_linked_stack(p_stack_b);
-	// system("leaks a.out");
+	system("leaks push_swap | grep leaked");
 	return (0);
 }
+
+// push_swap
+
+// 3 ~ 5개는 하드코딩.
+// 3개는 B를 만들지도 않고 A에서 다 작업.
+// 4개는 제일 큰 값을 B로 넘기고 -> 3개 함수 부르기 -> B to A 하나씩 해주기.
+// 4개는 제일 큰 값 2개를 B로 넘기고 -> 3개 함수 부르기 -> B to A 하나씩 해주기.
+
+// 로직 설명 -> 수식 설명.
