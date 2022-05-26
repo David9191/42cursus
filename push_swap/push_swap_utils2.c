@@ -6,7 +6,7 @@
 /*   By: jislim <jislim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 20:19:11 by jislim            #+#    #+#             */
-/*   Updated: 2022/05/24 20:57:35 by jislim           ###   ########.fr       */
+/*   Updated: 2022/05/26 18:00:21 by jislim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,6 @@ int	p_stack_a_indexing(t_linked_satck *p_stack_a)
 	if (!p_stack_a)
 		return (FALSE);
 	node = p_stack_a->p_top_element;
-	// next = node->p_link;로 하면 맨 마지막의 p_link는 NULL이니까 안들어감.
 	next = node;
 	while (next)
 	{
@@ -100,22 +99,17 @@ int	p_stack_a_indexing(t_linked_satck *p_stack_a)
 
 t_linked_satck	*create_p_stack_a(int *arr, int argc)
 {
-	// 정렬 후, 인덱싱 처리를 해주자.
-	// ⬆안 됨. 왜? 정렬할려면 스택을 엄청 많이 바꿔야됨.
 	t_linked_satck	*p_stack_a;
 	t_stacknode		node;
 
 	if (!arr)
 		return (NULL);
 	p_stack_a = create_linked_stack();
-	// argc 받아온 이유는 도저히 인트포인터의 총 길이를 못구하겠어서.
-	// *arr로 하면 데이터가 0이면 while이 안돈다..
 	while (argc--)
 	{
 		node.data = *arr;
 		node.index = p_stack_a->current_element_cnt;
 		push_linked_stack(p_stack_a, node);
-		// 여기다가 인덱싱 처리 함수 추가?
 		if (node.index > 0)
 			p_stack_a_indexing(p_stack_a);
 		arr++;
@@ -131,35 +125,23 @@ int	move_p_stack_a_to_p_stack_b(t_linked_satck *p_stack_a, t_linked_satck *p_sta
 	t_stacknode	node;
 
 	num = 0;
-	// ft_printf("초기 cnt : %d\n", p_stack_a->current_element_cnt);
 	while (p_stack_a->current_element_cnt)
 	{
 		index = p_stack_a->p_top_element->index;
-		// index++;
 		node.index = index;
 		if (index <= num)
 		{
-			// ft_printf("cnt : %d, ", p_stack_a->current_element_cnt);
-			// ft_printf("index : %d, num : %d, pb\n", index, num);
 			push_swap_pb(p_stack_a, p_stack_b);
 			num++;
 		}
 		else if (num < index && index <= num + chunk)
 		{
-			// ft_printf("cnt : %d, ", p_stack_a->current_element_cnt);
-			// ft_printf("index : %d, num : %d, pb, ra\n", index, num);
 			push_swap_pb(p_stack_a, p_stack_b);
 			push_swap_rb(p_stack_b);
 			num++;
 		}
 		else if (index > num + chunk)
-		{
-			// ft_printf("cnt : %d, ", p_stack_a->current_element_cnt);
-			// ft_printf("BBBBB cnt : %d, ", p_stack_b->current_element_cnt);
-			// ft_printf("index : %d, num : %d, ra\n", index, num);
 			push_swap_ra(p_stack_a);
-		}
-		// else if 2번째로 2번 들어감
 	}
 	return (1);
 }
@@ -172,7 +154,6 @@ int	move_p_stack_b_to_p_stack_a(t_linked_satck *p_stack_a, t_linked_satck *p_sta
 	if (!p_stack_a || !p_stack_b)
 		return (FALSE);
 	idx = 0;
-	// p_stack_b->p_top_element->index얘랑 따로 변수로 만들어서 하는 거랑 시간비교 해보기.
 	while (p_stack_b->p_top_element != NULL)
 	{
 		max = (p_stack_b->current_element_cnt) - 1;

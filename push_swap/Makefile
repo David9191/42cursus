@@ -6,7 +6,7 @@
 #    By: jislim <jislim@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/24 19:44:31 by jislim            #+#    #+#              #
-#    Updated: 2022/05/24 21:02:55 by jislim           ###   ########.fr        #
+#    Updated: 2022/05/26 18:04:11 by jislim           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,7 @@ CC = gcc
 FLAGS = -Wall -Wextra -Werror
 RM = rm -rf
 
-SRCS =  push_swap.c push_swap_utils.c push_swap_utils2.c push_swap_test.c
+SRCS =  push_swap.c push_swap_utils.c push_swap_utils2.c
 OBJS = $(SRCS:.c=.o)
 
 all : $(NAME)
@@ -26,14 +26,14 @@ $(NAME): $(OBJS)
 	$(MAKE) --directory ./libft -s
 	cp libft/libft.a $@
 	$(AR) $(ARFLAGS) $@ $^
-	$(CC) $(FLAGS) push_swap.c push_swap_utils.c push_swap_utils2.c libft/*.c -o push_swap
+	$(CC) $(FLAGS) $(OBJS) $(NAME) -o push_swap
 
 debug :
-	$(CC) $(FLAGS) push_swap.c push_swap_utils.c push_swap_utils2.c libft/*.c -g -o push_swap
+	$(CC) $(FLAGS) $(OBJS) $(NAME) -g -o push_swap
 
 clean :
 	$(MAKE) clean --directory ./libft -s
-	$(RM) -rf $(OBJS) a.out *.gch a.out.dSYM
+	$(RM) -rf $(OBJS) a.out *.gch a.out.dSYM push_swap
 
 fclean : clean
 	$(MAKE) fclean --directory ./libft -s
