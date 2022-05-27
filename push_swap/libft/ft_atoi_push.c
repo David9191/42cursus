@@ -6,21 +6,20 @@
 /*   By: jislim <jislim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 17:18:42 by jislim            #+#    #+#             */
-/*   Updated: 2022/05/27 17:37:12 by jislim           ###   ########.fr       */
+/*   Updated: 2022/05/27 20:48:21 by jislim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	check_value(const  char *str, long long result, long long sign)
+int	check_value(const char *str, long long result, long long sign)
 {
 	while (*str != '\0' && (*str >= '0' && *str <= '9'))
 	{
 		result = (result * 10) + (*str - '0');
 		str++;
-		if ((result > INT_MAX) || (result < INT_MIN))
-			error_exit(1);
-		if ((sign > 0 && result < 0) || (sign < 0 && result > 0))
+		if ((sign == 1 && (result > INT_MAX))
+			|| (sign == -1 && (result < INT_MIN)))
 			error_exit(1);
 	}
 	if (*str)

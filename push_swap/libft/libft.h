@@ -34,8 +34,10 @@ typedef struct s_stacknode_type
 
 typedef struct s_linked_satck_type
 {
+	int			*arr;
 	int			current_element_cnt;
 	t_stacknode	*p_top_element;
+	t_stacknode	*p_bottom_element;
 }				t_linked_satck;
 
 int				ft_isalpha(int c);
@@ -60,7 +62,7 @@ int				ft_memcmp(const void *b1, const void *b2, size_t n);
 char			*ft_strnstr(const char *s1, const char *s2, size_t size);
 int				ft_atoi(const char *str);
 int				ft_atoi_push(const char *str);
-int				check_value(const  char *str, long long result, long long sign);
+int				check_value(const char *str, long long result, long long sign);
 long long		ft_atoll(const char *nptr);
 void			*ft_calloc(size_t count, size_t size);
 char			*ft_strdup(const char *s1);

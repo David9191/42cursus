@@ -6,7 +6,7 @@
 /*   By: jislim <jislim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 19:44:11 by jislim            #+#    #+#             */
-/*   Updated: 2022/05/27 17:37:16 by jislim           ###   ########.fr       */
+/*   Updated: 2022/05/27 20:43:38 by jislim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,20 @@
 
 int	main(int argc, char **argv)
 {
+	t_linked_satck	*stack_a = create_linked_stack();
+
 	if (argc < 2)
-		return (FALSE);
-	parsing(argv);
+		return (1);
+	parsing(argv, stack_a);
+	// 중복 체크 -> 정렬체크 -> indexing
+	t_stacknode	*node = stack_a->p_top_element;
+	while (node)
+	{
+		printf("%d\n", node->data);
+		node = node->p_link;
+	}
+
+	delete_linked_stack(stack_a);
 	system("leaks push_swap | grep leaked");
 	return (0);
 }

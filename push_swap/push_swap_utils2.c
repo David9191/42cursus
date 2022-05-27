@@ -6,25 +6,47 @@
 /*   By: jislim <jislim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 20:19:11 by jislim            #+#    #+#             */
-/*   Updated: 2022/05/27 17:22:35 by jislim           ###   ########.fr       */
+/*   Updated: 2022/05/27 20:38:25 by jislim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	*parsing(char **argv)
+void	split_free_all(char **str)
 {
-	int	*arr;
 	int	idx;
 
-	idx = 1;
-	while (argv[idx])
+	idx = 0;
+	while (str[idx])
 	{
-
+		free (str[idx]);
+		idx++;
 	}
-	arr[idx] = ft_atoi(argv[idx + 1]);
-	idx++;
-	return (arr);
+	free (str);
+}
+
+int	*parsing(char **argv, t_linked_satck *stack_a)
+{
+	t_stacknode	node;
+	char	**str;
+	int		i;
+	int		j;
+
+	i = 1;
+	while (argv[i])
+	{
+		str = ft_split(argv[i], ' ');
+		j = 0;
+		while (str[j])
+		{
+			node.data = ft_atoi_push(str[j]);
+			push_linked_stack(stack_a, node);
+			j++;
+		}
+		i++;
+		split_free_all(str);
+	}
+	return (NULL);
 }
 
 // int	*parsing(int argc, char **argv)
@@ -93,25 +115,24 @@ int	p_stack_a_indexing(t_linked_satck *p_stack_a)
 	return (TRUE);
 }
 
-t_linked_satck	*create_p_stack_a(int *arr, int argc)
-{
-	t_linked_satck	*p_stack_a;
-	t_stacknode		node;
-
-	if (!arr)
-		return (NULL);
-	p_stack_a = create_linked_stack();
-	while (argc--)
-	{
-		node.data = *arr;
-		node.index = p_stack_a->current_element_cnt;
-		push_linked_stack(p_stack_a, node);
-		if (node.index > 0)
-			p_stack_a_indexing(p_stack_a);
-		arr++;
-	}
-	return (p_stack_a);
-}
+// t_linked_satck	*create_p_stack_a(int *arr, int argc)
+// {
+// 	t_linked_satck	*p_stack_a;
+// 	t_stacknode		node;
+// 	if (!arr)
+// 		return (NULL);
+// 	p_stack_a = create_linked_stack();
+// 	while (argc--)
+// 	{
+// 		node.data = *arr;
+// 		node.index = p_stack_a->current_element_cnt;
+// 		push_linked_stack(p_stack_a, node);
+// 		if (node.index > 0)
+// 			p_stack_a_indexing(p_stack_a);
+// 		arr++;
+// 	}
+// 	return (p_stack_a);
+// }
 
 int	move_p_stack_a_to_p_stack_b(t_linked_satck *p_stack_a,
 	t_linked_satck *p_stack_b, int chunk)

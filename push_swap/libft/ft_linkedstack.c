@@ -6,7 +6,7 @@
 /*   By: jislim <jislim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 19:44:48 by jislim            #+#    #+#             */
-/*   Updated: 2022/05/24 20:02:04 by jislim           ###   ########.fr       */
+/*   Updated: 2022/05/27 20:40:45 by jislim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,53 +24,65 @@ t_linked_satck	*create_linked_stack(void)
 	return (rt_satck);
 }
 
-int	push_linked_stack(t_linked_satck *pStack, t_stacknode element)
+int	push_linked_stack(t_linked_satck *stack, t_stacknode element)
 {
 	t_stacknode	*node;
 
-	if (!pStack)
+	if (!stack)
 		return (FALSE);
 	node = malloc(sizeof(t_stacknode));
 	if (!node)
 		return (FALSE);
 	*node = element;
-	node->p_link = pStack->p_top_element;
-	pStack->p_top_element = node;
-	pStack->current_element_cnt += 1;
+	if (stack->current_element_cnt == 0)
+	{
+		node->p_link = stack->p_top_element;
+		stack->p_top_element = node;
+		stack->p_bottom_element = node;
+	}
+	else
+	{
+		if (stack->current_element_cnt == 1)
+			stack->p_top_element->p_link = node;
+		else
+			stack->p_bottom_element->p_link = node;
+		node->p_link = NULL;
+		stack->p_bottom_element = node;
+	}
+	stack->current_element_cnt += 1;
 	return (TRUE);
 }
 
-t_stacknode	*pop_linked_stack(t_linked_satck *pStack)
+t_stacknode	*pop_linked_stack(t_linked_satck *stack)
 {
 	t_stacknode	*rt_node;
 
-	if (!pStack || !(pStack->current_element_cnt))
+	if (!stack || !(stack->current_element_cnt))
 		return (FALSE);
-	rt_node = pStack->p_top_element;
-	pStack->p_top_element = pStack->p_top_element->p_link;
-	// free (rt_node);
-	pStack->current_element_cnt -= 1;
+	rt_node = stack->p_top_element;
+	stack->p_top_element = stack->p_top_element->p_link;
+	stack->current_element_cnt -= 1;
 	return (rt_node);
 }
 
-t_stacknode	*peek_linked_stack(t_linked_satck *pStack)
+t_stacknode	*peek_linked_stack(t_linked_satck *stack)
 {
-	if (!pStack || !(pStack->current_element_cnt))
+	if (!stack || !(stack->current_element_cnt))
 		return (FALSE);
-	return (pStack->p_top_element);
+	return (stack->p_top_element);
 }
 
-void	delete_linked_stack(t_linked_satck *pStack)
+void	delete_linked_stack(t_linked_satck *stack)
 {
 	t_stacknode	*del;
 	t_stacknode	*next;
 
-	if (!pStack || !(pStack->p_top_element))
+	if (!stack || !(stack->p_top_element))
 	{
-		free (pStack);
+		free (stack);
 		return ;
 	}
-	del = pStack->p_top_element;
+	del = stack->p_top_element;
 	next = del;
 	while (del)
 	{
@@ -78,5 +90,5 @@ void	delete_linked_stack(t_linked_satck *pStack)
 		free(del);
 		del = next;
 	}
-	free (pStack);
+	free (stack);
 }
