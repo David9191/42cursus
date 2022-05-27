@@ -6,25 +6,24 @@
 /*   By: jislim <jislim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 20:19:11 by jislim            #+#    #+#             */
-/*   Updated: 2022/05/26 18:00:21 by jislim           ###   ########.fr       */
+/*   Updated: 2022/05/27 17:22:35 by jislim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	*parsing(int argc, char **argv)
+int	*parsing(char **argv)
 {
 	int	*arr;
 	int	idx;
 
-	arr = malloc(sizeof(int) * argc);
-	idx = 0;
-	while (idx < argc)
+	idx = 1;
+	while (argv[idx])
 	{
-		// 왜 idx + 1? argv[0]은 a.out(실행파일이 담겨있음.)
-		arr[idx] = ft_atoi(argv[idx + 1]);
-		idx++;
+
 	}
+	arr[idx] = ft_atoi(argv[idx + 1]);
+	idx++;
 	return (arr);
 }
 
@@ -32,16 +31,14 @@ int	*parsing(int argc, char **argv)
 // {
 // 	int	idx;
 // 	int	*arr;
-
 // 	idx = 0;
-// 	while (idx < argc)
-// 	{
-// 		// 왜 idx + 1? argv[0]은 a.out(실행파일이 담겨있음.)
-// 		arr[idx] = ft_atoi(argv[idx + 1]);
-// 		idx++;
-// 	}
+// 		while (idx < argc)
+// 		{
+// 			// 왜 idx + 1? argv[0]은 a.out(실행파일이 담겨있음.)
+// 			arr[idx] = ft_atoi(argv[idx + 1]);
+// 			idx++;
+// 		}
 // 	return (arr);
-
 	// int	*data;
 	// if (strchr(argv[i], ' ')
 	// 	str_input(argv[i], &data);
@@ -58,7 +55,6 @@ int	*parsing(int argc, char **argv)
 	// 		long long	num;
 	// 		int			*i;
 	// 		int			len;
-
 	// 		len = ft_strlen(s);
 	// 		len -= (s[0] == '-' || s[0] == '+');
 	// 		num = ft_atoll(s);
@@ -117,8 +113,8 @@ t_linked_satck	*create_p_stack_a(int *arr, int argc)
 	return (p_stack_a);
 }
 
-int	move_p_stack_a_to_p_stack_b(t_linked_satck *p_stack_a, t_linked_satck *p_stack_b,
-		int chunk)
+int	move_p_stack_a_to_p_stack_b(t_linked_satck *p_stack_a,
+	t_linked_satck *p_stack_b, int chunk)
 {
 	int			num;
 	int			index;
@@ -146,7 +142,8 @@ int	move_p_stack_a_to_p_stack_b(t_linked_satck *p_stack_a, t_linked_satck *p_sta
 	return (1);
 }
 
-int	move_p_stack_b_to_p_stack_a(t_linked_satck *p_stack_a, t_linked_satck *p_stack_b)
+int	move_p_stack_b_to_p_stack_a(t_linked_satck *p_stack_a,
+	t_linked_satck *p_stack_b)
 {
 	int	idx;
 	int	max;

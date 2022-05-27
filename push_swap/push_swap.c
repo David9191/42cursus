@@ -6,7 +6,7 @@
 /*   By: jislim <jislim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 19:44:11 by jislim            #+#    #+#             */
-/*   Updated: 2022/05/26 14:57:51 by jislim           ###   ########.fr       */
+/*   Updated: 2022/05/27 17:37:16 by jislim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,56 +14,9 @@
 
 int	main(int argc, char **argv)
 {
-	t_linked_satck	*p_stack_a;
-	t_linked_satck	*p_stack_b;
-	t_stacknode		*node_a;
-	int				chunk;
-	int				*arr;
-
-	ft_printf("argc : %d\n", argc - 1);
 	if (argc < 2)
-		return (0);
-	chunk = 15;
-	if (argc - 1 == 500)
-		chunk = 30;
-	arr = parsing(argc - 1, argv);
-	p_stack_a = create_p_stack_a(arr, argc - 1);
-	node_a = p_stack_a->p_top_element;
-	for (int i = 0; i < argc - 1; i++)
-	{
-		int d = node_a->index;
-		ft_printf("%3d : ", d);
-		while (d--)
-			ft_printf(".");
-		ft_printf("\n");
-		node_a = node_a->p_link;
-	}
-	ft_printf("\nA crnt cnt : %d\n", p_stack_a->current_element_cnt);
-	p_stack_b = create_linked_stack();
-	move_p_stack_a_to_p_stack_b(p_stack_a, p_stack_b, 15);
-	ft_printf("\nB crnt cnt : %d\n", p_stack_b->current_element_cnt);
-	t_stacknode *node_b = p_stack_b->p_top_element;
-	for (int i = 0; i < argc - 1; i++)
-	{
-		int d = node_b->index;
-		while (d--)
-			ft_printf(".");
-		ft_printf("\n");
-		node_b = node_b->p_link;
-	}
-	ft_printf("\n\n");
-	move_p_stack_b_to_p_stack_a(p_stack_a, p_stack_b);
-	node_a = p_stack_a->p_top_element;
-	for (int i = 0; i < argc - 1; i++)
-	{
-		int d = node_a->index;
-		while (d--)
-			ft_printf(".");
-		ft_printf("\n");
-		node_a = node_a->p_link;
-	}
-	delete_linked_stack(p_stack_a);
-	delete_linked_stack(p_stack_b);
+		return (FALSE);
+	parsing(argv);
 	system("leaks push_swap | grep leaked");
 	return (0);
 }
