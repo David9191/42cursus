@@ -6,7 +6,7 @@
 /*   By: jislim <jislim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 20:19:11 by jislim            #+#    #+#             */
-/*   Updated: 2022/05/27 20:38:25 by jislim           ###   ########.fr       */
+/*   Updated: 2022/05/27 20:55:46 by jislim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	split_free_all(char **str)
 	free (str);
 }
 
-int	*parsing(char **argv, t_linked_satck *stack_a)
+void	parsing(char **argv, t_linked_satck *stack_a)
 {
 	t_stacknode	node;
 	char	**str;
@@ -46,7 +46,6 @@ int	*parsing(char **argv, t_linked_satck *stack_a)
 		i++;
 		split_free_all(str);
 	}
-	return (NULL);
 }
 
 // int	*parsing(int argc, char **argv)

@@ -6,11 +6,11 @@
 /*   By: jislim <jislim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/27 16:53:19 by jislim            #+#    #+#             */
-/*   Updated: 2022/05/27 17:37:13 by jislim           ###   ########.fr       */
+/*   Updated: 2022/05/27 21:13:54 by jislim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "push_swap.h"
 
 void	error_exit(int error)
 {

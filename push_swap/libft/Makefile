@@ -6,7 +6,7 @@
 #    By: jislim <jislim@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/30 15:26:40 by jislim            #+#    #+#              #
-#    Updated: 2022/05/27 16:56:28 by jislim           ###   ########.fr        #
+#    Updated: 2022/05/27 21:09:23 by jislim           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,8 +26,7 @@ SRCS =	ft_isalpha.c ft_isdigit.c ft_isalnum.c ft_isascii.c \
 		ft_striteri.c ft_putchar_fd.c ft_putstr_fd.c ft_putendl_fd.c ft_putnbr_fd.c \
 		ft_putusnbr_fd.c ft_printf.c ft_printf_char.c ft_printf_hexa_ptr.c \
 		ft_printf_hexa.c ft_printf_nbr.c ft_printf_str.c ft_printf_usnbr.c \
-		ft_printf.c ft_linkedstack.c ft_linkedstack_utils.c ft_atoll.c ft_numlen.c \
-		ft_atoi_push.c ft_error.c
+		ft_printf.c ft_linkedstack.c ft_linkedstack_utils.c ft_atoll.c ft_numlen.c
 
 OBJS = $(SRCS:.c=.o)
 

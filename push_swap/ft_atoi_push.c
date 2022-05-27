@@ -6,11 +6,11 @@
 /*   By: jislim <jislim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 17:18:42 by jislim            #+#    #+#             */
-/*   Updated: 2022/05/27 20:48:21 by jislim           ###   ########.fr       */
+/*   Updated: 2022/05/27 21:13:44 by jislim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "push_swap.h"
 
 int	check_value(const char *str, long long result, long long sign)
 {

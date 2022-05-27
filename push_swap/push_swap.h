@@ -6,7 +6,7 @@
 /*   By: jislim <jislim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/28 01:06:54 by jislim            #+#    #+#             */
-/*   Updated: 2022/05/27 20:37:52 by jislim           ###   ########.fr       */
+/*   Updated: 2022/05/27 21:15:44 by jislim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,11 @@ int				push_swap_rb(t_linked_satck *p_stack_b);
 int				push_swap_rra(t_linked_satck *p_stack_a);
 int				push_swap_rrb(t_linked_satck *p_stack_b);
 
-int				*parsing(char **argv, t_linked_satck *stack_a);
+void			parsing(char **argv, t_linked_satck *stack_a);
+int				ft_atoi_push(const char *str);
+int				check_value(const char *str, long long result, long long sign);
 void			split_free_all(char **str);
+void			check_dup(t_linked_satck *stack);
 int				p_stack_a_indexing(t_linked_satck *p_stack_a);
 t_linked_satck	*create_p_stack_a(int *arr, int argc);
 int				move_p_stack_a_to_p_stack_b(t_linked_satck *p_stack_a,
@@ -37,5 +40,6 @@ int				move_p_stack_a_to_p_stack_b(t_linked_satck *p_stack_a,
 int				move_p_stack_b_to_p_stack_a(t_linked_satck *p_stack_a,
 					t_linked_satck *p_stack_b);
 int				max_is_top(t_linked_satck *p_stack_b);
+void			error_exit(int error);
 
 #endif
