@@ -6,7 +6,7 @@
 /*   By: jislim <jislim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 19:44:11 by jislim            #+#    #+#             */
-/*   Updated: 2022/05/27 21:18:07 by jislim           ###   ########.fr       */
+/*   Updated: 2022/05/27 21:28:26 by jislim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,11 @@ int	main(int argc, char **argv)
 		return (0);
 	parsing(argv, stack_a);
 	// 중복 체크 -> 정렬체크 -> indexing
-	if (!(stack_a->current_element_cnt))
+	if (stack_a->current_element_cnt == 1)
 		return (0);
 	check_dup(stack_a);
 	delete_linked_stack(stack_a);
+	check_sort(stack_a);
 	system("leaks push_swap | grep leaked");
 	return (0);
 }

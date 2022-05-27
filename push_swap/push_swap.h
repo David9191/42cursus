@@ -6,7 +6,7 @@
 /*   By: jislim <jislim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/28 01:06:54 by jislim            #+#    #+#             */
-/*   Updated: 2022/05/27 21:15:44 by jislim           ###   ########.fr       */
+/*   Updated: 2022/05/27 21:26:08 by jislim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ int				ft_atoi_push(const char *str);
 int				check_value(const char *str, long long result, long long sign);
 void			split_free_all(char **str);
 void			check_dup(t_linked_satck *stack);
+void			check_sort(t_linked_satck *stack);
 int				p_stack_a_indexing(t_linked_satck *p_stack_a);
 t_linked_satck	*create_p_stack_a(int *arr, int argc);
 int				move_p_stack_a_to_p_stack_b(t_linked_satck *p_stack_a,

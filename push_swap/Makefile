@@ -6,7 +6,7 @@
 #    By: jislim <jislim@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/24 19:44:31 by jislim            #+#    #+#              #
-#    Updated: 2022/05/27 21:10:13 by jislim           ###   ########.fr        #
+#    Updated: 2022/05/27 21:26:34 by jislim           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ FLAGS = -Wall -Wextra -Werror
 RM = rm -rf
 
 SRCS =  push_swap.c push_swap_utils.c push_swap_utils2.c \
-		check_duplicate.c ft_atoi_push.c ft_error.c
+		check_duplicate.c ft_atoi_push.c ft_error.c check_sorted
 OBJS = $(SRCS:.c=.o)
 
 all : $(NAME)
