@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap_utils2.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jislim <jislim@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jislim <jislim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 20:19:11 by jislim            #+#    #+#             */
-/*   Updated: 2022/05/27 20:55:46 by jislim           ###   ########.fr       */
+/*   Updated: 2022/05/28 14:10:40 by jislim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,22 +25,24 @@ void	split_free_all(char **str)
 	free (str);
 }
 
-void	parsing(char **argv, t_linked_satck *stack_a)
+void	parsing(char **argv, t_int_data *data)
 {
-	t_stacknode	node;
-	char	**str;
-	int		i;
-	int		j;
+	char		**str;
+	int			i;
+	int			j;
+	int			k;
 
 	i = 1;
+	k = 0;
 	while (argv[i])
 	{
 		str = ft_split(argv[i], ' ');
 		j = 0;
 		while (str[j])
 		{
-			node.data = ft_atoi_push(str[j]);
-			push_linked_stack(stack_a, node);
+			data->arr[k] = ft_atoi_push(str[j]);
+			(data->cnt)++;
+			k++;
 			j++;
 		}
 		i++;
@@ -48,50 +50,26 @@ void	parsing(char **argv, t_linked_satck *stack_a)
 	}
 }
 
-// int	*parsing(int argc, char **argv)
-// {
-// 	int	idx;
-// 	int	*arr;
-// 	idx = 0;
-// 		while (idx < argc)
-// 		{
-// 			// 왜 idx + 1? argv[0]은 a.out(실행파일이 담겨있음.)
-// 			arr[idx] = ft_atoi(argv[idx + 1]);
-// 			idx++;
-// 		}
-// 	return (arr);
-	// int	*data;
-	// if (strchr(argv[i], ' ')
-	// 	str_input(argv[i], &data);
-	// 	str_input
-	// 		char	**str;
-	// 		str = split(parameter_str, ' ');
-	// 		if (!str) return (FALSE); || exit();
-	// 		while
-	// 			check_input(str[i], &data);
-	// else
-	// 	check_input(argv[i], &data);
-	// 	check_input
-	// 		check int range
-	// 		long long	num;
-	// 		int			*i;
-	// 		int			len;
-	// 		len = ft_strlen(s);
-	// 		len -= (s[0] == '-' || s[0] == '+');
-	// 		num = ft_atoll(s);
-	// 		if (!(ft_isnum(s) && len == ft_numlen(num)))
-	// 			error_exit();
-	// 		if (num > 2147483647 || num < -2147483648)
-	// 			error_exit();
-	// 		if (check_dup(*a, num))
-	// 			error_exit();
-	// 		i = (int *) malloc(sizeof(int));
-	// 		if (!i)
-	// 			exit(EXIT_FAILURE);
-	// 		*i = num;
-	// 		ft_lstadd_back(a, ft_lstnew(i));
-	// return (TRUE);
-// }
+void	put_on_stack_a(t_linked_satck *stack, t_int_data *data)
+{
+	t_stacknode	node;
+	int			iter;
+
+	if (stack && data)
+	{
+		iter = (data->cnt) - 1;
+		while (iter >= 0)
+		{
+			node.data = data->arr[iter];
+			node.index = iter;
+			push_linked_stack(stack, node);
+			p_stack_a_indexing(stack);
+			iter--;
+		}
+		return ;
+	}
+	error_exit(0);
+}
 
 int	p_stack_a_indexing(t_linked_satck *p_stack_a)
 {
@@ -104,41 +82,22 @@ int	p_stack_a_indexing(t_linked_satck *p_stack_a)
 	next = node;
 	while (next)
 	{
-		if (node->data < next->data)
+		if (node->data > next->data)
 		{
-			node->index--;
-			next->index++;
+			node->index++;
+			next->index--;
 		}
 		next = next->p_link;
 	}
 	return (TRUE);
 }
 
-// t_linked_satck	*create_p_stack_a(int *arr, int argc)
-// {
-// 	t_linked_satck	*p_stack_a;
-// 	t_stacknode		node;
-// 	if (!arr)
-// 		return (NULL);
-// 	p_stack_a = create_linked_stack();
-// 	while (argc--)
-// 	{
-// 		node.data = *arr;
-// 		node.index = p_stack_a->current_element_cnt;
-// 		push_linked_stack(p_stack_a, node);
-// 		if (node.index > 0)
-// 			p_stack_a_indexing(p_stack_a);
-// 		arr++;
-// 	}
-// 	return (p_stack_a);
-// }
-
 int	move_p_stack_a_to_p_stack_b(t_linked_satck *p_stack_a,
 	t_linked_satck *p_stack_b, int chunk)
 {
+	t_stacknode	node;
 	int			num;
 	int			index;
-	t_stacknode	node;
 
 	num = 0;
 	while (p_stack_a->current_element_cnt)
@@ -169,7 +128,7 @@ int	move_p_stack_b_to_p_stack_a(t_linked_satck *p_stack_a,
 	int	max;
 
 	if (!p_stack_a || !p_stack_b)
-		return (FALSE);
+		error_exit(0);
 	idx = 0;
 	while (p_stack_b->p_top_element != NULL)
 	{
@@ -192,7 +151,7 @@ int	max_is_top(t_linked_satck *p_stack_b)
 	int			max;
 
 	if (!p_stack_b)
-		return (FALSE);
+		error_exit(0);
 	node = p_stack_b->p_top_element;
 	half = (p_stack_b->current_element_cnt) / 2;
 	max = (p_stack_b->current_element_cnt) - 1;
@@ -204,3 +163,24 @@ int	max_is_top(t_linked_satck *p_stack_b)
 	}
 	return (FALSE);
 }
+
+t_int_data	*create_int_data(int max_cnt)
+{
+	t_int_data	*rt_int_data;
+
+	rt_int_data = NULL;
+	if (max_cnt > 0)
+	{
+		rt_int_data = malloc(sizeof(t_int_data));
+		if (!rt_int_data)
+			error_exit(0);
+		rt_int_data->arr = malloc(sizeof(int) * max_cnt);
+		if (!rt_int_data->arr)
+			error_exit(0);
+		rt_int_data->cnt = 0;
+	}
+	return (rt_int_data);
+}
+			// node.index = stack_a->current_element_cnt;
+			// push_linked_stack(stack_a, node);
+			// p_stack_a_indexing(stack_a);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi_push.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jislim <jislim@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jislim <jislim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 17:18:42 by jislim            #+#    #+#             */
-/*   Updated: 2022/05/27 21:13:44 by jislim           ###   ########.fr       */
+/*   Updated: 2022/05/28 14:16:05 by jislim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@ int	check_value(const char *str, long long result, long long sign)
 	{
 		result = (result * 10) + (*str - '0');
 		str++;
-		if ((sign == 1 && (result > INT_MAX))
-			|| (sign == -1 && (result < INT_MIN)))
+		if ((sign == 1 && (result > 2147483647))
+			|| (sign == -1 && (result > 2147483648)))
 			error_exit(1);
 	}
 	if (*str)

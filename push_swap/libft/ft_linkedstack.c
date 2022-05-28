@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_linkedstack.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jislim <jislim@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jislim <jislim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 19:44:48 by jislim            #+#    #+#             */
-/*   Updated: 2022/05/27 20:40:45 by jislim           ###   ########.fr       */
+/*   Updated: 2022/05/28 14:04:24 by jislim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,32 +24,19 @@ t_linked_satck	*create_linked_stack(void)
 	return (rt_satck);
 }
 
-int	push_linked_stack(t_linked_satck *stack, t_stacknode element)
+int	push_linked_stack(t_linked_satck *pStack, t_stacknode element)
 {
 	t_stacknode	*node;
 
-	if (!stack)
+	if (!pStack)
 		return (FALSE);
 	node = malloc(sizeof(t_stacknode));
 	if (!node)
 		return (FALSE);
 	*node = element;
-	if (stack->current_element_cnt == 0)
-	{
-		node->p_link = stack->p_top_element;
-		stack->p_top_element = node;
-		stack->p_bottom_element = node;
-	}
-	else
-	{
-		if (stack->current_element_cnt == 1)
-			stack->p_top_element->p_link = node;
-		else
-			stack->p_bottom_element->p_link = node;
-		node->p_link = NULL;
-		stack->p_bottom_element = node;
-	}
-	stack->current_element_cnt += 1;
+	node->p_link = pStack->p_top_element;
+	pStack->p_top_element = node;
+	pStack->current_element_cnt += 1;
 	return (TRUE);
 }
 

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: jislim <jislim@student.42.fr>              +#+  +:+       +#+         #
+#    By: jislim <jislim@student.42seoul.kr>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/24 19:44:31 by jislim            #+#    #+#              #
-#    Updated: 2022/05/27 21:26:34 by jislim           ###   ########.fr        #
+#    Updated: 2022/05/28 01:26:23 by jislim           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ FLAGS = -Wall -Wextra -Werror
 RM = rm -rf
 
 SRCS =  push_swap.c push_swap_utils.c push_swap_utils2.c \
-		check_duplicate.c ft_atoi_push.c ft_error.c check_sorted
+		check_duplicate.c ft_atoi_push.c ft_error.c check_sorted.c
 OBJS = $(SRCS:.c=.o)
 
 all : $(NAME)
@@ -30,11 +30,11 @@ $(NAME): $(OBJS)
 	$(CC) $(FLAGS) $(OBJS) $(NAME) -o push_swap
 
 debug :
-	$(CC) $(FLAGS) $(OBJS) $(NAME) -g -o push_swap
+	$(CC) $(FLAGS) $(SRCS) $(NAME) -g -o push_swap
 
 clean :
 	$(MAKE) clean --directory ./libft -s
-	$(RM) -rf $(OBJS) a.out *.gch a.out.dSYM push_swap
+	$(RM) -rf $(OBJS) a.out *.gch a.out.dSYM
 
 fclean : clean
 	$(MAKE) fclean --directory ./libft -s
