@@ -6,7 +6,7 @@
 /*   By: jislim <jislim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 20:19:11 by jislim            #+#    #+#             */
-/*   Updated: 2022/05/28 14:10:40 by jislim           ###   ########.fr       */
+/*   Updated: 2022/05/29 17:42:34 by jislim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,10 +40,8 @@ void	parsing(char **argv, t_int_data *data)
 		j = 0;
 		while (str[j])
 		{
-			data->arr[k] = ft_atoi_push(str[j]);
+			data->arr[k++] = ft_atoi_push(str[j++]);
 			(data->cnt)++;
-			k++;
-			j++;
 		}
 		i++;
 		split_free_all(str);
