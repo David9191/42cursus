@@ -6,7 +6,7 @@
 #    By: jislim <jislim@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/24 19:44:31 by jislim            #+#    #+#              #
-#    Updated: 2022/05/30 16:27:33 by jislim           ###   ########.fr        #
+#    Updated: 2022/05/30 18:30:16 by jislim           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,8 +17,10 @@ CC = gcc
 FLAGS = -Wall -Wextra -Werror
 RM = rm -rf
 
-SRCS =  push_swap.c push_swap_utils.c push_swap_utils2.c \
-		check_duplicate.c ft_atoi_push.c ft_error.c check_sorted.c
+SRCS =  push_swap.c push_swap_utils.c  check_duplicate.c check_sorted.c \
+		ft_atoi_push.c ft_error.c less_than_or_equal_five.c less_than_or_equal_five2.c \
+		push_swap_command_s_p.c push_swap_command_r_rr.c push_swap_parsing.c \
+		push_swap_sort_big.c
 OBJS = $(SRCS:.c=.o)
 
 all : $(NAME)
@@ -34,7 +36,7 @@ debug :
 
 clean :
 	$(MAKE) clean --directory ./libft -s
-	$(RM) -rf $(OBJS) a.out *.gch a.out.dSYM
+	$(RM) -rf $(OBJS) a.out *.gch a.out.dSYM push_swap
 
 fclean : clean
 	$(MAKE) fclean --directory ./libft -s

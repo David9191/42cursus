@@ -1,32 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_duplicate.c                                  :+:      :+:    :+:   */
+/*   push_swap_sort_big.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jislim <jislim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/27 20:56:51 by jislim            #+#    #+#             */
-/*   Updated: 2022/05/30 18:01:29 by jislim           ###   ########.fr       */
+/*   Created: 2022/05/30 18:05:25 by jislim            #+#    #+#             */
+/*   Updated: 2022/05/30 18:12:00 by jislim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	check_dup(t_stack *stack)
+void	sort_big_number(t_stack *stack_a, t_stack *stack_b, t_int_data *data)
 {
-	t_stacknode	*node;
-	t_stacknode	*next;
+	int	chunk;
 
-	node = stack->p_top_element;
-	while (node)
+	if (stack_a && stack_b && data)
 	{
-		next = node->p_link;
-		while (next)
-		{
-			if (node->data == next->data)
-				error_exit(1);
-			next = next->p_link;
-		}
-		node = node->p_link;
+		if (data->cnt <= 5)
+			less_than_or_equal_five(stack_a, stack_b);
+		chunk = get_chunk(data);
+		move_stack_a_to_stack_b(stack_a, stack_b, chunk);
+		move_stack_b_to_stack_a(stack_a, stack_b);
 	}
 }

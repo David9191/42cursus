@@ -1,181 +1,117 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap_utils.c                                  :+:      :+:    :+:   */
+/*   push_swap_utils2.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jislim <jislim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/24 19:44:18 by jislim            #+#    #+#             */
-/*   Updated: 2022/05/30 15:06:11 by jislim           ###   ########.fr       */
+/*   Created: 2022/05/30 17:39:51 by jislim            #+#    #+#             */
+/*   Updated: 2022/05/30 18:16:00 by jislim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-
-// sa (swap a) : Swap the first 2 elements at the top of stack a.
-// Do nothing if there is only one or no elements.
-int	push_swap_sa(t_linked_satck *p_stack_a)
+int	get_chunk(t_int_data *data)
 {
-	t_stacknode	*temp;
+	if (data)
+	{
+		if (data->cnt == 100)
+			return (15);
+		else if (data->cnt == 500)
+			return (30);
+	}
+	return (FALSE);
+}
 
-	if (!p_stack_a || 2 > p_stack_a->current_element_cnt)
-		return (FALSE);
-	temp = p_stack_a->p_top_element;
-	p_stack_a->p_top_element = p_stack_a->p_top_element->p_link;
-	temp->p_link = p_stack_a->p_top_element->p_link;
-	p_stack_a->p_top_element->p_link = temp;
-	write(1, "sa\n", 3);
+int	move_stack_a_to_stack_b(t_stack *stack_a,
+	t_stack *stack_b, int chunk)
+{
+	t_stacknode	node;
+	int			num;
+	int			index;
+
+	num = 0;
+	while (stack_a->current_element_cnt)
+	{
+		index = stack_a->p_top_element->index;
+		node.index = index;
+		if (index <= num)
+		{
+			push_swap_pb(stack_a, stack_b);
+			num++;
+		}
+		else if (num < index && index <= num + chunk)
+		{
+			push_swap_pb(stack_a, stack_b);
+			push_swap_rb(stack_b);
+			num++;
+		}
+		else if (index > num + chunk)
+			push_swap_ra(stack_a);
+	}
+	return (1);
+}
+
+int	move_stack_b_to_stack_a(t_stack *stack_a,
+	t_stack *stack_b)
+{
+	int	idx;
+	int	max;
+
+	if (!stack_a || !stack_b)
+		error_exit(0);
+	idx = 0;
+	while (stack_b->p_top_element != NULL)
+	{
+		max = (stack_b->current_element_cnt) - 1;
+		if (max_is_top(stack_b))
+			while (max != stack_b->p_top_element->index)
+				push_swap_rb(stack_b);
+		else
+			while (max != stack_b->p_top_element->index)
+				push_swap_rrb(stack_b);
+		push_swap_pa(stack_a, stack_b);
+	}
 	return (TRUE);
 }
 
-// sb (swap b) : Swap the first 2 elements at the top of stack b.
-// Do nothing if there is only one or no elements.
-int	push_swap_sb(t_linked_satck *pStackB)
-{
-	t_stacknode	*temp;
-
-	if (!pStackB || 2 > pStackB->current_element_cnt)
-		return (FALSE);
-	temp = pStackB->p_top_element;
-	pStackB->p_top_element = pStackB->p_top_element->p_link;
-	temp->p_link = pStackB->p_top_element->p_link;
-	pStackB->p_top_element->p_link = temp;
-	write(1, "sb\n", 3);
-	return (TRUE);
-}
-
-// pa (push a) : Take the first element at the top of b and put it at the top of a.
-// Do nothing if b is empty.
-int	push_swap_pa(t_linked_satck *p_stack_a, t_linked_satck *pStackB)
+int	max_is_top(t_stack *stack_b)
 {
 	t_stacknode	*node;
-	int			check;
+	int			half;
+	int			max;
 
-	if (!pStackB || 1 > pStackB->current_element_cnt)
-		return (FALSE);
-	node = pop_linked_stack(pStackB);
-	if (!node)
-		return (FALSE);
-	check = push_linked_stack(p_stack_a, *node);
-	// 여기서 free를 안해주면 메인에서 deleteStack해도 이미 node는 pStack에 포함되어 있지 않기 때문에
-	// free를 못해줌.
-	free (node);
-	if (!check)
-		return (FALSE);
-	write(1, "pa\n", 3);
-	return (TRUE);
-}
-
-// pb (push b) : Take the first element at the top of a and put it at the top of b.
-// Do nothing if a is empty.
-int	push_swap_pb(t_linked_satck *p_stack_a, t_linked_satck *pStackB)
-{
-	t_stacknode	*node;
-	int			check;
-
-	if (!p_stack_a || 1 > p_stack_a->current_element_cnt)
-		return (FALSE);
-	node = pop_linked_stack(p_stack_a);
-	if (!node)
-		return (FALSE);
-	check = push_linked_stack(pStackB, *node);
-	free (node); // pop_linked_stack에서 free하면 이미 메모리 반환 후 이므로 쓰레기 값이 들어감.
-	// free 했을 시 -> Process 12544: 0 leaks for 0 total leaked bytes.
-	// free 안했을 시 -> Process 12416: 100 leaks for 1600 total leaked bytes.
-	// 클러스터 맥에서 a push_swap.c push_swap_util* ./libft/*.c -g3 -fsanitize=address 해보기
-	if (!check)
-		return (FALSE);
-	write(1, "pb\n", 3);
-	return (TRUE);
-}
-
-// ra (rotate a) : Shift up all elements of stack a by 1.
-// The first element becomes the last one.
-int	push_swap_ra(t_linked_satck *p_stack_a)
-{
-	t_stacknode	*top;
-	t_stacknode	*bottom;
-
-	if (!p_stack_a || 2 > p_stack_a->current_element_cnt)
-		return (FALSE);
-	top = p_stack_a->p_top_element;
-	// top을 1인덱스로 바꾸는 작업
-	p_stack_a->p_top_element = p_stack_a->p_top_element->p_link;
-	bottom = top;
-	while (bottom->p_link)
-		bottom = bottom->p_link;
-	bottom->p_link = top;
-	top->p_link = NULL;
-	write(1, "ra\n", 3);
-	return (TRUE);
-}
-
-// rb (rotate b) : Shift up all elements of stack b by 1.
-// The first element becomes the last one.
-int	push_swap_rb(t_linked_satck *pStackB)
-{
-	t_stacknode	*top;
-	t_stacknode	*bottom;
-
-	if (!pStackB || 2 > pStackB->current_element_cnt)
-		return (FALSE);
-	top = pStackB->p_top_element;
-	// top을 1인덱스로 바꾸는 작업
-	pStackB->p_top_element = pStackB->p_top_element->p_link;
-	bottom = top;
-	while (bottom->p_link)
-		bottom = bottom->p_link;
-	bottom->p_link = top;
-	top->p_link = NULL;
-	write(1, "rb\n", 3);
-	return (TRUE);
-}
-
-// rra (reverse rotate a) : Shift down all elements of stack a by 1.
-// The last element becomes the first one.
-int	push_swap_rra(t_linked_satck *p_stack_a)
-{
-	t_stacknode	*top;
-	t_stacknode	*pre_bottom;
-	t_stacknode	*bottom;
-
-	if (!p_stack_a || 2 > p_stack_a->current_element_cnt)
-		return (FALSE);
-	top = p_stack_a->p_top_element;
-	bottom = top;
-	while (bottom->p_link)
+	if (!stack_b)
+		error_exit(0);
+	node = stack_b->p_top_element;
+	half = (stack_b->current_element_cnt) / 2;
+	max = (stack_b->current_element_cnt) - 1;
+	while (half--)
 	{
-		pre_bottom = bottom;
-		bottom = bottom->p_link;
+		if (max == node->index)
+			return (TRUE);
+		node = node->p_link;
 	}
-	pre_bottom->p_link = NULL;
-	p_stack_a->p_top_element = bottom;
-	bottom->p_link = top;
-	write(1, "rra\n", 4);
-	return (TRUE);
+	return (FALSE);
 }
 
-// rrb (reverse rotate b) : Shift down all elements of stack b by 1.
-// The last element becomes the first one.
-int	push_swap_rrb(t_linked_satck *pStackB)
+t_int_data	*create_int_data(int max_cnt)
 {
-	t_stacknode	*top;
-	t_stacknode	*pre_bottom;
-	t_stacknode	*bottom;
+	t_int_data	*rt_int_data;
 
-	if (!pStackB || 2 > pStackB->current_element_cnt)
-		return (FALSE);
-	top = pStackB->p_top_element;
-	bottom = top;
-	while (bottom->p_link)
+	rt_int_data = NULL;
+	if (max_cnt > 0)
 	{
-		pre_bottom = bottom;
-		bottom = bottom->p_link;
+		rt_int_data = malloc(sizeof(t_int_data));
+		if (!rt_int_data)
+			error_exit(0);
+		rt_int_data->arr = malloc(sizeof(int) * max_cnt);
+		if (!rt_int_data->arr)
+			error_exit(0);
+		rt_int_data->cnt = 0;
+		return (rt_int_data);
 	}
-	pre_bottom->p_link = NULL;
-	pStackB->p_top_element = bottom;
-	bottom->p_link = top;
-	write(1, "rrb\n", 4);
-	return (TRUE);
+	error_exit(0);
+	return (NULL);
 }

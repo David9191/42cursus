@@ -3,20 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   ft_linkedstack.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jislim <jislim@student.42seoul.kr>         +#+  +:+       +#+        */
+/*   By: jislim <jislim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 19:44:48 by jislim            #+#    #+#             */
-/*   Updated: 2022/05/28 14:04:24 by jislim           ###   ########.fr       */
+/*   Updated: 2022/05/30 18:01:29 by jislim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-t_linked_satck	*create_linked_stack(void)
+t_stack	*create_linked_stack(void)
 {
-	t_linked_satck	*rt_satck;
+	t_stack	*rt_satck;
 
-	rt_satck = malloc(sizeof(t_linked_satck));
+	rt_satck = malloc(sizeof(t_stack));
 	if (!rt_satck)
 		return (NULL);
 	rt_satck->current_element_cnt = 0;
@@ -24,7 +24,7 @@ t_linked_satck	*create_linked_stack(void)
 	return (rt_satck);
 }
 
-int	push_linked_stack(t_linked_satck *pStack, t_stacknode element)
+int	push_linked_stack(t_stack *pStack, t_stacknode element)
 {
 	t_stacknode	*node;
 
@@ -40,7 +40,7 @@ int	push_linked_stack(t_linked_satck *pStack, t_stacknode element)
 	return (TRUE);
 }
 
-t_stacknode	*pop_linked_stack(t_linked_satck *stack)
+t_stacknode	*pop_linked_stack(t_stack *stack)
 {
 	t_stacknode	*rt_node;
 
@@ -52,14 +52,14 @@ t_stacknode	*pop_linked_stack(t_linked_satck *stack)
 	return (rt_node);
 }
 
-t_stacknode	*peek_linked_stack(t_linked_satck *stack)
+t_stacknode	*peek_linked_stack(t_stack *stack)
 {
 	if (!stack || !(stack->current_element_cnt))
 		return (FALSE);
 	return (stack->p_top_element);
 }
 
-void	delete_linked_stack(t_linked_satck *stack)
+void	delete_linked_stack(t_stack *stack)
 {
 	t_stacknode	*del;
 	t_stacknode	*next;

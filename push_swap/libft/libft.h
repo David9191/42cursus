@@ -37,7 +37,7 @@ typedef struct s_linked_satck_type
 	int			*arr;
 	int			current_element_cnt;
 	t_stacknode	*p_top_element;
-}				t_linked_satck;
+}				t_stack;
 
 int				ft_isalpha(int c);
 int				ft_isdigit(int c);
@@ -97,12 +97,12 @@ int				print_char(int ch);
 int				print_hexa_ptr(unsigned long hexa);
 char			*printf_hexa(void *v_ptr);
 
-t_linked_satck	*create_linked_stack(void);
-int				push_linked_stack(t_linked_satck *p_stack, t_stacknode element);
-t_stacknode		*pop_linked_stack(t_linked_satck *p_stack);
-t_stacknode		*peek_linked_stack(t_linked_satck *p_stack);
-void			delete_linked_stack(t_linked_satck *p_stack);
-int				is_linked_stack_empty(t_linked_satck *p_stack);
+t_stack			*create_linked_stack(void);
+int				push_linked_stack(t_stack *p_stack, t_stacknode element);
+t_stacknode		*pop_linked_stack(t_stack *p_stack);
+t_stacknode		*peek_linked_stack(t_stack *p_stack);
+void			delete_linked_stack(t_stack *p_stack);
+int				is_linked_stack_empty(t_stack *p_stack);
 
 # define TRUE	1
 # define FALSE	0

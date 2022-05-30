@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   check_sorted.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jislim <jislim@student.42seoul.kr>         +#+  +:+       +#+        */
+/*   By: jislim <jislim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/27 21:22:21 by jislim            #+#    #+#             */
-/*   Updated: 2022/05/28 01:42:51 by jislim           ###   ########.fr       */
+/*   Updated: 2022/05/30 18:01:29 by jislim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	check_sort(t_linked_satck *stack)
+void	check_sort(t_stack *stack)
 {
 	t_stacknode	*node;
 	t_stacknode	*next;
