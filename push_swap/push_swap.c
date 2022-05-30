@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jislim <jislim@student.42seoul.kr>         +#+  +:+       +#+        */
+/*   By: jislim <jislim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 19:44:11 by jislim            #+#    #+#             */
-/*   Updated: 2022/05/29 17:44:53 by jislim           ###   ########.fr       */
+/*   Updated: 2022/05/30 15:25:34 by jislim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,19 +22,19 @@ int	main(int argc, char **argv)
 	if (argc < 2)
 		return (1);
 	stack_a = create_linked_stack();
-	if (!stack_a)
-		return (0);
+	stack_b = create_linked_stack();
+	if (!stack_a || !stack_b)
+		return (1);
 	data = create_int_data(500);
 	parsing(argv, data);
 	put_on_stack_a(stack_a, data);
-	// 중복 체크 -> 정렬체크 -> indexing
 	if (stack_a->current_element_cnt == 1)
 		return (0);
 	check_dup(stack_a);
 	check_sort(stack_a);
-	// 5이하 숫자 코딩
-	stack_b = create_linked_stack();
-	// get chunk;
+	if (data->cnt <= 5)
+		less_than_or_equal_five(stack_a, stack_b);
+	chunk = get_chunk(data);
 	move_p_stack_a_to_p_stack_b(stack_a, stack_b, chunk);
 	move_p_stack_b_to_p_stack_a(stack_a, stack_b);
 	delete_linked_stack(stack_a);

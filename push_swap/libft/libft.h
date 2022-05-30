@@ -37,7 +37,6 @@ typedef struct s_linked_satck_type
 	int			*arr;
 	int			current_element_cnt;
 	t_stacknode	*p_top_element;
-	t_stacknode	*p_bottom_element;
 }				t_linked_satck;
 
 int				ft_isalpha(int c);

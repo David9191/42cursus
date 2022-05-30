@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jislim <jislim@student.42seoul.kr>         +#+  +:+       +#+        */
+/*   By: jislim <jislim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/28 01:06:54 by jislim            #+#    #+#             */
-/*   Updated: 2022/05/28 13:56:26 by jislim           ###   ########.fr       */
+/*   Updated: 2022/05/30 15:44:45 by jislim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ typedef struct s_int_data
 	int	*arr;
 	int	cnt;
 }		t_int_data;
-
 
 int				push_swap_sa(t_linked_satck *p_stack_a);
 int				push_swap_sb(t_linked_satck *p_stack_b);
@@ -52,5 +51,11 @@ void			error_exit(int error);
 
 t_int_data		*create_int_data(int max_cnt);
 void			put_on_stack_a(t_linked_satck *stack, t_int_data *data);
+int				get_chunk(t_int_data *data);
+int				less_than_or_equal_five(t_linked_satck *stack_a, t_linked_satck *stack_b);
+int				in_case_three(t_linked_satck *stack_a, int first, int second, int third);
+int				in_case_five(t_linked_satck *stack_a, t_linked_satck *stack_b);
+int				min_to_p_stack_b(t_linked_satck *p_stack_a, t_linked_satck *p_stack_b);
+
 
 #endif

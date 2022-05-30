@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap_utils2.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jislim <jislim@student.42seoul.kr>         +#+  +:+       +#+        */
+/*   By: jislim <jislim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 20:19:11 by jislim            #+#    #+#             */
-/*   Updated: 2022/05/29 17:42:34 by jislim           ###   ########.fr       */
+/*   Updated: 2022/05/30 16:17:17 by jislim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,18 @@ int	p_stack_a_indexing(t_linked_satck *p_stack_a)
 		next = next->p_link;
 	}
 	return (TRUE);
+}
+
+int	get_chunk(t_int_data *data)
+{
+	if (data)
+	{
+		if (data->cnt == 100)
+			return (15);
+		else if (data->cnt == 500)
+			return (30);
+	}
+	return (FALSE);
 }
 
 int	move_p_stack_a_to_p_stack_b(t_linked_satck *p_stack_a,
@@ -176,9 +188,130 @@ t_int_data	*create_int_data(int max_cnt)
 		if (!rt_int_data->arr)
 			error_exit(0);
 		rt_int_data->cnt = 0;
+		return (rt_int_data);
 	}
-	return (rt_int_data);
+	error_exit(0);
+	return (NULL);
 }
-			// node.index = stack_a->current_element_cnt;
-			// push_linked_stack(stack_a, node);
-			// p_stack_a_indexing(stack_a);
+
+int	in_case_three(t_linked_satck *stack_a, int first, int second, int third)
+{
+	if (stack_a)
+	{
+		if (first > second && second > third)
+		{
+			push_swap_sa(stack_a);
+			push_swap_rra(stack_a);
+		}
+		else if (first < second && second > third && first < third)
+		{
+			push_swap_rra(stack_a);
+			push_swap_sa(stack_a);
+		}
+		else if (first < second && second > third && first > third)
+			push_swap_rra(stack_a);
+		else if (first > second && second < third && first < third)
+			push_swap_sa(stack_a);
+		else if (first > second && second < third && first > third)
+			push_swap_ra(stack_a);
+		return (TRUE);
+	}
+	error_exit(0);
+	return (FALSE);
+}
+
+int	find_min(t_linked_satck *p_stack_a)
+{
+	t_stacknode	*node;
+	int			min;
+
+	if (p_stack_a)
+	{
+		min = p_stack_a->p_top_element->data;
+		node = p_stack_a->p_top_element->p_link;
+		while (node)
+		{
+			if (min > node->data)
+				min = node->data;
+			node = node->p_link;
+		}
+		return (min);
+	}
+	error_exit(0);
+	return (FALSE);
+}
+
+int	min_is_top(t_linked_satck *p_stack_a, int min)
+{
+	t_stacknode	*node;
+	int			half;
+
+	if (!p_stack_a)
+		error_exit(0);
+	node = p_stack_a->p_top_element;
+	half = (p_stack_a->current_element_cnt) / 2;
+	while (half--)
+	{
+		if (min == node->data)
+			return (TRUE);
+		node = node->p_link;
+	}
+	return (FALSE);
+}
+
+int	min_to_p_stack_b(t_linked_satck *p_stack_a,
+	t_linked_satck *p_stack_b)
+{
+	int	idx;
+	int	min;
+
+	if (!p_stack_a || !p_stack_b)
+		error_exit(0);
+	idx = 0;
+	if (p_stack_a->p_top_element != NULL)
+	{
+		min = find_min(p_stack_a);
+		if (min_is_top(p_stack_a, min))
+			while (min != p_stack_a->p_top_element->data)
+				push_swap_ra(p_stack_a);
+		else
+			while (min != p_stack_a->p_top_element->data)
+				push_swap_rra(p_stack_a);
+		push_swap_pb(p_stack_a, p_stack_b);
+	}
+	return (TRUE);
+}
+
+int	in_case_five(t_linked_satck *stack_a, t_linked_satck *stack_b)
+{
+	int	min;
+
+	if (stack_a && stack_b)
+	{
+		min = min_to_p_stack_b(stack_a, stack_b);
+		min = min_to_p_stack_b(stack_a, stack_b);
+		in_case_three(stack_a, stack_a->p_top_element->data,
+				stack_a->p_top_element->p_link->data,
+				stack_a->p_top_element->p_link->p_link->data);
+		push_swap_pa(stack_a, stack_b);
+		push_swap_pa(stack_a, stack_b);
+		return (TRUE);
+	}
+	error_exit(0);
+	return (FALSE);
+}
+
+int	less_than_or_equal_five(t_linked_satck *stack_a, t_linked_satck *stack_b)
+{
+	if (stack_a && stack_b)
+	{
+		if (stack_a->current_element_cnt == 3)
+			in_case_three(stack_a, stack_a->p_top_element->data,
+				stack_a->p_top_element->p_link->data,
+				stack_a->p_top_element->p_link->p_link->data);
+		else if (stack_a->current_element_cnt == 5)
+			in_case_five(stack_a, stack_b);
+	}
+	error_exit(0);
+	return (FALSE);
+}

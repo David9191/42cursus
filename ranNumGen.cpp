@@ -42,7 +42,7 @@ int main()
 		result += to_string(vn);
 		result += " ";
 	}
-	result += "\"; ./push_swap $ARG | ./checker $ARG";
+	result += "\"; ./push_swap $ARG | ./checker_Mac $ARG";
 	cout << "result = " << endl << result << endl;
 	return (0);
 }
