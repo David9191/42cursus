@@ -6,7 +6,7 @@
 /*   By: jislim <jislim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 20:19:11 by jislim            #+#    #+#             */
-/*   Updated: 2022/05/30 16:17:17 by jislim           ###   ########.fr       */
+/*   Updated: 2022/05/30 16:24:33 by jislim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -282,6 +282,23 @@ int	min_to_p_stack_b(t_linked_satck *p_stack_a,
 	return (TRUE);
 }
 
+int	in_case_four(t_linked_satck *stack_a, t_linked_satck *stack_b)
+{
+	int	min;
+
+	if (stack_a && stack_b)
+	{
+		min = min_to_p_stack_b(stack_a, stack_b);
+		in_case_three(stack_a, stack_a->p_top_element->data,
+				stack_a->p_top_element->p_link->data,
+				stack_a->p_top_element->p_link->p_link->data);
+		push_swap_pa(stack_a, stack_b);
+		return (TRUE);
+	}
+	error_exit(0);
+	return (FALSE);
+}
+
 int	in_case_five(t_linked_satck *stack_a, t_linked_satck *stack_b)
 {
 	int	min;
@@ -309,6 +326,8 @@ int	less_than_or_equal_five(t_linked_satck *stack_a, t_linked_satck *stack_b)
 			in_case_three(stack_a, stack_a->p_top_element->data,
 				stack_a->p_top_element->p_link->data,
 				stack_a->p_top_element->p_link->p_link->data);
+		else if (stack_a->current_element_cnt == 4)
+			in_case_four(stack_a, stack_b);
 		else if (stack_a->current_element_cnt == 5)
 			in_case_five(stack_a, stack_b);
 	}
