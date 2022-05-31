@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jislim <jislim@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jislim <jislim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 19:44:11 by jislim            #+#    #+#             */
-/*   Updated: 2022/05/31 20:52:59 by jislim           ###   ########.fr       */
+/*   Updated: 2022/06/01 00:15:55 by jislim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ int	main(int argc, char **argv)
 	t_stack		*stack_a;
 	t_stack		*stack_b;
 	t_int_data	*data;
-	int			chunk;
 
 	if (argc < 2)
 		return (1);
@@ -34,15 +33,15 @@ int	main(int argc, char **argv)
 	stack_b = create_linked_stack();
 	if (!stack_b)
 		return (1);
-	for (int i = 0; i < data->cnt; i++)
-	{
-		// printf("%d ", data->arr[i]);
-		// if (i % 14 == 0)
-		// 	printf("\n");
-		for (int j = 0; j < data->arr[i]; j++)
-			printf(".");
-		printf("\n");
-	}
+	// for (int i = 0; i < data->cnt; i++)
+	// {
+	// 	// printf("%d ", data->arr[i]);
+	// 	// if (i % 14 == 0)
+	// 	// 	printf("\n");
+	// 	for (int j = 0; j < data->arr[i]; j++)
+	// 		printf(".");
+	// 	printf("\n");
+	// }
 
 	check_and_sort(stack_a, stack_b, data);
 	delete_linked_stack(stack_a);

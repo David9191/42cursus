@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: jislim <jislim@student.42.fr>              +#+  +:+       +#+         #
+#    By: jislim <jislim@student.42seoul.kr>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/24 19:44:31 by jislim            #+#    #+#              #
-#    Updated: 2022/05/30 18:30:16 by jislim           ###   ########.fr        #
+#    Updated: 2022/06/01 00:13:31 by jislim           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,7 @@ RM = rm -rf
 SRCS =  push_swap.c push_swap_utils.c  check_duplicate.c check_sorted.c \
 		ft_atoi_push.c ft_error.c less_than_or_equal_five.c less_than_or_equal_five2.c \
 		push_swap_command_s_p.c push_swap_command_r_rr.c push_swap_parsing.c \
-		push_swap_sort_big.c
+		push_swap_sort_big.c check_and_sort_big.c
 OBJS = $(SRCS:.c=.o)
 
 all : $(NAME)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap_command_r_rr.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jislim <jislim@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jislim <jislim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/30 17:37:15 by jislim            #+#    #+#             */
-/*   Updated: 2022/05/31 20:26:45 by jislim           ###   ########.fr       */
+/*   Updated: 2022/06/01 00:17:06 by jislim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	push_swap_ra(t_stack *stack_a)
 		bottom = bottom->p_link;
 	bottom->p_link = top;
 	top->p_link = NULL;
-	// write(1, "ra\n", 3);
+	write(1, "ra\n", 3);
 	return (TRUE);
 }
 
@@ -44,7 +44,7 @@ int	push_swap_rb(t_stack *pStackB)
 		bottom = bottom->p_link;
 	bottom->p_link = top;
 	top->p_link = NULL;
-	// write(1, "rb\n", 3);
+	write(1, "rb\n", 3);
 	return (TRUE);
 }
 
@@ -66,7 +66,7 @@ int	push_swap_rra(t_stack *stack_a)
 	pre_bottom->p_link = NULL;
 	stack_a->p_top_element = bottom;
 	bottom->p_link = top;
-	// write(1, "rra\n", 4);
+	write(1, "rra\n", 4);
 	return (TRUE);
 }
 
@@ -88,6 +88,6 @@ int	push_swap_rrb(t_stack *pStackB)
 	pre_bottom->p_link = NULL;
 	pStackB->p_top_element = bottom;
 	bottom->p_link = top;
-	// write(1, "rrb\n", 4);
+	write(1, "rrb\n", 4);
 	return (TRUE);
 }

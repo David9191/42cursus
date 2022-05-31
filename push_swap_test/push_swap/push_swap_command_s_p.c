@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap_command_s_p.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jislim <jislim@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jislim <jislim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/30 17:36:47 by jislim            #+#    #+#             */
-/*   Updated: 2022/05/31 20:29:03 by jislim           ###   ########.fr       */
+/*   Updated: 2022/06/01 00:17:14 by jislim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	push_swap_sa(t_stack *stack_a)
 	stack_a->p_top_element = stack_a->p_top_element->p_link;
 	temp->p_link = stack_a->p_top_element->p_link;
 	stack_a->p_top_element->p_link = temp;
-	// write(1, "sa\n", 3);
+	write(1, "sa\n", 3);
 	return (TRUE);
 }
 
@@ -36,7 +36,7 @@ int	push_swap_sb(t_stack *pStackB)
 	pStackB->p_top_element = pStackB->p_top_element->p_link;
 	temp->p_link = pStackB->p_top_element->p_link;
 	pStackB->p_top_element->p_link = temp;
-	// write(1, "sb\n", 3);
+	write(1, "sb\n", 3);
 	return (TRUE);
 }
 
@@ -54,7 +54,7 @@ int	push_swap_pa(t_stack *stack_a, t_stack *pStackB)
 	free (node);
 	if (!check)
 		return (FALSE);
-	// write(1, "pa\n", 3);
+	write(1, "pa\n", 3);
 	return (TRUE);
 }
 
@@ -72,6 +72,6 @@ int	push_swap_pb(t_stack *stack_a, t_stack *pStackB)
 	free (node);
 	if (!check)
 		return (FALSE);
-	// write(1, "pb\n", 3);
+	write(1, "pb\n", 3);
 	return (TRUE);
 }
