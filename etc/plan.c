@@ -6,8 +6,8 @@ void	calculate(int *year, int *month, int *day);
 // 7 7 14 2 21 27 3 27 30 27 5 29 30 35 5 45
 int	main(void)
 {
-	int		year = 2022, month = 5, day = 24;
-	float	left_blackhole = 36;
+	int		year = 2022, month = 5, day = 31;
+	float	left_blackhole = 29;
 	char	*project[17 /* 과제 개수 */] = {
 		"push_swap", "minitalk", "so_long",
 		"exam02", "philosophers", "minishell",
