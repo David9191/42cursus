@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jislim <jislim@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jislim <jislim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/30 17:39:51 by jislim            #+#    #+#             */
-/*   Updated: 2022/05/31 16:53:55 by jislim           ###   ########.fr       */
+/*   Updated: 2022/06/01 16:21:23 by jislim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ int	get_chunk(t_int_data *data)
 int	move_stack_a_to_stack_b(t_stack *stack_a,
 	t_stack *stack_b, int chunk)
 {
-	t_stacknode	node;
 	int			num;
 	int			index;
 
@@ -35,7 +34,6 @@ int	move_stack_a_to_stack_b(t_stack *stack_a,
 	while (stack_a->current_element_cnt)
 	{
 		index = stack_a->p_top_element->index;
-		node.index = index;
 		if (index <= num)
 		{
 			push_swap_pb(stack_a, stack_b);

@@ -6,7 +6,7 @@
 /*   By: jislim <jislim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 20:51:35 by jislim            #+#    #+#             */
-/*   Updated: 2022/06/01 00:35:41 by jislim           ###   ########.fr       */
+/*   Updated: 2022/06/01 16:20:11 by jislim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,13 +59,12 @@ int		get_average(int	*data, int start_range, int end_range)
 void	check_and_sort(t_stack *stack_a, t_stack *stack_b, t_int_data *data)
 {
 	int	arr[5];
-	int	repeat; // 얘 만큼 반복. if 500
+	int	repeat;
 	int	idx;
 
 	if (data->cnt <= 5)
 		sort_big_number(stack_a, stack_b, data);
-	repeat = (data->cnt) / 5; // 100
-	// printf("repeat : %d", repeat);
+	repeat = (data->cnt) / 5;
 	idx = 0;
 	while (idx < 5)
 	{
@@ -74,16 +73,8 @@ void	check_and_sort(t_stack *stack_a, t_stack *stack_b, t_int_data *data)
 	}
 	if (check_loose_sort(data->arr) == 1 || check_loose_sort(data->arr) == 2)
 	{
-		move_stack_a_to_stack_b_loose(stack_a, stack_b, data); // 그냥 넘기기
-		printf("%d \n", stack_b->current_element_cnt);
-		
-		for (int i = 0; i < stack_b->current_element_cnt; i++)
-		{
-			printf("%d ", pop_linked_stack(stack_b)->index);
-			if (i % 15 == 0)
-				printf("\n");
-		}
-		// move_stack_b_to_stack_a(stack_a, stack_b);
+		move_stack_a_to_stack_b_loose(stack_a, stack_b, data);
+		move_stack_b_to_stack_a(stack_a, stack_b);
 	}
 	else
 		sort_big_number(stack_a, stack_b, data);
