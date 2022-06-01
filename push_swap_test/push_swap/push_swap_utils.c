@@ -6,7 +6,7 @@
 /*   By: jislim <jislim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/30 17:39:51 by jislim            #+#    #+#             */
-/*   Updated: 2022/06/01 16:21:23 by jislim           ###   ########.fr       */
+/*   Updated: 2022/06/01 22:00:48 by jislim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ int	get_chunk(t_int_data *data)
 			return (15);
 		else if (data->cnt == 500)
 			return (30);
+		else if (data->cnt > 500)
+			return (45);
 	}
 	return (FALSE);
 }
@@ -34,7 +36,7 @@ int	move_stack_a_to_stack_b(t_stack *stack_a,
 	while (stack_a->current_element_cnt)
 	{
 		index = stack_a->p_top_element->index;
-		if (index <= num)
+		if (num >= index)
 		{
 			push_swap_pb(stack_a, stack_b);
 			num++;
@@ -45,7 +47,7 @@ int	move_stack_a_to_stack_b(t_stack *stack_a,
 			push_swap_rb(stack_b);
 			num++;
 		}
-		else if (index > num + chunk)
+		else if (num + chunk < index)
 			push_swap_ra(stack_a);
 	}
 	return (1);
@@ -111,5 +113,5 @@ t_int_data	*create_int_data(int max_cnt)
 		return (rt_int_data);
 	}
 	error_exit(0);
-	return (NULL);
+	return (rt_int_data);
 }

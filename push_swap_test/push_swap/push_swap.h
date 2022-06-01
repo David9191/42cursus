@@ -6,14 +6,13 @@
 /*   By: jislim <jislim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/28 01:06:54 by jislim            #+#    #+#             */
-/*   Updated: 2022/06/01 00:13:08 by jislim           ###   ########.fr       */
+/*   Updated: 2022/06/01 21:59:59 by jislim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
-# include <stdio.h>
 # include <stdlib.h>
 # include "./libft/libft.h"
 
@@ -39,7 +38,6 @@ void			split_free_all(char **str);
 void			check_dup(t_stack *stack);
 void			check_sort(t_stack *stack);
 int				stack_a_indexing(t_stack *stack_a);
-t_stack			*create_stack_a(int *arr, int argc);
 int				move_stack_a_to_stack_b(t_stack *stack_a,
 					t_stack *stack_b, int chunk);
 int				move_stack_b_to_stack_a(t_stack *stack_a, t_stack *stack_b);
@@ -57,14 +55,14 @@ int				min_to_stack_b(t_stack *stack_a, t_stack *stack_b);
 int				find_min(t_stack *stack_a);
 void			check_and_sort(t_stack *stack_a, t_stack *stack_b,
 					t_int_data *data);
+int				check_descending(t_stack *stack);
 
-void			sort_big_number(t_stack *stack_a, t_stack *stack_b, t_int_data *data);
-void			move_stack_a_to_stack_b_loose(t_stack *stack_a, t_stack *stack_b, t_int_data *data);
-void			check_and_sort(t_stack *stack_a, t_stack *stack_b, t_int_data *data);
-int				get_average(int	*data, int start_range, int end_range);
-int				check_loose_sort(int *arr);
 
-# define ascending	1 // 오름차순
-# define descending	2 // 내림차순
+void			sort_number(t_stack *stack_a, t_stack *stack_b,
+					t_int_data *data);
+void			move_stack_a_to_stack_b_descen(t_stack *stack_a,
+					t_stack *stack_b, t_int_data *data);
+void			check_and_sort(t_stack *stack_a, t_stack *stack_b,
+					t_int_data *data);
 
 #endif

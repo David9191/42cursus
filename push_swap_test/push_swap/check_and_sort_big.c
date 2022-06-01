@@ -6,81 +6,52 @@
 /*   By: jislim <jislim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 20:51:35 by jislim            #+#    #+#             */
-/*   Updated: 2022/06/01 16:20:11 by jislim           ###   ########.fr       */
+/*   Updated: 2022/06/01 22:02:52 by jislim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int		check_loose_sort(int *arr)
+void	check_and_sort(t_stack *stack_a, t_stack *stack_b, t_int_data *data)
 {
-	int	check;
-	int	idx;
+	if (stack_a && stack_b && data)
+	{
+		if (stack_a->current_element_cnt > 5 && check_descending(stack_a) == 1)
+		{
+			move_stack_a_to_stack_b_descen(stack_a, stack_b, data);
+			move_stack_b_to_stack_a(stack_a, stack_b);
+		}
+		else
+			sort_number(stack_a, stack_b, data);
+	}
+	else
+		error_exit(0);
+}
 
-	check = ascending;
-	idx = 0;
-	while (idx < 4)
+int	check_descending(t_stack *stack)
+{
+	t_stacknode	*node;
+	t_stacknode	*next;
+
+	if (stack)
 	{
-		if (arr[idx] < arr[idx + 1])
-			check = 0;
-		idx++;
+		node = stack->p_top_element;
+		while (node->p_link)
+		{
+			next = node->p_link;
+			if (node->data < next->data)
+				return (0);
+			node = next;
+		}
+		return (1);
 	}
-	if (check == 1)
-		return (ascending);
-	check = descending;
-	idx = 0;
-	while (idx < 4)
-	{
-		if (arr[idx] > arr[idx + 1])
-			check = 0;
-		idx++;
-	}
-	if (check == 2)
-		return (descending);
+	else
+		error_exit(0);
 	return (0);
 }
 
-int		get_average(int	*data, int start_range, int end_range)
-{
-	int	average;
-	int	cpy_start_range; // 얘를 안해주면 에버리지 계산에서 0으로 나눠서 에버리지가 0됨.
-
-	average = 0;
-	cpy_start_range = start_range;
-	while (cpy_start_range < end_range)
-	{
-		average += data[cpy_start_range];
-		cpy_start_range++;
-	}
-	average /= (end_range - start_range);
-	return (average);
-}
-
-void	check_and_sort(t_stack *stack_a, t_stack *stack_b, t_int_data *data)
-{
-	int	arr[5];
-	int	repeat;
-	int	idx;
-
-	if (data->cnt <= 5)
-		sort_big_number(stack_a, stack_b, data);
-	repeat = (data->cnt) / 5;
-	idx = 0;
-	while (idx < 5)
-	{
-		arr[idx] = get_average(data->arr, repeat * idx, repeat * (idx + 1));
-		idx++;
-	}
-	if (check_loose_sort(data->arr) == 1 || check_loose_sort(data->arr) == 2)
-	{
-		move_stack_a_to_stack_b_loose(stack_a, stack_b, data);
-		move_stack_b_to_stack_a(stack_a, stack_b);
-	}
-	else
-		sort_big_number(stack_a, stack_b, data);
-}
-
-void	move_stack_a_to_stack_b_loose(t_stack *stack_a, t_stack *stack_b, t_int_data *data)
+void	move_stack_a_to_stack_b_descen(t_stack *stack_a,
+			t_stack *stack_b, t_int_data *data)
 {
 	if (stack_a && stack_b && data)
 	{
@@ -88,10 +59,14 @@ void	move_stack_a_to_stack_b_loose(t_stack *stack_a, t_stack *stack_b, t_int_dat
 		{
 			push_swap_pb(stack_a, stack_b);
 		}
+		free (data->arr);
+		free (data);
 	}
+	else
+		error_exit(0);
 }
 
-void	sort_big_number(t_stack *stack_a, t_stack *stack_b, t_int_data *data)
+void	sort_number(t_stack *stack_a, t_stack *stack_b, t_int_data *data)
 {
 	int	chunk;
 
@@ -100,7 +75,11 @@ void	sort_big_number(t_stack *stack_a, t_stack *stack_b, t_int_data *data)
 		if (data->cnt <= 5)
 			less_than_or_equal_five(stack_a, stack_b);
 		chunk = get_chunk(data);
+		free (data->arr);
+		free (data);
 		move_stack_a_to_stack_b(stack_a, stack_b, chunk);
 		move_stack_b_to_stack_a(stack_a, stack_b);
 	}
+	else
+		error_exit(0);
 }

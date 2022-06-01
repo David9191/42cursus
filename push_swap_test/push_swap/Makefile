@@ -6,7 +6,7 @@
 #    By: jislim <jislim@student.42seoul.kr>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/24 19:44:31 by jislim            #+#    #+#              #
-#    Updated: 2022/06/01 00:13:31 by jislim           ###   ########.fr        #
+#    Updated: 2022/06/01 22:53:33 by jislim           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,7 @@ RM = rm -rf
 SRCS =  push_swap.c push_swap_utils.c  check_duplicate.c check_sorted.c \
 		ft_atoi_push.c ft_error.c less_than_or_equal_five.c less_than_or_equal_five2.c \
 		push_swap_command_s_p.c push_swap_command_r_rr.c push_swap_parsing.c \
-		push_swap_sort_big.c check_and_sort_big.c
+		check_and_sort_big.c
 OBJS = $(SRCS:.c=.o)
 
 all : $(NAME)
@@ -31,16 +31,13 @@ $(NAME): $(OBJS)
 	$(AR) $(ARFLAGS) $@ $^
 	$(CC) $(FLAGS) $(OBJS) $(NAME) -o push_swap
 
-debug :
-	$(CC) $(FLAGS) $(SRCS) $(NAME) -g -o push_swap
-
 clean :
 	$(MAKE) clean --directory ./libft -s
-	$(RM) -rf $(OBJS) a.out *.gch a.out.dSYM push_swap
+	$(RM) -rf $(OBJS) a.out *.gch a.out.dSYM
 
 fclean : clean
 	$(MAKE) fclean --directory ./libft -s
-	$(RM) $(NAME)
+	$(RM) $(NAME) push_swap
 
 re :
 	make fclean

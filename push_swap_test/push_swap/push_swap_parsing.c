@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap_parsing.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jislim <jislim@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jislim <jislim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/30 17:39:00 by jislim            #+#    #+#             */
-/*   Updated: 2022/05/30 18:02:37 by jislim           ###   ########.fr       */
+/*   Updated: 2022/06/01 22:05:58 by jislim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,20 +32,25 @@ void	parsing(char **argv, t_int_data *data)
 	int			j;
 	int			k;
 
-	i = 1;
-	k = 0;
-	while (argv[i])
+	if (argv && data)
 	{
-		str = ft_split(argv[i], ' ');
-		j = 0;
-		while (str[j])
+		i = 1;
+		k = 0;
+		while (argv[i])
 		{
-			data->arr[k++] = ft_atoi_push(str[j++]);
-			(data->cnt)++;
+			str = ft_split(argv[i], ' ');
+			j = 0;
+			while (str[j])
+			{
+				data->arr[k++] = ft_atoi_push(str[j++]);
+				(data->cnt)++;
+			}
+			i++;
+			split_free_all(str);
 		}
-		i++;
-		split_free_all(str);
 	}
+	else
+		error_exit(0);
 }
 
 void	put_on_stack_a(t_stack *stack, t_int_data *data)
@@ -74,18 +79,22 @@ int	stack_a_indexing(t_stack *stack_a)
 	t_stacknode	*node;
 	t_stacknode	*next;
 
-	if (!stack_a)
-		return (FALSE);
-	node = stack_a->p_top_element;
-	next = node;
-	while (next)
+	if (stack_a)
 	{
-		if (node->data > next->data)
+		node = stack_a->p_top_element;
+		next = node;
+		while (next)
 		{
-			node->index++;
-			next->index--;
+			if (node->data > next->data)
+			{
+				node->index++;
+				next->index--;
+			}
+			next = next->p_link;
 		}
-		next = next->p_link;
+		return (TRUE);
 	}
-	return (TRUE);
+	else
+		error_exit(0);
+	return (0);
 }

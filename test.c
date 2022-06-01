@@ -9,4 +9,5 @@ int	main(int argc, char **argv)
 	{
 		printf("%d ", i);
 	}
+	return (0);
 }
