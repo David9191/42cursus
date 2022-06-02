@@ -6,14 +6,13 @@
 /*   By: jislim <jislim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/28 01:06:54 by jislim            #+#    #+#             */
-/*   Updated: 2022/05/30 18:29:42 by jislim           ###   ########.fr       */
+/*   Updated: 2022/06/02 19:41:57 by jislim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
-# include <stdio.h>
 # include <stdlib.h>
 # include "./libft/libft.h"
 
@@ -33,15 +32,15 @@ int				push_swap_rra(t_stack *stack_a);
 int				push_swap_rrb(t_stack *stack_b);
 
 void			parsing(char **argv, t_int_data *data);
+void			is_possible(char **str);
 int				ft_atoi_push(const char *str);
 int				check_value(const char *str, long long result, long long sign);
 void			split_free_all(char **str);
 void			check_dup(t_stack *stack);
 void			check_sort(t_stack *stack);
 int				stack_a_indexing(t_stack *stack_a);
-t_stack			*create_stack_a(int *arr, int argc);
 int				move_stack_a_to_stack_b(t_stack *stack_a,
-					t_stack *stack_b, int chunk);
+					t_stack *stack_b, int chunk, int check_min);
 int				move_stack_b_to_stack_a(t_stack *stack_a, t_stack *stack_b);
 int				max_is_top(t_stack *stack_b);
 void			error_exit(int error);
@@ -54,8 +53,20 @@ int				in_case_three(t_stack *stack_a, int first, int second,
 					int third);
 int				in_case_five(t_stack *stack_a, t_stack *stack_b);
 int				min_to_stack_b(t_stack *stack_a, t_stack *stack_b);
-void			sort_big_number(t_stack *stack_a, t_stack *stack_b,
-					t_int_data *data);
 int				find_min(t_stack *stack_a);
+void			check_and_sort(t_stack *stack_a, t_stack *stack_b,
+					t_int_data *data);
+int				check_descending(t_stack *stack);
+
+void			sort_number(t_stack *stack_a, t_stack *stack_b,
+					t_int_data *data);
+void			move_stack_a_to_stack_b_descen(t_stack *stack_a,
+					t_stack *stack_b, t_int_data *data);
+void			check_and_sort(t_stack *stack_a, t_stack *stack_b,
+					t_int_data *data);
+int				check_where_min(t_stack	*stack_a);
+
+# define IN_TOP		1
+# define IN_BOTTOM	0
 
 #endif

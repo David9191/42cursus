@@ -6,7 +6,7 @@
 /*   By: jislim <jislim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 19:44:11 by jislim            #+#    #+#             */
-/*   Updated: 2022/05/30 18:11:42 by jislim           ###   ########.fr       */
+/*   Updated: 2022/06/02 17:40:51 by jislim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ int	main(int argc, char **argv)
 	t_stack		*stack_a;
 	t_stack		*stack_b;
 	t_int_data	*data;
-	int			chunk;
 
 	if (argc < 2)
 		return (1);
@@ -34,7 +33,7 @@ int	main(int argc, char **argv)
 	stack_b = create_linked_stack();
 	if (!stack_b)
 		return (1);
-	sort_big_number(stack_a, stack_b, data);
+	check_and_sort(stack_a, stack_b, data);
 	delete_linked_stack(stack_a);
 	delete_linked_stack(stack_b);
 	return (0);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi_push.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jislim <jislim@student.42seoul.kr>         +#+  +:+       +#+        */
+/*   By: jislim <jislim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 17:18:42 by jislim            #+#    #+#             */
-/*   Updated: 2022/05/28 14:16:05 by jislim           ###   ########.fr       */
+/*   Updated: 2022/06/02 11:58:39 by jislim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,13 +32,19 @@ int	ft_atoi_push(const char *str)
 	long long	result;
 	long long	sign;
 
-	sign = 1;
-	result = 0;
-	while ((*str >= 9 && *str <= 13) || *str == ' ')
-		str++;
-	if (*str == '-')
-		sign = -1;
-	str += (*str == '-' || *str == '+');
-	result = check_value(str, result, sign);
-	return (result);
+	if (str)
+	{
+		sign = 1;
+		result = 0;
+		while ((*str >= 9 && *str <= 13) || *str == ' ')
+			str++;
+		if (*str == '-')
+			sign = -1;
+		str += (*str == '-' || *str == '+');
+		result = check_value(str, result, sign);
+		return (result);
+	}
+	else
+		error_exit(0);
+	return (0);
 }

@@ -1,42 +1,52 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap_utils2.c                                 :+:      :+:    :+:   */
+/*   push_swap_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jislim <jislim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/30 17:39:51 by jislim            #+#    #+#             */
-/*   Updated: 2022/05/30 18:16:00 by jislim           ###   ########.fr       */
+/*   Updated: 2022/06/02 19:52:03 by jislim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	get_chunk(t_int_data *data)
+int	check_where_min(t_stack	*stack_a)
 {
-	if (data)
+	t_stacknode	*node;
+	int			idx;
+	int			top;
+	int			half;
+
+	node = stack_a->p_top_element;
+	idx = 0;
+	top = 0;
+	half = (stack_a->current_element_cnt) / 2;
+	while (idx < half)
 	{
-		if (data->cnt == 100)
-			return (15);
-		else if (data->cnt == 500)
-			return (30);
+		if (node->index < (stack_a->current_element_cnt) / 2)
+			top++;
+		idx++;
+		node = node->p_link;
 	}
-	return (FALSE);
+	if (top > half)
+		return (IN_TOP);
+	else
+		return (IN_BOTTOM);
 }
 
 int	move_stack_a_to_stack_b(t_stack *stack_a,
-	t_stack *stack_b, int chunk)
+	t_stack *stack_b, int chunk, int check_min)
 {
-	t_stacknode	node;
-	int			num;
-	int			index;
+	int	num;
+	int	index;
 
 	num = 0;
 	while (stack_a->current_element_cnt)
 	{
 		index = stack_a->p_top_element->index;
-		node.index = index;
-		if (index <= num)
+		if (num >= index)
 		{
 			push_swap_pb(stack_a, stack_b);
 			num++;
@@ -47,10 +57,32 @@ int	move_stack_a_to_stack_b(t_stack *stack_a,
 			push_swap_rb(stack_b);
 			num++;
 		}
-		else if (index > num + chunk)
+		else if (num + chunk < index && check_min == IN_TOP)
 			push_swap_ra(stack_a);
+		else if (num + chunk < index && check_min == IN_BOTTOM)
+			push_swap_rra(stack_a);
 	}
 	return (1);
+}
+
+int	max_is_top(t_stack *stack_b)
+{
+	t_stacknode	*node;
+	int			half;
+	int			max;
+
+	if (!stack_b)
+		error_exit(0);
+	node = stack_b->p_top_element;
+	half = (stack_b->current_element_cnt) / 2;
+	max = (stack_b->current_element_cnt) - 1;
+	while (half--)
+	{
+		if (max == node->index)
+			return (TRUE);
+		node = node->p_link;
+	}
+	return (FALSE);
 }
 
 int	move_stack_b_to_stack_a(t_stack *stack_a,
@@ -76,26 +108,6 @@ int	move_stack_b_to_stack_a(t_stack *stack_a,
 	return (TRUE);
 }
 
-int	max_is_top(t_stack *stack_b)
-{
-	t_stacknode	*node;
-	int			half;
-	int			max;
-
-	if (!stack_b)
-		error_exit(0);
-	node = stack_b->p_top_element;
-	half = (stack_b->current_element_cnt) / 2;
-	max = (stack_b->current_element_cnt) - 1;
-	while (half--)
-	{
-		if (max == node->index)
-			return (TRUE);
-		node = node->p_link;
-	}
-	return (FALSE);
-}
-
 t_int_data	*create_int_data(int max_cnt)
 {
 	t_int_data	*rt_int_data;
@@ -113,5 +125,5 @@ t_int_data	*create_int_data(int max_cnt)
 		return (rt_int_data);
 	}
 	error_exit(0);
-	return (NULL);
+	return (rt_int_data);
 }
