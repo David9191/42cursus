@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jislim <jislim@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jislim <jislim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/28 01:06:54 by jislim            #+#    #+#             */
-/*   Updated: 2022/06/02 20:36:20 by jislim           ###   ########.fr       */
+/*   Updated: 2022/06/03 00:08:27 by jislim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,8 @@ void			check_and_sort(t_stack *stack_a, t_stack *stack_b,
 					t_int_data *data);
 int				check_where_min(t_stack	*stack_a);
 int				check_worst(int *arr, int size);
+
+# define MAX_SIZE	500
 
 # define WORST		1
 # define NOT_WORST	0

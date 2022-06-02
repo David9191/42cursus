@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jislim <jislim@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jislim <jislim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 19:44:11 by jislim            #+#    #+#             */
-/*   Updated: 2022/06/02 17:40:51 by jislim           ###   ########.fr       */
+/*   Updated: 2022/06/03 00:09:38 by jislim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	main(int argc, char **argv)
 	stack_a = create_linked_stack();
 	if (!stack_a)
 		return (1);
-	data = create_int_data(500);
+	data = create_int_data(MAX_SIZE);
 	parsing(argv, data);
 	put_on_stack_a(stack_a, data);
 	if (stack_a->current_element_cnt == 1)
