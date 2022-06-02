@@ -6,35 +6,11 @@
 /*   By: jislim <jislim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/30 17:39:51 by jislim            #+#    #+#             */
-/*   Updated: 2022/06/02 19:52:03 by jislim           ###   ########.fr       */
+/*   Updated: 2022/06/02 20:11:54 by jislim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-int	check_where_min(t_stack	*stack_a)
-{
-	t_stacknode	*node;
-	int			idx;
-	int			top;
-	int			half;
-
-	node = stack_a->p_top_element;
-	idx = 0;
-	top = 0;
-	half = (stack_a->current_element_cnt) / 2;
-	while (idx < half)
-	{
-		if (node->index < (stack_a->current_element_cnt) / 2)
-			top++;
-		idx++;
-		node = node->p_link;
-	}
-	if (top > half)
-		return (IN_TOP);
-	else
-		return (IN_BOTTOM);
-}
 
 int	move_stack_a_to_stack_b(t_stack *stack_a,
 	t_stack *stack_b, int chunk, int check_min)
@@ -57,9 +33,9 @@ int	move_stack_a_to_stack_b(t_stack *stack_a,
 			push_swap_rb(stack_b);
 			num++;
 		}
-		else if (num + chunk < index && check_min == IN_TOP)
+		else if (num + chunk < index && check_min == NOT_WORST)
 			push_swap_ra(stack_a);
-		else if (num + chunk < index && check_min == IN_BOTTOM)
+		else if (num + chunk < index && check_min == WORST)
 			push_swap_rra(stack_a);
 	}
 	return (1);

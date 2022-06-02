@@ -6,7 +6,7 @@
 /*   By: jislim <jislim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/28 01:06:54 by jislim            #+#    #+#             */
-/*   Updated: 2022/06/02 19:41:57 by jislim           ###   ########.fr       */
+/*   Updated: 2022/06/02 20:36:20 by jislim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,8 +65,9 @@ void			move_stack_a_to_stack_b_descen(t_stack *stack_a,
 void			check_and_sort(t_stack *stack_a, t_stack *stack_b,
 					t_int_data *data);
 int				check_where_min(t_stack	*stack_a);
+int				check_worst(int *arr, int size);
 
-# define IN_TOP		1
-# define IN_BOTTOM	0
+# define WORST		1
+# define NOT_WORST	0
 
 #endif

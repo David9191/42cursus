@@ -6,7 +6,7 @@
 #    By: jislim <jislim@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/24 19:44:31 by jislim            #+#    #+#              #
-#    Updated: 2022/06/02 11:35:10 by jislim           ###   ########.fr        #
+#    Updated: 2022/06/02 20:22:15 by jislim           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,8 @@ RM = rm -rf
 SRCS =  push_swap.c push_swap_utils.c  check_duplicate.c check_sorted.c \
 		ft_atoi_push.c ft_error.c less_than_or_equal_five.c \
 		less_than_or_equal_five2.c push_swap_command_s_p.c \
-		check_and_sort_big.c push_swap_command_r_rr.c push_swap_parsing.c
+		check_and_sort_big.c push_swap_command_r_rr.c push_swap_parsing.c \
+		check_worst_case.c
 OBJS = $(SRCS:.c=.o)
 
 all : $(NAME)
