@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap_parsing.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jislim <jislim@student.42seoul.kr>         +#+  +:+       +#+        */
+/*   By: jislim <jislim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/30 17:39:00 by jislim            #+#    #+#             */
-/*   Updated: 2022/06/03 00:08:02 by jislim           ###   ########.fr       */
+/*   Updated: 2022/06/03 10:07:12 by jislim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,33 +49,29 @@ void	is_possible(char **str)
 	}
 }
 
-void	parsing(char **argv, t_int_data *data)
+t_int_data	*parsing(char **argv, t_int_data *data, int i, int k)
 {
 	char		**str;
-	int			i;
 	int			j;
-	int			k;
 
-	if (argv && data)
-	{
-		i = 1;
-		k = 0;
-		while (argv[i])
-		{
-			str = ft_split(argv[i], ' ');
-			j = 0;
-			is_possible(str);
-			while (str[j])
-			{
-				data->arr[k++] = ft_atoi_push(str[j++]);
-				(data->cnt)++;
-			}
-			i++;
-			split_free_all(str);
-		}
-	}
-	else
+	if (!argv || !data)
 		error_exit(0);
+	while (argv[i])
+	{
+		str = ft_split(argv[i], ' ');
+		j = 0;
+		is_possible(str);
+		while (str[j])
+		{
+			if (k == (data->size) - 1)
+				data = copy_int_data(data, (data->size) * 2);
+			data->arr[k++] = ft_atoi_push(str[j++]);
+			(data->cnt)++;
+		}
+		i++;
+		split_free_all(str);
+	}
+	return (data);
 }
 
 void	put_on_stack_a(t_stack *stack, t_int_data *data)

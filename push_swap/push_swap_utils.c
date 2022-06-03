@@ -6,7 +6,7 @@
 /*   By: jislim <jislim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/30 17:39:51 by jislim            #+#    #+#             */
-/*   Updated: 2022/06/02 20:11:54 by jislim           ###   ########.fr       */
+/*   Updated: 2022/06/03 09:40:55 by jislim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,6 +98,30 @@ t_int_data	*create_int_data(int max_cnt)
 		if (!rt_int_data->arr)
 			error_exit(0);
 		rt_int_data->cnt = 0;
+		rt_int_data->size = max_cnt;
+		return (rt_int_data);
+	}
+	error_exit(0);
+	return (rt_int_data);
+}
+
+t_int_data	*copy_int_data(t_int_data *src, int max_cnt)
+{
+	t_int_data	*rt_int_data;
+
+	rt_int_data = NULL;
+	if (src && max_cnt > 0)
+	{
+		rt_int_data = malloc(sizeof(t_int_data));
+		if (!rt_int_data)
+			error_exit(0);
+		rt_int_data->arr = malloc(sizeof(int) * max_cnt);
+		if (!rt_int_data->arr)
+			error_exit(0);
+		ft_memcpy(rt_int_data->arr, src->arr, sizeof(int) * src->cnt);
+		rt_int_data->cnt = src->cnt;
+		rt_int_data->size = max_cnt;
+		free (src);
 		return (rt_int_data);
 	}
 	error_exit(0);

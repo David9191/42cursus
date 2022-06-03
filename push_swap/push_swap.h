@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jislim <jislim@student.42seoul.kr>         +#+  +:+       +#+        */
+/*   By: jislim <jislim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/28 01:06:54 by jislim            #+#    #+#             */
-/*   Updated: 2022/06/03 00:08:27 by jislim           ###   ########.fr       */
+/*   Updated: 2022/06/03 10:06:06 by jislim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ typedef struct s_int_data
 {
 	int	*arr;
 	int	cnt;
+	int	size;
 }		t_int_data;
 
 int				push_swap_sa(t_stack *stack_a);
@@ -31,7 +32,7 @@ int				push_swap_rb(t_stack *stack_b);
 int				push_swap_rra(t_stack *stack_a);
 int				push_swap_rrb(t_stack *stack_b);
 
-void			parsing(char **argv, t_int_data *data);
+t_int_data		*parsing(char **argv, t_int_data *data, int i, int k);
 void			is_possible(char **str);
 int				ft_atoi_push(const char *str);
 int				check_value(const char *str, long long result, long long sign);
@@ -46,6 +47,7 @@ int				max_is_top(t_stack *stack_b);
 void			error_exit(int error);
 
 t_int_data		*create_int_data(int max_cnt);
+t_int_data		*copy_int_data(t_int_data *src, int max_cnt);
 void			put_on_stack_a(t_stack *stack, t_int_data *data);
 int				get_chunk(t_int_data *data);
 int				less_than_or_equal_five(t_stack *stack_a, t_stack *stack_b);
@@ -67,7 +69,7 @@ void			check_and_sort(t_stack *stack_a, t_stack *stack_b,
 int				check_where_min(t_stack	*stack_a);
 int				check_worst(int *arr, int size);
 
-# define MAX_SIZE	500
+# define MAX_SIZE	100
 
 # define WORST		1
 # define NOT_WORST	0
