@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jislim <jislim@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jislim <jislim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/30 17:39:51 by jislim            #+#    #+#             */
-/*   Updated: 2022/06/03 09:40:55 by jislim           ###   ########.fr       */
+/*   Updated: 2022/06/04 23:17:32 by jislim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,6 +121,7 @@ t_int_data	*copy_int_data(t_int_data *src, int max_cnt)
 		ft_memcpy(rt_int_data->arr, src->arr, sizeof(int) * src->cnt);
 		rt_int_data->cnt = src->cnt;
 		rt_int_data->size = max_cnt;
+		free (src->arr);
 		free (src);
 		return (rt_int_data);
 	}
