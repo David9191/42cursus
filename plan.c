@@ -6,22 +6,22 @@ void	calculate(int *year, int *month, int *day);
 // 7 7 14 2 21 27 3 27 30 27 5 29 30 35 5 45
 int	main(void)
 {
-	int		year = 2022, month = 6, day = 1;
-	float	left_blackhole = 28;
+	int		year = 2022, month = 6, day = 6;
+	float	left_blackhole = 24;
 	char	*project[17 /* 과제 개수 */] = {
-		"push_swap", "minitalk", "so_long",
+		"push_swap", "so_long", "minitalk",
 		"exam02", "minishell", "philosophers",
-		"exam03", "cpp-module", "miniRT",
+		"exam03", "cpp-module", "cub3d",
 		"netpractice", "exam04", "inception",
 		"webserv", "ft_containers", "exam05",
 		"ft_transendence", "exam06"
 	};
 	float	blackhole[17 /* 과제 개수 */] = {
-		26.82, 21.13, 13.23,
-		0, 37.9, 27.38, 0,
-		74.01, 36.16, 18.11, 0,
-		52.07, 92.05, 36.25, 0,
-		20.25, 0
+		32.5, 14.81, 15.42,
+		0, 37.73, 32.85, 0,
+		74.42, 36.30, 18.16, 0,
+		51.94, 92.12, 36.81, 0,
+		57.96, 0
 	};
 	int		projects_play_day[17 /* 과제 개수 */];
 	inputPlayDay(project, projects_play_day);
