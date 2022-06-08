@@ -6,7 +6,7 @@
 #    By: jislim <jislim@student.42seoul.kr>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/07 10:12:10 by jislim            #+#    #+#              #
-#    Updated: 2022/06/07 12:54:27 by jislim           ###   ########.fr        #
+#    Updated: 2022/06/08 20:12:39 by jislim           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,15 +26,14 @@ $(NAME): $(OBJS)
 	$(MAKE) --directory ./libft -s
 	cp libft/libft.a $@
 	$(AR) $(ARFLAGS) $@ $^
-	$(CC) $(FLAGS) $(OBJS) $(NAME) -o push_swap
-
+	$(CC) $(FLAGS) -o pipex $(OBJS) $(NAME)
 clean :
 	$(MAKE) clean --directory ./libft -s
 	$(RM) -rf $(OBJS) a.out *.gch a.out.dSYM
 
 fclean : clean
 	$(MAKE) fclean --directory ./libft -s
-	$(RM) $(NAME) push_swap
+	$(RM) $(NAME) pipex
 
 re :
 	make fclean

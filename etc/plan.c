@@ -9,7 +9,7 @@ int	main(void)
 	int		year = 2022, month = 6, day = 7;
 	float	left_blackhole = 55;
 	char	*project[16 /* 과제 개수 */] = {
-		"minitalk", "so_long",
+		"pipex", "so_long",
 		"exam02", "minishell", "philosophers",
 		"exam03", "cpp-module", "cub3d",
 		"netpractice", "exam04", "inception",
