@@ -4,6 +4,8 @@
 		"libft.h": "c",
 		"stdlib.h": "c",
 		"iterator": "c",
-		"random": "c"
+		"random": "c",
+		"stdio.h": "c",
+		"unistd.h": "c"
 	}
 }

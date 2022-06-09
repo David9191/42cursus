@@ -1,0 +1,4 @@
+fd != fd2 : different
+FD=3
+DUP FD=1
+Standard Output Redirection
