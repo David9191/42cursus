@@ -6,14 +6,14 @@
 #    By: jislim <jislim@student.42seoul.kr>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/24 19:44:31 by jislim            #+#    #+#              #
-#    Updated: 2022/06/07 10:27:52 by jislim           ###   ########.fr        #
+#    Updated: 2022/06/13 13:01:38 by jislim           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = push_swap.a
 AR = ar
 ARFLAGS = -rcs
-CC = gcc
+CC = cc
 FLAGS = -Wall -Wextra -Werror
 RM = rm -rf
 
