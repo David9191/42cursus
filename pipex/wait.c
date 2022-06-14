@@ -1,10 +1,12 @@
 #include <sys/types.h>
+#include <sys/wait.h>
 #include <unistd.h>
 #include <stdlib.h>
 #include <stdio.h>
 
 int	main(void)
 {
+	int		status;
 	pid_t	pid;
 
 	switch (pid = fork())
@@ -14,14 +16,16 @@ int	main(void)
 		exit(1);
 		break ;
 	case 0 : /* child process */
-		printf("Child Process - My PID:%d, MY Parent's PID:%d\n",
-			(int)getpid(), (int)getppid());
+		printf("--> Child Process\n");
+		exit(2);
 		break ;
 	default : /* parent process */
-		printf("Parent Process - My PID:%d, MY Parent's PID:%d, MY Child's PID:%d\n",
-			(int)getpid(), (int)getppid(), (int)pid);
+		while (wait(&status) != pid)
+			continue ;
+		printf("--> Paernt process\n");
+		printf("Status : %d, %x\n", status, status);
+		printf("Child process Exit Status : %d\n", status >> 8);
 		break ;
 	}
-
 	printf("End of fork\n");
 }
