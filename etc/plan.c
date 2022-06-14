@@ -3,11 +3,11 @@
 int		inputPlayDay(char **project, int *project_play_day);
 void	displayall(char	**project, float *blackhole, int *projects_play_day, int *year, int *month, int *day, float *left_blackhole);
 void	calculate(int *year, int *month, int *day);
-// 7 7 14 2 21 27 3 27 30 27 5 29 30 35 5 45
+// 7 10 1 28 21 2 28 35 20 2 30 35 35 1 45 5
 int	main(void)
 {
-	int		year = 2022, month = 6, day = 12;
-	float	left_blackhole = 50;
+	int		year = 2022, month = 6, day = 14;
+	float	left_blackhole = 48;
 	char	*project[16 /* 과제 개수 */] = {
 		"pipex", "so_long",
 		"exam02", "minishell", "philosophers",
@@ -35,6 +35,7 @@ int	inputPlayDay(char **project, int *project_play_day)
 		printf("%s 과제 소요일 : ", project[i]);
 		scanf("%d", &project_play_day[i]);
 	}
+	printf("\n");
 	return (1);
 }
 

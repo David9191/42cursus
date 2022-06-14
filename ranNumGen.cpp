@@ -23,7 +23,7 @@ int main()
 	while (1)
 	{
 		if (numlist.size() == n)
-			break;
+			break ;
 		randn = rand() % range;
 		bool isd = false;
 		for (auto vn : numlist)
@@ -31,7 +31,7 @@ int main()
 			if (vn == randn)
 			{
 				isd = true;
-				break;
+				break ;
 			}
 		}
 		if (!isd)
