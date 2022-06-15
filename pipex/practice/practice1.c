@@ -5,6 +5,7 @@ int	main(void)
 {
 	int		status;
 	pid_t	pid;
+	char	*argv[] = { "ls", "-l", NULL };
 
 	pid = fork();
 	if (pid == -1)
@@ -13,8 +14,10 @@ int	main(void)
 		exit(1);
 	}
 	if (pid == 0)
+	{
 		printf("I'm Child\n");
-
+		execve("/bin/ls", argv, NULL);
+	}
 	if (pid > 0)
 	{
 		printf("I'm Parent\n");

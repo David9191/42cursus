@@ -6,6 +6,7 @@
 		"iterator": "c",
 		"random": "c",
 		"stdio.h": "c",
-		"unistd.h": "c"
+		"unistd.h": "c",
+		"pipe.h": "c"
 	}
 }
