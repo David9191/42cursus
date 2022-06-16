@@ -7,6 +7,7 @@
 		"random": "c",
 		"stdio.h": "c",
 		"unistd.h": "c",
-		"pipe.h": "c"
+		"pipe.h": "c",
+		"_malloc.h": "c"
 	}
 }
