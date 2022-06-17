@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: jislim <jislim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/17 16:38:49 by jislim            #+#    #+#             */
-/*   Updated: 2022/06/17 18:13:24 by jislim           ###   ########.fr       */
+/*   Created: 2022/06/17 10:42:10 by jislim            #+#    #+#             */
+/*   Updated: 2022/06/17 17:20:43 by jislim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,27 +21,25 @@
 # include <unistd.h>
 # include <fcntl.h>
 
-void	error_exit(char *error_message, int is_perror);
-char	**make_paths(char **envp);
-void	check_cmd_accessible(char *path, char *cmd);
-void	excute_cmd(char **argv, char **envp);
-void	parent_process(int *pipe_fd, char **argv, char **envp);
-void	child_process(int *pipe_fd, char **argv, char **envp);
-void	free_double_pointer(char **double_pointer);
-void	argv_error_exit(char *error_message);
+void	error_exit(char *str);
+void	free_paths(char **paths);
+char	*check_access(char *cmd, char **envp);
+void	make_stream(char *cmd, char **envp);
+int		arg_error(char *error_message);
+void	child_pro(int *fd, char **argv, char **envp);
+void	parent_pro(int *fd, char **argv, char **envp, int pid);
+
 
 # define EXIT_FAILURE	1
 # define EXIT_SUCCESS	0
 
-# define STDIN_FD		0
-# define STDOUT_FD		1
-# define STDERR_FD		2
+# define FT_NULL	((void *)0)
 
-# define READ_FD		0
-# define WRITE_FD		1
+# define STDIN_FILENO	0
+# define STDOUT_FILENO	1
+# define STDERR_FILENO	2
 
-# define IS_PERROR		1
-
-# define NULL_P			((void *)0)
+# define READ_FD	0
+# define WRITE_FD	1
 
 #endif

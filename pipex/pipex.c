@@ -5,49 +5,35 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: jislim <jislim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/17 10:40:41 by jislim            #+#    #+#             */
-/*   Updated: 2022/06/17 15:38:23 by jislim           ###   ########.fr       */
+/*   Created: 2022/06/17 17:24:07 by jislim            #+#    #+#             */
+/*   Updated: 2022/06/17 18:24:15 by jislim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-void	child_pro(int *pipe_fd, char **argv, char **envp)
+// STDIN_FD는 클로즈하고 dup(infile_fd)로 된다. 그럼 0번이 infile_fd가 되는 거다.
+// 이러면 우리가 읽어들이는 명령을 실행시키면 infile에서 읽어온다.
+// STDOUT_FD는 클로즈하고 dup(pipe_fd)로 된다. 그럼 1번이 pipe_fd[1]이 되는 거다.
+// 이러면 우리가 쓰기 명령을 실행시키면 pipe에 쓴다.
+void	child_process(int *pipe_fd, char **argv, char **envp)
 {
-	int	infile;
+	int	infile_fd;
 
-	if (access("inflie", F_OK | R_OK) == 1) // 굳이 필요한 애일까?
-		error_exit("access");
-	infile = open(argv[1], O_RDONLY);
-	if (infile == -1)
-		error_exit("open");
-	if (dup2(infile, STDIN_FILENO) == -1)
-		error_exit("dup2");
-	if (dup2(pipe_fd[WRITE_FD], STDOUT_FILENO) == -1)
-		error_exit("dup2");
-	if (close(pipe_fd[READ_FD]) == -1 || close(pipe_fd[WRITE_FD]) == -1)
-		error_exit("close");
-	make_stream(argv[2], envp);
-}
-
-void	parent_pro(int *pipe_fd, char **argv, char **envp, int pid)
-{
-	int	outfile;
-
-	if (waitpid(pid, NULL, 0) == -1)
-		error_exit("waitpid");
-	if (access("outfile", F_OK | W_OK) == 1) // 굳이 필요한 애일까?
-		error_exit("access");
-	outfile = open(argv[4], O_WRONLY | O_CREAT | O_TRUNC, 0777);
-	if (outfile == -1)
-		error_exit("open");
-	if (dup2(pipe_fd[READ_FD], STDIN_FILENO) == -1)
-		error_exit("dup2");
-	if (dup2(outfile, STDOUT_FILENO) == -1)
-		error_exit("dup2");
-	if (close(pipe_fd[READ_FD]) == -1 || close(pipe_fd[WRITE_FD]) == -1)
-		error_exit("close");
-	make_stream(argv[3], envp);
+	if (pipe_fd && argv && envp)
+	{
+		infile_fd = open(argv[1], O_RDONLY);
+		if (infile_fd == -1)
+			error_exit("open", IS_PERROR);
+		if (dup2(infile_fd, STDIN_FD) == -1	|| \
+			dup2(pipe_fd[WRITE_FD], STDOUT_FD) == -1)
+			error_exit("dup2", IS_PERROR);
+		if (close(pipe_fd[READ_FD]) == -1 || close(pipe_fd[WRITE_FD]) == -1)
+			error_exit("close", IS_PERROR);
+		excute_cmd(argv, envp);
+		error_exit("execve", IS_PERROR);
+	}
+	error_exit("NOT_APPROPRIATE_ARGS", !IS_PERROR);
 }
 
 int	main(int argc, char **argv, char **envp)
@@ -55,19 +41,38 @@ int	main(int argc, char **argv, char **envp)
 	int		pipe_fd[2];
 	pid_t	pid;
 
-	if (argc == 5)
+	if (argc == 5 && envp)
 	{
 		if (pipe(pipe_fd) == -1)
-			error_exit("pipe");
+			error_exit("pipe", IS_PERROR);
 		pid = fork();
-		if (pid < 0)
-			return (1);
+		if (pid == -1)
+			error_exit("fork", IS_PERROR);
 		else if (pid == 0)
-			child_pro(pipe_fd, argv, envp);
+			child_process(pipe_fd, argv, envp);
 		else
-			parent_pro(pipe_fd, argv, envp, pid);
+			parent_process(pipe_fd, argv, envp);
 	}
-	else
-		arg_error("Error: Bad arguments\n");
-	return (0);
+	wirte(2, "NOT_APPROPRIATE_ARGV");
+	return (1);
 }
+
+// void	error_exit(char *error_message);
+// void	make_paths(char **envp);
+// void	check_cmd_accessible(char *path, char *cmd);
+// void	excute_cmd(char **argv, char **envp);
+// void	parent_process(int *pipe_fd, char **argv, char **envp);
+// void	free_double_pointer(char **double_pointer);
+// void	argv_error_exit(char *error_message);
+
+// # define EXIT_FAILURE	1
+// # define EXIT_SUCCESS	0
+
+// # define STDIN_FD		0
+// # define STDOUT_FD		1
+// # define STDERR_FD		2
+
+// # define READ_FD		0
+// # define WRITE_FD		1
+
+// # define NULL_P			((void *)0)

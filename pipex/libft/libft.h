@@ -104,6 +104,8 @@ t_stacknode		*peek_linked_stack(t_stack *p_stack);
 void			delete_linked_stack(t_stack *p_stack);
 int				is_linked_stack_empty(t_stack *p_stack);
 
+int				ft_doublep_len(char **dp);
+
 # define TRUE	1
 # define FALSE	0
 
