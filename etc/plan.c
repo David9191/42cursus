@@ -3,11 +3,11 @@
 int		inputPlayDay(char **project, int *project_play_day);
 void	displayall(char	**project, float *blackhole, int *projects_play_day, int *year, int *month, int *day, float *left_blackhole);
 void	calculate(int *year, int *month, int *day);
-// 7 10 1 28 21 2 28 35 20 2 30 35 35 1 45 5
+// 4 10 1 28 21 2 28 35 20 2 30 35 35 1 45 5
 int	main(void)
 {
-	int		year = 2022, month = 6, day = 14;
-	float	left_blackhole = 48;
+	int		year = 2022, month = 6, day = 17;
+	float	left_blackhole = 45;
 	char	*project[16 /* 과제 개수 */] = {
 		"pipex", "so_long",
 		"exam02", "minishell", "philosophers",
@@ -17,7 +17,7 @@ int	main(void)
 		"ft_transendence", "exam06"
 	};
 	float	blackhole[16 /* 과제 개수 */] = {
-		20.59, 12.97,
+		17.59, 12.97,
 		0, 31.99, 32.31, 0,
 		73.61, 35.30, 17.16, 0,
 		50.94, 88.12, 36.81, 0,
