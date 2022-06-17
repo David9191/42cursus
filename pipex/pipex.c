@@ -6,7 +6,7 @@
 /*   By: jislim <jislim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 17:24:07 by jislim            #+#    #+#             */
-/*   Updated: 2022/06/17 18:24:15 by jislim           ###   ########.fr       */
+/*   Updated: 2022/06/17 20:57:57 by jislim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,12 +25,33 @@ void	child_process(int *pipe_fd, char **argv, char **envp)
 		infile_fd = open(argv[1], O_RDONLY);
 		if (infile_fd == -1)
 			error_exit("open", IS_PERROR);
-		if (dup2(infile_fd, STDIN_FD) == -1	|| \
+		if (dup2(infile_fd, STDIN_FD) == -1 || \
 			dup2(pipe_fd[WRITE_FD], STDOUT_FD) == -1)
 			error_exit("dup2", IS_PERROR);
 		if (close(pipe_fd[READ_FD]) == -1 || close(pipe_fd[WRITE_FD]) == -1)
 			error_exit("close", IS_PERROR);
-		excute_cmd(argv, envp);
+		excute_cmd(argv[2], envp);
+		error_exit("execve", IS_PERROR);
+	}
+	error_exit("NOT_APPROPRIATE_ARGS", !IS_PERROR);
+}
+
+void	parent_process(int *pipe_fd, char **argv, char **envp, pid_t pid)
+{
+	int	outfile_fd;
+
+	if (pipe_fd && argv && envp)
+	{
+		waitpid(pid, NULL, 0);
+		outfile_fd = open(argv[4], O_RDONLY | O_CREAT | O_TRUNC, 0777);
+		if (outfile_fd == -1)
+			error_exit("open", IS_PERROR);
+		if (dup2(pipe_fd[READ_FD], STDIN_FD) == -1 || \
+			dup2(outfile_fd, STDOUT_FD) == -1)
+			error_exit("open", IS_PERROR);
+		if (close(pipe_fd[READ_FD]) == -1 || close(pipe_fd[WRITE_FD]) == -1)
+			error_exit("close", IS_PERROR);
+		excute_cmd(argv[3], envp);
 		error_exit("execve", IS_PERROR);
 	}
 	error_exit("NOT_APPROPRIATE_ARGS", !IS_PERROR);
@@ -51,9 +72,9 @@ int	main(int argc, char **argv, char **envp)
 		else if (pid == 0)
 			child_process(pipe_fd, argv, envp);
 		else
-			parent_process(pipe_fd, argv, envp);
+			parent_process(pipe_fd, argv, envp, pid);
 	}
-	wirte(2, "NOT_APPROPRIATE_ARGV");
+	write(2, "NOT_APPROPRIATE_ARGV", ft_strlen("NOT_APPROPRIATE_ARGV"));
 	return (1);
 }
 

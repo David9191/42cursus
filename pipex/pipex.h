@@ -6,7 +6,7 @@
 /*   By: jislim <jislim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 16:38:49 by jislim            #+#    #+#             */
-/*   Updated: 2022/06/17 18:13:24 by jislim           ###   ########.fr       */
+/*   Updated: 2022/06/17 21:00:39 by jislim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,9 @@
 
 void	error_exit(char *error_message, int is_perror);
 char	**make_paths(char **envp);
-void	check_cmd_accessible(char *path, char *cmd);
-void	excute_cmd(char **argv, char **envp);
-void	parent_process(int *pipe_fd, char **argv, char **envp);
+int		check_cmd_accessible(char *cmd);
+void	excute_cmd(char *argv, char **envp);
+void	parent_process(int *pipe_fd, char **argv, char **envp, pid_t pid);
 void	child_process(int *pipe_fd, char **argv, char **envp);
 void	free_double_pointer(char **double_pointer);
 void	argv_error_exit(char *error_message);

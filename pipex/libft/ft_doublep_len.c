@@ -6,13 +6,13 @@
 /*   By: jislim <jislim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 18:51:02 by jislim            #+#    #+#             */
-/*   Updated: 2022/06/17 18:53:31 by jislim           ###   ########.fr       */
+/*   Updated: 2022/06/17 20:59:57 by jislim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	doublep_len(char **dp)
+int	ft_doublep_len(char **dp)
 {
 	int	len;
 

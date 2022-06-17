@@ -6,7 +6,7 @@
 /*   By: jislim <jislim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 17:29:55 by jislim            #+#    #+#             */
-/*   Updated: 2022/06/17 19:11:43 by jislim           ###   ########.fr       */
+/*   Updated: 2022/06/17 21:10:37 by jislim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,49 +52,56 @@ char	**make_paths(char **envp)
 	{
 		if (ft_strncmp(envp[idx], "PATH", 4) == 0)
 		{
-			paths = ft_split(envp[idx], ':');
+			paths = ft_split(envp[idx] + 5, ':');
 			paths = make_paths_added_slash(paths);
 			return (paths);
 		}
 		idx++;
 	}
 	error_exit("ERROR_PATHS", !IS_PERROR);
+	return (NULL);
 }
 
-void	check_cmd_accessible(char *path, char *cmd);
+int	check_cmd_accessible(char *cmd)
+{
+	int	idx;
+	int	result;
 
-void	excute_cmd(char **argv, char **envp)
+	if (!cmd)
+		error_exit("ERROR_CHECK_CMD", !IS_PERROR);
+	idx = 0;
+	result = access(cmd, X_OK);
+	return (result);
+}
+
+void	excute_cmd(char *argv, char **envp)
 {
 	char	**paths;
+	int		idx;
+	char	**cmd;
+	char	*check_cmd;
 
 	if (argv && envp)
 	{
 		paths = make_paths(envp);
-		check_cmd_accessible(paths, argv[2]);
+		cmd = ft_split(argv, ' ');
+		idx = 0;
+		while (paths[idx])
+		{
+			check_cmd = ft_strjoin(paths[idx], cmd[0]);
+			if (check_cmd_accessible(check_cmd) == 0)
+			{
+				free(check_cmd);
+				write(1, paths[idx], ft_strlen(paths[idx]));
+				write(1, "\n", 1);
+				write(1, cmd[0], ft_strlen(cmd[0]));
+				execve(paths[idx], cmd, envp);
+			}
+			free(paths[idx]);
+			idx++;
+		}
 	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-void	parent_process(int *pipe_fd, char **argv, char **envp);
-void	child_process(int *pipe_fd, char **argv, char **envp);
 
 void	free_double_pointer(char **double_pointer)
 {
@@ -110,8 +117,4 @@ void	free_double_pointer(char **double_pointer)
 		}
 		free(double_pointer);
 	}
-	error_exit("NOT_APPROPRIATE_ARG", !IS_PERROR);
 }
-
-void	argv_error_exit(char *error_message);
-
