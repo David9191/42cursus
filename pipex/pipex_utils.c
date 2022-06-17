@@ -6,7 +6,7 @@
 /*   By: jislim <jislim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 17:29:55 by jislim            #+#    #+#             */
-/*   Updated: 2022/06/17 21:10:37 by jislim           ###   ########.fr       */
+/*   Updated: 2022/06/17 21:15:24 by jislim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,12 +92,12 @@ void	excute_cmd(char *argv, char **envp)
 			if (check_cmd_accessible(check_cmd) == 0)
 			{
 				free(check_cmd);
-				write(1, paths[idx], ft_strlen(paths[idx]));
-				write(1, "\n", 1);
-				write(1, cmd[0], ft_strlen(cmd[0]));
 				execve(paths[idx], cmd, envp);
+				// 여기서 paths[idx]가 /usr/bin/wc로 나온다..
+				// /usr/bin만 나와야 되는데
+				error_exit("execve", IS_PERROR);
 			}
-			free(paths[idx]);
+			free(check_cmd);
 			idx++;
 		}
 	}
