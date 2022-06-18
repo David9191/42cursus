@@ -18,7 +18,10 @@
 			"problemMatcher": [
 				"$gcc"
 			],
-			"group": "build",
+			"group": {
+				"kind" : "build",
+				"isDefault": true
+			},
 			"detail": "컴파일러: /usr/bin/gcc"
 		}
 	]
