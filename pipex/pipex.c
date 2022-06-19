@@ -6,7 +6,7 @@
 /*   By: jislim <jislim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 17:24:07 by jislim            #+#    #+#             */
-/*   Updated: 2022/06/18 18:29:49 by jislim           ###   ########.fr       */
+/*   Updated: 2022/06/19 01:05:45 by jislim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,15 @@ void	child_process(int *pipe_fd, char **argv, char **envp)
 
 	if (pipe_fd && argv && envp)
 	{
+		if (access("inflie", F_OK | R_OK) == 1)
+			error_exit("access", 0);
 		infile_fd = open(argv[1], O_RDONLY);
 		if (infile_fd == -1)
 			error_exit("open", IS_PERROR);
+		// if (dup2(infile_fd, STDIN_FD) == -1)
+		// 	error_exit("dup2", IS_PERROR);
+		// if (dup2(pipe_fd[WRITE_FD], STDOUT_FD) == -1)
+		// 	error_exit("dup2", IS_PERROR);
 		if (dup2(infile_fd, STDIN_FD) == -1 || \
 			dup2(pipe_fd[WRITE_FD], STDOUT_FD) == -1)
 			error_exit("dup2", IS_PERROR);
@@ -42,13 +48,20 @@ void	parent_process(int *pipe_fd, char **argv, char **envp, pid_t pid)
 
 	if (pipe_fd && argv && envp)
 	{
-		waitpid(pid, NULL, 0);
+		if (waitpid(pid, NULL, 0) == -1)
+			error_exit("waitpid", IS_PERROR);
+		if (access("outfile", F_OK | W_OK) == 1)
+			error_exit("access", IS_PERROR);
 		outfile_fd = open(argv[4], O_RDONLY | O_CREAT | O_TRUNC, 0777);
 		if (outfile_fd == -1)
 			error_exit("open", IS_PERROR);
+		// if (dup2(pipe_fd[READ_FD], STDIN_FD) == -1)
+		// 	error_exit("dup2", IS_PERROR);
+		// if (dup2(outfile_fd, STDOUT_FD) == -1)
+		// 	error_exit("dup2", IS_PERROR);
 		if (dup2(pipe_fd[READ_FD], STDIN_FD) == -1 || \
 			dup2(outfile_fd, STDOUT_FD) == -1)
-			error_exit("open", IS_PERROR);
+			error_exit("dup2", IS_PERROR);
 		if (close(pipe_fd[READ_FD]) == -1 || close(pipe_fd[WRITE_FD]) == -1)
 			error_exit("close", IS_PERROR);
 		excute_cmd(argv[3], envp);
@@ -77,23 +90,3 @@ int	main(int argc, char **argv, char **envp)
 	write(2, "NOT_APPROPRIATE_ARGV", ft_strlen("NOT_APPROPRIATE_ARGV"));
 	return (1);
 }
-
-// void	error_exit(char *error_message);
-// void	make_paths(char **envp);
-// void	check_cmd_accessible(char *path, char *cmd);
-// void	excute_cmd(char **argv, char **envp);
-// void	parent_process(int *pipe_fd, char **argv, char **envp);
-// void	free_double_pointer(char **double_pointer);
-// void	argv_error_exit(char *error_message);
-
-// # define EXIT_FAILURE	1
-// # define EXIT_SUCCESS	0
-
-// # define STDIN_FD		0
-// # define STDOUT_FD		1
-// # define STDERR_FD		2
-
-// # define READ_FD		0
-// # define WRITE_FD		1
-
-// # define NULL_P			((void *)0)

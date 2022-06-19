@@ -6,7 +6,7 @@
 /*   By: jislim <jislim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 10:42:10 by jislim            #+#    #+#             */
-/*   Updated: 2022/06/17 17:20:43 by jislim           ###   ########.fr       */
+/*   Updated: 2022/06/19 00:47:28 by jislim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 # include <unistd.h>
 # include <fcntl.h>
 
-void	error_exit(char *str);
+void	error_exit(char *error_message, int is_perror);
 void	free_paths(char **paths);
 char	*check_access(char *cmd, char **envp);
 void	make_stream(char *cmd, char **envp);
@@ -42,4 +42,5 @@ void	parent_pro(int *fd, char **argv, char **envp, int pid);
 # define READ_FD	0
 # define WRITE_FD	1
 
+# define IS_PERROR	1
 #endif

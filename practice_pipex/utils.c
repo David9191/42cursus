@@ -6,16 +6,19 @@
 /*   By: jislim <jislim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 10:40:44 by jislim            #+#    #+#             */
-/*   Updated: 2022/06/17 15:39:56 by jislim           ###   ########.fr       */
+/*   Updated: 2022/06/19 00:39:55 by jislim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-void	error_exit(char *str)
+void	error_exit(char *error_message, int is_perror)
 {
-	perror(str);
-	exit(EXIT_FAILURE);
+	if (is_perror)
+		perror(error_message);
+	else
+		write(2, error_message, ft_strlen(error_message));
+	exit(1);
 }
 
 void	free_paths(char **paths)
@@ -66,7 +69,7 @@ void	make_stream(char *cmd, char **envp)
 	argv = ft_split(cmd, ' '); // child : "ls -al", parent : "grep pipex"
 	real_cmd = check_access(argv[0], envp);
 	if (real_cmd == 0)
-		error_exit("access");
+		error_exit("access", IS_PERROR);
 	execve(real_cmd, argv, envp);
 }
 

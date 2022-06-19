@@ -6,7 +6,7 @@
 /*   By: jislim <jislim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 10:40:41 by jislim            #+#    #+#             */
-/*   Updated: 2022/06/19 00:47:13 by jislim           ###   ########.fr       */
+/*   Updated: 2022/06/19 00:40:47 by jislim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,8 @@ void	child_pro(int *pipe_fd, char **argv, char **envp)
 		error_exit("dup2", IS_PERROR);
 	if (close(pipe_fd[READ_FD]) == -1 || close(pipe_fd[WRITE_FD]) == -1)
 		error_exit("close", IS_PERROR);
-	make_stream(argv[2], envp);
+	// make_stream(argv[2], envp);
+	excute_cmd(argv[3], envp);
 }
 
 void	parent_pro(int *pipe_fd, char **argv, char **envp, int pid)
@@ -47,7 +48,8 @@ void	parent_pro(int *pipe_fd, char **argv, char **envp, int pid)
 		error_exit("dup2", IS_PERROR);
 	if (close(pipe_fd[READ_FD]) == -1 || close(pipe_fd[WRITE_FD]) == -1)
 		error_exit("close", IS_PERROR);
-	make_stream(argv[3], envp);
+	// make_stream(argv[3], envp);
+	excute_cmd(argv[3], envp);
 }
 
 int	main(int argc, char **argv, char **envp)
