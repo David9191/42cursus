@@ -1,0 +1,4 @@
+	int	infile_fd;
+		infile_fd = open(argv[1], O_RDONLY);
+		if (infile_fd == -1)
+		if (dup2(infile_fd, STDIN_FD) == -1 || \

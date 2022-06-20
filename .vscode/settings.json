@@ -8,6 +8,7 @@
 		"stdio.h": "c",
 		"unistd.h": "c",
 		"pipe.h": "c",
-		"_malloc.h": "c"
+		"_malloc.h": "c",
+		"get_next_line.h": "c"
 	}
 }

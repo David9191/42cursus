@@ -1,0 +1,28 @@
+// cat outfile.txt -> 0_WDONLY\n O_RDONLY
+
+// < outfile.txt grep 0_ | cat > outfile.txt
+/*
+	이러면 outfile.txt에 안써짐. 왜? 순서를 생각해보자.
+	1. outfile.txt : fd = open -> dup2(fd, 0); execve(grep, "0_");
+		pipe(); execve(cat); fd2 = open -> dup2(fd2, 1);
+	> outfile.txt 하면 트렁케이트하고 파일을 여는데 grep은 외부 함수라서
+		내부 함수 리다이렉션을 실행하는 것 보다 시간이 오래 걸림.
+		그래서 grep해도 빈 파일을 읽어서 아무것도 안쓰여짐.
+	< outfile.txt : STDIN_FD가 아웃파일을 가리키고 있다.
+	grep 0_ | cat : grep은 STDIN_FD에서 입력을 받는데 현재 STDIN_FD이 outfile에 연결되어 있기 때문에
+					outfile에서 값을 읽어서 0_이 포함된 문장을 찾음. 그리고 그 값을 파이프를 통해 cat한테 넘겨줌.
+					그럼 cat은 넘긴 값을 출력해줌.
+	> outfile.txt : STDOUT_FD가 아웃파일을 가리티고 있다. 그래서 cat으로 넘겨온 값이 아웃파일에 쓰여진다.
+*/
+
+// < outfile.txt grep 0_ | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat > outfile.txt
+/*
+	여기서 cat을 한 번만 쓰고 grep을 하면 실행 시간 때문에 아웃파일이 트렁케이트 된 다음에 열리고(> outfile.txt) grep이 실행되기 때문에
+	빈 파일에서 읽음. 
+*/
+// < outfile.txt ./test | cat > outfile.txt
+// < outfile.txt echo 123 | cat > outfile.txt
+/*
+	얘네 둘 다 입력을 필요로 하는 애가 아니라 출력만 하는 애라 입력값이 상관이 없다.
+	그래서 트렁케이트 되고 빈 파일에 출력해줌.
+*/

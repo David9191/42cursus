@@ -6,7 +6,7 @@
 /*   By: jislim <jislim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 17:24:07 by jislim            #+#    #+#             */
-/*   Updated: 2022/06/20 13:45:15 by jislim           ###   ########.fr       */
+/*   Updated: 2022/06/20 20:50:51 by jislim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	parent_process(int *pipe_fd, char **argv, char **envp)
 
 	if (pipe_fd && argv && envp)
 	{
-		outfile_fd = open(argv[4], O_WRONLY | O_CREAT | O_TRUNC, 0777);
+		outfile_fd = open(argv[4], O_WRONLY | O_CREAT | O_TRUNC, 0644);
 		if (outfile_fd == -1)
 			error_exit("open", IS_PERROR);
 		if (access(argv[4], F_OK | W_OK) == -1)
