@@ -6,7 +6,7 @@
 /*   By: jislim <jislim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 17:29:55 by jislim            #+#    #+#             */
-/*   Updated: 2022/06/18 17:58:35 by jislim           ###   ########.fr       */
+/*   Updated: 2022/06/20 09:47:22 by jislim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,22 @@ void	error_exit(char *error_message, int is_perror)
 	else
 		write(2, error_message, ft_strlen(error_message));
 	exit(1);
+}
+
+void	free_double_pointer(char **double_pointer)
+{
+	int	idx;
+
+	if (double_pointer)
+	{
+		idx = 0;
+		while (double_pointer[idx])
+		{
+			free(double_pointer[idx]);
+			idx++;
+		}
+		free(double_pointer);
+	}
 }
 
 char	**make_paths_added_slash(char **paths)
@@ -90,31 +106,12 @@ void	excute_cmd(char *argv, char **envp)
 		{
 			check_cmd = ft_strjoin(paths[idx], cmd[0]);
 			if (check_cmd_accessible(check_cmd) == 0)
-			{
-				free(check_cmd);
-				execve(paths[idx], cmd, envp);
-				// 여기서 paths[idx]가 /usr/bin/wc로 나온다..
-				// /usr/bin만 나와야 되는데
-				error_exit("execve", IS_PERROR);
-			}
+				execve(check_cmd, cmd, envp);
 			free(check_cmd);
 			idx++;
 		}
+		free_double_pointer(paths);
+		error_exit(cmd[0], IS_PERROR);
 	}
-}
-
-void	free_double_pointer(char **double_pointer)
-{
-	int	idx;
-
-	if (double_pointer)
-	{
-		idx = 0;
-		while (double_pointer[idx])
-		{
-			free(double_pointer[idx]);
-			idx++;
-		}
-		free(double_pointer);
-	}
+	error_exit("ERROR_EXCUTE_CMD", !IS_PERROR);
 }
