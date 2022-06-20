@@ -6,7 +6,7 @@
 /*   By: jislim <jislim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 17:24:07 by jislim            #+#    #+#             */
-/*   Updated: 2022/06/20 13:25:54 by jislim           ###   ########.fr       */
+/*   Updated: 2022/06/20 13:45:15 by jislim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	child_process(int *pipe_fd, char **argv, char **envp)
 	error_exit("NOT_APPROPRIATE_ARGS", !IS_PERROR);
 }
 
-void	parent_process(int *pipe_fd, char **argv, char **envp, pid_t pid)
+void	parent_process(int *pipe_fd, char **argv, char **envp)
 {
 	int	outfile_fd;
 
@@ -72,7 +72,7 @@ int	main(int argc, char **argv, char **envp)
 		else if (pid == 0)
 			child_process(pipe_fd, argv, envp);
 		else
-			parent_process(pipe_fd, argv, envp, pid);
+			parent_process(pipe_fd, argv, envp);
 	}
 	error_exit("NOT_APPROPRIATE_ARGV", !IS_PERROR);
 	return (1);

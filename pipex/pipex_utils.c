@@ -6,7 +6,7 @@
 /*   By: jislim <jislim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 17:29:55 by jislim            #+#    #+#             */
-/*   Updated: 2022/06/20 11:59:08 by jislim           ###   ########.fr       */
+/*   Updated: 2022/06/20 13:51:26 by jislim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,7 @@ void	excute_cmd(char *argv, char **envp)
 			free(check_cmd);
 			idx++;
 		}
+		free_double_pointer(cmd);
 		free_double_pointer(paths);
 		error_exit("command not found", IS_PERROR);
 	}
