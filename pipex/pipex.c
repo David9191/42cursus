@@ -6,7 +6,7 @@
 /*   By: jislim <jislim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 17:24:07 by jislim            #+#    #+#             */
-/*   Updated: 2022/06/20 09:53:10 by jislim           ###   ########.fr       */
+/*   Updated: 2022/06/20 13:25:54 by jislim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@ void	child_process(int *pipe_fd, char **argv, char **envp)
 
 	if (pipe_fd && argv && envp)
 	{
-		if (access("inflie", F_OK | R_OK) == 1)
-			error_exit("access", 0);
+		if (access(argv[1], F_OK | R_OK) == -1)
+			error_exit("access", IS_PERROR);
 		infile_fd = open(argv[1], O_RDONLY);
 		if (infile_fd == -1)
 			error_exit("open", IS_PERROR);
@@ -40,13 +40,11 @@ void	parent_process(int *pipe_fd, char **argv, char **envp, pid_t pid)
 
 	if (pipe_fd && argv && envp)
 	{
-		if (waitpid(pid, NULL_P, 0) == -1)
-			error_exit("waitpid", IS_PERROR);
-		if (access("outfile", F_OK | W_OK) == 1)
-			error_exit("access", IS_PERROR);
 		outfile_fd = open(argv[4], O_WRONLY | O_CREAT | O_TRUNC, 0777);
 		if (outfile_fd == -1)
 			error_exit("open", IS_PERROR);
+		if (access(argv[4], F_OK | W_OK) == -1)
+			error_exit("access", IS_PERROR);
 		if (dup2(pipe_fd[READ_FD], STDIN_FD) == -1 || \
 			dup2(outfile_fd, STDOUT_FD) == -1)
 			error_exit("dup2", IS_PERROR);
@@ -74,9 +72,7 @@ int	main(int argc, char **argv, char **envp)
 		else if (pid == 0)
 			child_process(pipe_fd, argv, envp);
 		else
-		{
 			parent_process(pipe_fd, argv, envp, pid);
-		}
 	}
 	error_exit("NOT_APPROPRIATE_ARGV", !IS_PERROR);
 	return (1);
