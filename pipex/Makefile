@@ -6,7 +6,7 @@
 #    By: jislim <jislim@student.42seoul.kr>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/07 10:12:10 by jislim            #+#    #+#              #
-#    Updated: 2022/06/20 09:47:40 by jislim           ###   ########.fr        #
+#    Updated: 2022/06/20 09:50:44 by jislim           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,7 @@ LIBFT_DIR	= ./libft/
 LIBFT_FLAGS	= -L ./$(LIBFT_DIR) -lft
 LIBFT_FILE	= $(LIBFT_DIR)libft.a
 
-SRCS =  pipex.c pipex_utils.c
+SRCS =  pipex.c pipex_utils.c pipex_error.c
 OBJS = $(SRCS:.c=.o)
 
 all : $(NAME)

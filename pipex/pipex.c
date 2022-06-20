@@ -6,7 +6,7 @@
 /*   By: jislim <jislim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 17:24:07 by jislim            #+#    #+#             */
-/*   Updated: 2022/06/20 09:49:10 by jislim           ###   ########.fr       */
+/*   Updated: 2022/06/20 09:53:10 by jislim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	parent_process(int *pipe_fd, char **argv, char **envp, pid_t pid)
 
 	if (pipe_fd && argv && envp)
 	{
-		if (waitpid(pid, NULL, 0) == -1)
+		if (waitpid(pid, NULL_P, 0) == -1)
 			error_exit("waitpid", IS_PERROR);
 		if (access("outfile", F_OK | W_OK) == 1)
 			error_exit("access", IS_PERROR);
@@ -78,6 +78,6 @@ int	main(int argc, char **argv, char **envp)
 			parent_process(pipe_fd, argv, envp, pid);
 		}
 	}
-	write(2, "NOT_APPROPRIATE_ARGV", ft_strlen("NOT_APPROPRIATE_ARGV"));
+	error_exit("NOT_APPROPRIATE_ARGV", !IS_PERROR);
 	return (1);
 }
