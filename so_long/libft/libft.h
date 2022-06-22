@@ -88,12 +88,14 @@ void			ft_lstiter(t_list *lst, void (*f)(void *));
 t_list			*ft_lstmap(t_list *lst, void *(*f)(void *),
 					void (*del)(void *));
 
-char			*get_next_line(int fd);
-char			*get_line(int fd, char *backup);
-size_t			ft_strchr_gnl(char *s, int c);
-char			*ft_strjoin_gnl(char *dest, char *src);
-char			*get_line_endl(char *str);
-char			*save_backup(char *str);
+size_t	ft_strchr_gnl(char *str, int to_find);
+size_t	ft_strlen_gnl(char *str);
+char	*ft_strjoin_gnl(char *backup, char *buf);
+char	*get_line_endl(char *str);
+char	*save_backup(char *str);
+char	*get_line(int fd, char *backup);
+char	*get_next_line(int fd);
+
 
 int				ft_printf(const char *format, ...);
 int				print_usnbr(unsigned int us_nbr);
@@ -116,7 +118,5 @@ int				ft_doublep_len(char **dp);
 # define TRUE	1
 # define FALSE	0
 # define BUFFER_SIZE 42
-# define NULL_P ((void *)0)
-
 
 #endif
