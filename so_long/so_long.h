@@ -6,7 +6,7 @@
 /*   By: jislim <jislim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/22 12:04:57 by jislim            #+#    #+#             */
-/*   Updated: 2022/06/22 15:38:12 by jislim           ###   ########.fr       */
+/*   Updated: 2022/06/22 20:28:20 by jislim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,24 +33,24 @@ typedef struct s_coordinate
 	int	y;
 }		t_coordinate;
 
-typedef struct s_images_paths
-{
-	int		img_width;
-	int		img_height;
-	char	*wall;
-	char	*land;
-	char	*character;
-	char	*item;
-	char	*exit;
-}			t_images_paths;
-
 typedef struct s_game
 {
 	void	*mlx_ptr;
 	void	*win_ptr;
 }			t_game;
 
-int	fill_images(char **map, void **images, t_game *game);
+typedef struct s_images
+{
+	int		img_width;
+	int		img_height;
+	void	*character;
+	void	*wall;
+	void	*land;
+	void	*item;
+	void	*exit;
+}			t_images;
+
+int	fill_images(char **map, t_images *images, t_game *game);
 
 # define X_EVENT_KEY_PRESS			2
 # define X_EVENT_KEY_RELEASE		3
