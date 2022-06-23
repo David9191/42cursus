@@ -9,6 +9,7 @@
 		"unistd.h": "c",
 		"pipe.h": "c",
 		"_malloc.h": "c",
-		"get_next_line.h": "c"
+		"get_next_line.h": "c",
+		"ft_so_long.h": "c"
 	}
 }

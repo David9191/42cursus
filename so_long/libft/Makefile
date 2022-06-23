@@ -6,14 +6,14 @@
 #    By: jislim <jislim@student.42seoul.kr>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/30 15:26:40 by jislim            #+#    #+#              #
-#    Updated: 2022/06/17 20:58:55 by jislim           ###   ########.fr        #
+#    Updated: 2022/06/23 14:23:08 by jislim           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = libft.a
 AR = ar
 ARFLAGS = -rcs
-CC = gcc
+CC = cc
 CFLAGS = -Wall -Wextra -Werror -I.
 RM = rm -rf
 

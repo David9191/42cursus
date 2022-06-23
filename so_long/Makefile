@@ -6,7 +6,7 @@
 #    By: jislim <jislim@student.42seoul.kr>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/22 11:58:44 by jislim            #+#    #+#              #
-#    Updated: 2022/06/22 15:42:24 by jislim           ###   ########.fr        #
+#    Updated: 2022/06/23 14:46:07 by jislim           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,8 @@ LIBFT_FILE	= $(LIBFT_DIR)libft.a
 
 MLX_DIR	= ./mlx/
 
-SRCS = so_long.c so_long_utils.c
+SRCS = ft_so_long.c ft_fill_image_to_window.c ft_error_exit.c \
+		ft_create_images.c ft_on_key_press.c
 OBJS = $(SRCS:.c=.o)
 
 all : $(NAME)
@@ -31,7 +32,7 @@ all : $(NAME)
 $(NAME) : $(OBJS)
 	make -C $(LIBFT_DIR)
 	make -C $(MLX_DIR)
-	$(CC) $(FLAGS) -L./ -lmlx -framework OpenGL -framework Appkit -o $(NAME) $(OBJS) $(LIBFT_FLAGS)
+	$(CC) $(FLAGS) -L./ -lmlx -framework OpenGL -framework Appkit -o so_long $(OBJS) $(LIBFT_FLAGS)
 
 clean :
 	make -C $(LIBFT_DIR) clean
@@ -40,12 +41,12 @@ clean :
 
 fclean : clean
 	make -C $(LIBFT_DIR) fclean
-	$(RM) $(NAME) so_long so_long.dSYM
+	$(RM) $(NAME) ft_so_long ft_so_long.dSYM
 
 re :
 	make fclean
 	make all
 
 debug :
-	$(CC) $(FLAGS) $(SRCS) -L./ -lmlx -framework OpenGL -framework Appkit $(LIBFT_FILE) -o $(NAME) -g
+	$(CC) $(FLAGS) $(SRCS) -L./ -lmlx -framework OpenGL -framework Appkit $(LIBFT_FILE) -o ft_$(NAME) -g
 .PHONY : all clean fclean re bonus
