@@ -6,7 +6,7 @@
 /*   By: jislim <jislim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/19 00:54:18 by jislim            #+#    #+#             */
-/*   Updated: 2021/12/12 17:06:02 by jislim           ###   ########.fr       */
+/*   Updated: 2022/06/24 14:03:40 by jislim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,14 @@
 
 int	find_set(char *set, char s1_c)
 {
-	size_t	i;
+	size_t	idx;
 
-	i = 0;
-	while (set[i] != '\0')
+	idx = 0;
+	while (set[idx] != '\0')
 	{
-		if (set[i] == s1_c)
+		if (set[idx] == s1_c)
 			return (1);
-		i++;
+		idx++;
 	}
 	return (0);
 }
@@ -31,7 +31,7 @@ char	*ft_strtrim(char const *s1, char const *set)
 	char	*str;
 	size_t	begin;
 	size_t	end;
-	size_t	i;
+	size_t	idx;
 
 	if (s1 == NULL || set == NULL)
 		return (NULL);
@@ -46,9 +46,9 @@ char	*ft_strtrim(char const *s1, char const *set)
 	str = (char *)malloc(sizeof(char) * (end - begin + 2));
 	if (str == NULL)
 		return (NULL);
-	i = 0;
+	idx = 0;
 	while (begin <= end)
-		str[i++] = s1[begin++];
-	str[i] = '\0';
+		str[idx++] = s1[begin++];
+	str[idx] = '\0';
 	return (str);
 }

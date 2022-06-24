@@ -6,7 +6,7 @@
 /*   By: jislim <jislim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/23 11:48:11 by jislim            #+#    #+#             */
-/*   Updated: 2022/06/23 13:36:19 by jislim           ###   ########.fr       */
+/*   Updated: 2022/06/24 10:05:14 by jislim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 void	error_exit(char *str)
 {
+	write(2, "Error\n", ft_strlen("Error\n"));
 	if (str)
 		write(2, str, ft_strlen(str));
 	exit(1);

@@ -8,7 +8,7 @@
 			"args": [
 				"-fdiagnostics-color=always",
 				"-g",
-				"${file}",
+				"${file}", // 여기에 다른 파일들 추가해야 될 듯?
 				"-o",
 				"${fileDirname}/${fileBasenameNoExtension}"
 			],

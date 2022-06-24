@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jislim <jisung9105@gmail.com>              +#+  +:+       +#+        */
+/*   By: jislim <jislim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 02:01:45 by jislim            #+#    #+#             */
-/*   Updated: 2022/03/06 20:03:24 by jislim           ###   ########.fr       */
+/*   Updated: 2022/06/20 15:56:35 by jislim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-size_t	ft_strchr(char *str, int to_find)
+size_t	ft_strchr_gnl(char *str, int to_find)
 {
 	int	len;
 
@@ -40,7 +40,7 @@ size_t	ft_strlen(char *str)
 	return (idx);
 }
 
-char	*ft_strjoin(char *backup, char *buf)
+char	*ft_strjoin_gnl(char *backup, char *buf)
 {
 	char	*ret_str;
 	size_t	ret_idx;

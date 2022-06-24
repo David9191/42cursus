@@ -6,7 +6,7 @@
 #    By: jislim <jislim@student.42seoul.kr>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/22 11:58:44 by jislim            #+#    #+#              #
-#    Updated: 2022/06/23 14:46:07 by jislim           ###   ########.fr        #
+#    Updated: 2022/06/24 13:55:49 by jislim           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,8 @@ LIBFT_FILE	= $(LIBFT_DIR)libft.a
 MLX_DIR	= ./mlx/
 
 SRCS = ft_so_long.c ft_fill_image_to_window.c ft_error_exit.c \
-		ft_create_images.c ft_on_key_press.c
+		ft_create_images.c ft_on_key_press.c ft_parse_map.c \
+		ft_check_map.c ft_init_map.c
 OBJS = $(SRCS:.c=.o)
 
 all : $(NAME)
@@ -32,7 +33,7 @@ all : $(NAME)
 $(NAME) : $(OBJS)
 	make -C $(LIBFT_DIR)
 	make -C $(MLX_DIR)
-	$(CC) $(FLAGS) -L./ -lmlx -framework OpenGL -framework Appkit -o so_long $(OBJS) $(LIBFT_FLAGS)
+	$(CC) $(FLAGS) -Lmlx -lmlx -framework OpenGL -framework Appkit -o so_long $(OBJS) $(LIBFT_FLAGS)
 
 clean :
 	make -C $(LIBFT_DIR) clean
@@ -49,4 +50,8 @@ re :
 
 debug :
 	$(CC) $(FLAGS) $(SRCS) -L./ -lmlx -framework OpenGL -framework Appkit $(LIBFT_FILE) -o ft_$(NAME) -g
+	
+leaks :
+	$(CC) $(FLAGS) $(SRCS) -L./ -lmlx -framework OpenGL -framework Appkit $(LIBFT_FILE) -o ft_$(NAME) -fsanitize=address
+	
 .PHONY : all clean fclean re bonus
