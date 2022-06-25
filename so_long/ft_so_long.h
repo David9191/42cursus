@@ -6,7 +6,7 @@
 /*   By: jislim <jislim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/22 12:04:57 by jislim            #+#    #+#             */
-/*   Updated: 2022/06/24 20:29:56 by jislim           ###   ########.fr       */
+/*   Updated: 2022/06/25 23:57:54 by jislim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ int			fill_images_to_window(t_map_info *map_info, t_images *images,
 				t_game *game);
 int			on_key_press(int keycode, t_location *location);
 void		error_exit(char *str);
+int			mlx_destroy_notify(void);
 
 void		parse_map(char *map_dir, t_map_info *map_info);
 void		check_map(t_map_info *map_info);
@@ -80,7 +81,7 @@ t_map_info	*init_map(void);
 # define KEY_S						1
 # define KEY_D						2
 
-# define DESTROYNOTIFY				17
+# define DESTROY_NOTIFY				17
 
 # define NULL_FD					((void *)0)
 

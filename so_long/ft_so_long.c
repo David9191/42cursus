@@ -6,7 +6,7 @@
 /*   By: jislim <jislim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/22 12:05:00 by jislim            #+#    #+#             */
-/*   Updated: 2022/06/24 20:42:47 by jislim           ###   ########.fr       */
+/*   Updated: 2022/06/25 23:57:59 by jislim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,8 @@ int	main(int ac, char **av)
 		fill_images_to_window(map_info, map_info->images, map_info->game);
 		mlx_hook(map_info->game->win_ptr, X_EVENT_KEY_RELEASE, 0, &on_key_press,
 			&map_info->location);
-		mlx_hook(map_info->game->win_ptr, DESTROYNOTIFY, 0, &error_exit,
-			"Destroy");
+		mlx_hook(map_info->game->win_ptr, DESTROY_NOTIFY, 0, &mlx_destroy_notify,
+			NULL);
 		mlx_loop(map_info->game->mlx_ptr);
 	}
 }
