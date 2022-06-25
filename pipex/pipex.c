@@ -6,13 +6,13 @@
 /*   By: jislim <jislim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 17:24:07 by jislim            #+#    #+#             */
-/*   Updated: 2022/06/20 20:50:51 by jislim           ###   ########.fr       */
+/*   Updated: 2022/06/26 00:05:25 by jislim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-void	child_process(int *pipe_fd, char **argv, char **envp)
+static void	child_process(int *pipe_fd, char **argv, char **envp)
 {
 	int	infile_fd;
 
@@ -34,7 +34,7 @@ void	child_process(int *pipe_fd, char **argv, char **envp)
 	error_exit("NOT_APPROPRIATE_ARGS", !IS_PERROR);
 }
 
-void	parent_process(int *pipe_fd, char **argv, char **envp)
+static void	parent_process(int *pipe_fd, char **argv, char **envp)
 {
 	int	outfile_fd;
 
@@ -51,7 +51,6 @@ void	parent_process(int *pipe_fd, char **argv, char **envp)
 		if (close(pipe_fd[READ_FD]) == -1 || close(pipe_fd[WRITE_FD]) == -1)
 			error_exit("close", IS_PERROR);
 		excute_cmd(argv[3], envp);
-		write(1, argv[3], ft_strlen(argv[3]));
 		error_exit("execve", IS_PERROR);
 	}
 	error_exit("NOT_APPROPRIATE_ARGS", !IS_PERROR);

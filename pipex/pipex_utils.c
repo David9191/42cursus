@@ -6,13 +6,13 @@
 /*   By: jislim <jislim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 17:29:55 by jislim            #+#    #+#             */
-/*   Updated: 2022/06/20 20:19:55 by jislim           ###   ########.fr       */
+/*   Updated: 2022/06/26 00:21:23 by jislim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-char	**make_paths_added_slash(char **paths)
+static char	**make_paths_added_slash(char **paths)
 {
 	char	**new_paths;
 	int		idx;
@@ -31,7 +31,7 @@ char	**make_paths_added_slash(char **paths)
 	return (new_paths);
 }
 
-char	**make_paths(char **envp)
+static char	**make_paths(char **envp)
 {
 	char	**paths;
 	int		idx;
@@ -43,6 +43,13 @@ char	**make_paths(char **envp)
 	{
 		if (ft_strncmp(envp[idx], "PATH", 4) == 0)
 		{
+			write(2, "\n====================HERE====================\n", ft_strlen("\n====================HERE====================\n"));
+			write(2, "envp[idx]\n", ft_strlen("envp[idx]\n"));
+			write(2, envp[idx], ft_strlen(envp[idx]));
+			write(2, "\n*(envp + idx) + 5\n", ft_strlen("\n*(envp + idx) + 5\n"));
+			write(2, (*(envp + idx) + 5), ft_strlen(*(envp + idx) + 5));
+			write(2, "\nenvp[idx] + 5\n", ft_strlen("\nenvp[idx] + 5\n"));
+			write(2, (envp[idx] + 5), ft_strlen(envp[idx] + 5));
 			paths = ft_split(envp[idx] + 5, ':');
 			paths = make_paths_added_slash(paths);
 			return (paths);
@@ -53,7 +60,7 @@ char	**make_paths(char **envp)
 	return (NULL);
 }
 
-int	check_cmd_accessible(char *cmd)
+static int	check_cmd_accessible(char *cmd)
 {
 	int	idx;
 	int	result;

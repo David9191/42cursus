@@ -6,7 +6,7 @@
 /*   By: jislim <jislim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 16:38:49 by jislim            #+#    #+#             */
-/*   Updated: 2022/06/20 13:44:59 by jislim           ###   ########.fr       */
+/*   Updated: 2022/06/26 00:10:10 by jislim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,15 +21,9 @@
 # include <unistd.h>
 # include <fcntl.h>
 
-char	**make_paths(char **envp);
-char	**make_paths_added_slash(char **paths);
-int		check_cmd_accessible(char *cmd);
 void	excute_cmd(char *argv, char **envp);
-void	parent_process(int *pipe_fd, char **argv, char **envp);
-void	child_process(int *pipe_fd, char **argv, char **envp);
 void	error_exit(char *error_message, int is_perror);
 void	free_double_pointer(char **double_pointer);
-void	argv_error_exit(char *error_message);
 
 # define EXIT_FAILURE	1
 # define EXIT_SUCCESS	0
