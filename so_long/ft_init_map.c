@@ -6,7 +6,7 @@
 /*   By: jislim <jislim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/24 10:04:57 by jislim            #+#    #+#             */
-/*   Updated: 2022/06/24 10:55:41 by jislim           ###   ########.fr       */
+/*   Updated: 2022/06/27 14:25:33 by jislim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,9 @@ t_map_info	*init_map(void)
 	map_info->game = malloc(sizeof(t_game));
 	if (!(map_info->game))
 		error_exit("malloc\n");
-	map_info->location = NULL;
+	map_info->location = malloc(sizeof(t_location));
+	if (!(map_info->location))
+		error_exit("malloc\n");
 	map_info->images = NULL;
 	return (map_info);
 }

@@ -6,7 +6,7 @@
 /*   By: jislim <jislim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/22 13:10:03 by taeheonk          #+#    #+#             */
-/*   Updated: 2022/06/24 20:15:37 by jislim           ###   ########.fr       */
+/*   Updated: 2022/06/27 14:15:23 by jislim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,11 @@ static	void	set_characters(t_map_info *map_info)
 			if (map[idx][k] == 'C')
 				(map_info->characters->c_number)++;
 			else if (map[idx][k] == 'P')
+			{
 				(map_info->characters->p_number)++;
+				map_info->location->player_height = idx;
+				map_info->location->player_width = k;
+			}
 			else if (map[idx][k] == 'E')
 				(map_info->characters->e_number)++;
 			k++;

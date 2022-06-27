@@ -6,7 +6,7 @@
 /*   By: jislim <jislim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/22 12:04:57 by jislim            #+#    #+#             */
-/*   Updated: 2022/06/25 23:57:54 by jislim           ###   ########.fr       */
+/*   Updated: 2022/06/27 14:15:29 by jislim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ typedef struct s_map
 t_images	*create_images(t_game *game);
 int			fill_images_to_window(t_map_info *map_info, t_images *images,
 				t_game *game);
-int			on_key_press(int keycode, t_location *location);
+int			on_key_press(int keycode, t_map_info *map_info);
 void		error_exit(char *str);
 int			mlx_destroy_notify(void);
 

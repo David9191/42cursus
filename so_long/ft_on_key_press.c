@@ -6,24 +6,69 @@
 /*   By: jislim <jislim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/23 13:01:59 by jislim            #+#    #+#             */
-/*   Updated: 2022/06/24 10:05:16 by jislim           ###   ########.fr       */
+/*   Updated: 2022/06/27 14:56:13 by jislim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_so_long.h"
 
-int	on_key_press(int keycode, t_location *location)
+static void	set_player_location(t_map_info *map_info, int player_height,
+		int player_width)
+{
+	map_info->location->player_height = player_height;
+	map_info->location->player_width = player_width;
+	(map_info->map)[player_height][player_width] = 'P';
+	if ((map_info->map)[player_height + 1][player_width] == 'P')
+		(map_info->map)[player_height + 1][player_width] = '0';
+	else if ((map_info->map)[player_height - 1][player_width] == 'P')
+		(map_info->map)[player_height - 1][player_width] = '0';
+	else if ((map_info->map)[player_height][player_width + 1] == 'P')
+		(map_info->map)[player_height][player_width + 1] = '0';
+	else if ((map_info->map)[player_height][player_width - 1] == 'P')
+		(map_info->map)[player_height][player_width - 1] = '0';
+}
+
+static void	re_drow_window(t_map_info *map_info, int player_height,
+		int player_width)
+{
+	char	**map;
+
+	map = map_info->map;
+	if (map[player_height][player_width] == '1')
+		return ;
+	else if (map[player_height][player_width] == '0')
+		set_player_location(map_info, player_height, player_width);
+	else if (map[player_height][player_width] == 'C')
+	{
+		map[player_height][player_width] = '0';
+		map_info->characters->c_number--;
+		set_player_location(map_info, player_height, player_width);
+	}
+	else if (map[player_height][player_width] == 'E')
+	{
+		if (map_info->characters->c_number == 0)
+			exit(0);
+		else
+			return ;
+	}
+	fill_images_to_window(map_info, (map_info->images), (map_info->game));
+}
+
+int	on_key_press(int keycode, t_map_info *map_info)
 {
 	if (keycode == KEY_W)
-		location->player_height++;
-	else if (keycode == KEY_A)
-		location->player_width--;
+		re_drow_window(map_info, (map_info->location->player_height) - 1,
+			map_info->location->player_width);
 	else if (keycode == KEY_S)
-		location->player_height--;
+		re_drow_window(map_info, (map_info->location->player_height) + 1,
+			map_info->location->player_width);
+	else if (keycode == KEY_A)
+		re_drow_window(map_info, map_info->location->player_height,
+			(map_info->location->player_width) - 1);
 	else if (keycode == KEY_D)
-		location->player_width++;
+		re_drow_window(map_info, map_info->location->player_height,
+			(map_info->location->player_width) + 1);
 	else if (keycode == KEY_ESC)
 		exit(0);
-	printf("x: %d, y: %d\n", location->player_width, location->player_height);
 	return (0);
 }
