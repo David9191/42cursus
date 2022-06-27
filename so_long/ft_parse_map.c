@@ -6,7 +6,7 @@
 /*   By: jislim <jislim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/22 13:10:03 by taeheonk          #+#    #+#             */
-/*   Updated: 2022/06/27 14:15:23 by jislim           ###   ########.fr       */
+/*   Updated: 2022/06/27 15:57:52 by jislim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,7 +111,7 @@ void	parse_map(char *map_dir, t_map_info *map_info)
 	map_info->height = get_map_height(map_dir);
 	map_info->map = malloc(sizeof(char **) * ((map_info->height) + 1));
 	if (!(map_info->map))
-		error_exit(NULL_FD);
+		error_exit("malloc\n");
 	set_map(map_dir, map_info);
 	trim_new_line(map_info);
 	map_info->width = ft_strlen(*(map_info->map));

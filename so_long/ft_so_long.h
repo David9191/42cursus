@@ -6,7 +6,7 @@
 /*   By: jislim <jislim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/22 12:04:57 by jislim            #+#    #+#             */
-/*   Updated: 2022/06/27 14:15:29 by jislim           ###   ########.fr       */
+/*   Updated: 2022/06/27 15:48:23 by jislim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ typedef struct s_map
 	char			**map;
 	int				width;
 	int				height;
+	int				*move_cnt;
 	t_characters	*characters;
 	t_game			*game;
 	t_location		*location;

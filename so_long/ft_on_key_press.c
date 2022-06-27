@@ -6,7 +6,7 @@
 /*   By: jislim <jislim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/23 13:01:59 by jislim            #+#    #+#             */
-/*   Updated: 2022/06/27 14:56:13 by jislim           ###   ########.fr       */
+/*   Updated: 2022/06/27 16:00:15 by jislim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ static void	set_player_location(t_map_info *map_info, int player_height,
 		(map_info->map)[player_height][player_width + 1] = '0';
 	else if ((map_info->map)[player_height][player_width - 1] == 'P')
 		(map_info->map)[player_height][player_width - 1] = '0';
+	printf("%d\n", *(map_info->move_cnt));
+	(*(map_info->move_cnt))++;
 }
 
 static void	re_drow_window(t_map_info *map_info, int player_height,
