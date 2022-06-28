@@ -6,7 +6,7 @@
 #    By: jislim <jislim@student.42seoul.kr>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/22 11:58:44 by jislim            #+#    #+#              #
-#    Updated: 2022/06/24 13:55:49 by jislim           ###   ########.fr        #
+#    Updated: 2022/06/28 19:31:17 by jislim           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -50,8 +50,8 @@ re :
 
 debug :
 	$(CC) $(FLAGS) $(SRCS) -L./ -lmlx -framework OpenGL -framework Appkit $(LIBFT_FILE) -o ft_$(NAME) -g
-	
+
 leaks :
-	$(CC) $(FLAGS) $(SRCS) -L./ -lmlx -framework OpenGL -framework Appkit $(LIBFT_FILE) -o ft_$(NAME) -fsanitize=address
-	
+	$(CC) $(FLAGS) $(SRCS) -L./ -lmlx -framework OpenGL -framework Appkit $(LIBFT_FILE) -o ft_$(NAME) -g -fsanitize=address
+
 .PHONY : all clean fclean re bonus

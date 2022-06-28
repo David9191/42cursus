@@ -6,19 +6,19 @@ void	calculate(int *year, int *month, int *day);
 // 4 10 1 28 21 2 28 35 20 2 30 35 35 1 45 5
 int	main(void)
 {
-	int		year = 2022, month = 6, day = 17;
-	float	left_blackhole = 45;
+	int		year = 2022, month = 6, day = 28;
+	float	left_blackhole = 34;
 	char	*project[16 /* 과제 개수 */] = {
-		"pipex", "so_long",
-		"exam02", "minishell", "philosophers",
+		"so_long", "pipex",
+		"exam02", "philosophers", "minishell",
 		"exam03", "cpp-module", "cub3d",
 		"netpractice", "exam04", "inception",
 		"webserv", "ft_containers", "exam05",
 		"ft_transendence", "exam06"
 	};
 	float	blackhole[16 /* 과제 개수 */] = {
-		17.59, 12.97,
-		0, 31.99, 32.31, 0,
+		14.71, 15.24,
+		0, 38.31, 27.08, 0,
 		73.61, 35.30, 17.16, 0,
 		50.94, 88.12, 36.81, 0,
 		57.96, 0

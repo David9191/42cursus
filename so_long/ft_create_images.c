@@ -6,16 +6,12 @@
 /*   By: jislim <jislim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/23 13:35:01 by jislim            #+#    #+#             */
-/*   Updated: 2022/06/28 12:12:44 by jislim           ###   ########.fr       */
+/*   Updated: 2022/06/28 19:30:09 by jislim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_so_long.h"
 
-/*
-	mlx_xpm_file_to_image 함수에서 width, height로 넘겨준 포인터에 값을 저장해준다.
-	아마도 내부에서 parse_xpm 함수 호출할 때 xpm파일에서 값을 읽어오지 않나 싶다.
-*/
 static void	*convert_xpm_to_image(t_game *game, t_images *images, char *str)
 {
 	void	*image;
