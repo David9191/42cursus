@@ -6,7 +6,7 @@
 /*   By: jislim <jislim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/23 11:48:11 by jislim            #+#    #+#             */
-/*   Updated: 2022/06/25 23:57:50 by jislim           ###   ########.fr       */
+/*   Updated: 2022/06/28 12:16:38 by jislim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,6 @@ void	error_exit(char *str)
 
 int	mlx_destroy_notify(void)
 {
-	exit(1);
-	return (1);
+	exit(0);
+	return (0);
 }

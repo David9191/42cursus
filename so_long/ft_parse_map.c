@@ -6,13 +6,13 @@
 /*   By: jislim <jislim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/22 13:10:03 by taeheonk          #+#    #+#             */
-/*   Updated: 2022/06/27 15:57:52 by jislim           ###   ########.fr       */
+/*   Updated: 2022/06/28 11:55:56 by jislim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_so_long.h"
 
-static	int	get_map_height(char *map_dir)
+static void	set_map_height(t_map_info *map_info, char *map_dir)
 {
 	int		fd;
 	int		height;
@@ -20,100 +20,76 @@ static	int	get_map_height(char *map_dir)
 
 	fd = open(map_dir, O_RDONLY);
 	if (fd == -1)
-		error_exit("open");
+		error_exit("fail open");
 	height = 0;
 	while (1)
 	{
 		line = get_next_line(fd);
 		if (line == NULL_FD)
 			break ;
+		free (line);
 		height++;
 	}
 	close(fd);
-	return (height);
+	map_info->height = height;
+	map_info->map = malloc(sizeof(char **) * ((map_info->height) + 1));
+	if (!(map_info->map))
+		error_exit("malloc\n");
 }
 
-static	void	set_map(char *map_dir, t_map_info *map_info)
+static void	set_map(char *map_dir, t_map_info *map_info)
 {
 	int		fd;
-	char	*line;
+	int		idx;
 	char	**map;
 
 	fd = open(map_dir, O_RDONLY);
 	if (fd == -1)
-		error_exit("open");
+		error_exit("fail open");
 	map = map_info->map;
+	idx = 0;
 	while (1)
 	{
-		line = get_next_line(fd);
-		if (line == NULL_FD)
+		map[idx] = get_next_line(fd);
+		if (map[idx] == NULL_FD)
 			break ;
-		*(map) = line;
-		map++;
+		if (map[idx][ft_strlen(map[idx]) - 1] == '\n')
+			map[idx][ft_strlen(map[idx]) - 1] = '\0';
+		idx++;
 	}
 	map_info->map[map_info->height] = NULL;
+	map_info->width = ft_strlen(map_info->map[0]);
 }
 
-static	void	set_characters(t_map_info *map_info)
+static void	set_characters(t_map_info *map_info, int height, int width)
 {
-	int		idx;
-	int		k;
 	char	**map;
-	int		height;
 
 	map = (map_info->map);
-	height = (map_info->height);
-	idx = 0;
-	while (idx < height)
+	while (height < (map_info->height))
 	{
-		k = 0;
-		while (map[idx][k] != '\0')
+		width = 0;
+		while (map[height][width] != '\0')
 		{
-			if (map[idx][k] == 'C')
+			if (map[height][width] == 'C')
 				(map_info->characters->c_number)++;
-			else if (map[idx][k] == 'P')
+			else if (map[height][width] == 'P')
 			{
 				(map_info->characters->p_number)++;
-				map_info->location->player_height = idx;
-				map_info->location->player_width = k;
+				map_info->location->player_height = height;
+				map_info->location->player_width = width;
 			}
-			else if (map[idx][k] == 'E')
+			else if (map[height][width] == 'E')
 				(map_info->characters->e_number)++;
-			k++;
+			width++;
 		}
-		idx++;
-	}
-}
-
-static	void	trim_new_line(t_map_info *map_info)
-{
-	char	**map;
-	int		idx;
-	int		k;
-
-	map = map_info->map;
-	idx = 0;
-	while (map[idx])
-	{
-		k = 0;
-		while (map[idx][k])
-		{
-			if (map[idx][k] == '\n')
-				map[idx][k] = '\0';
-			k++;
-		}
-		idx++;
+		height++;
 	}
 }
 
 void	parse_map(char *map_dir, t_map_info *map_info)
 {
-	map_info->height = get_map_height(map_dir);
-	map_info->map = malloc(sizeof(char **) * ((map_info->height) + 1));
-	if (!(map_info->map))
-		error_exit("malloc\n");
+	set_map_height(map_info, map_dir);
 	set_map(map_dir, map_info);
-	trim_new_line(map_info);
-	map_info->width = ft_strlen(*(map_info->map));
-	set_characters(map_info);
+	set_characters(map_info, 0, 0);
 }

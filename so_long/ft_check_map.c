@@ -6,13 +6,13 @@
 /*   By: jislim <jislim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/22 15:03:10 by taeheonk          #+#    #+#             */
-/*   Updated: 2022/06/27 13:30:53 by jislim           ###   ########.fr       */
+/*   Updated: 2022/06/28 11:56:47 by jislim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_so_long.h"
 
-static	void	check_rect(t_map_info *map_info)
+static void	check_rectangle(t_map_info *map_info)
 {
 	int	len;
 	int	idx;
@@ -22,55 +22,52 @@ static	void	check_rect(t_map_info *map_info)
 	{
 		len = ft_strlen(map_info->map[idx]);
 		if (len != map_info->width)
-			error_exit(NULL_FD);
+			error_exit("is not rectangle");
 		idx++;
 	}
 }
 
-static	void	check_wall(t_map_info *map_info)
+static void	check_wall(t_map_info *map_info)
 {
-	int		idx;
+	int		height;
+	int		width;
 	char	**map;
-	char	*line;
 
-	idx = 0;
+	height = 0;
 	map = map_info->map;
-	while (idx < map_info->height)
+	while (height < map_info->height)
 	{
-		line = *map;
-		if (idx == 0 || idx == (map_info->height - 1))
+		if (height == 0 || height == (map_info->height - 1))
 		{
-			while (*line != '\0')
+			width = 0;
+			while (map[height][width] != '\0')
 			{
-				if (*line != '1')
-					error_exit(NULL_FD);
-				line++;
+				if (map[height][width] != '1')
+					error_exit("inappropriate wall");
+				width++;
 			}
 		}
 		else
-			if (line[0] != '1' || line[map_info->width - 1] != '1')
-				error_exit(NULL_FD);
-		map++;
-		idx++;
+			if (map[height][0] != '1' \
+				|| map[height][map_info->width - 1] != '1')
+				error_exit("inappropriate wall");
+		height++;
 	}
 }
 
-static	void	check_least(t_characters *characters)
+static void	check_least(t_characters *characters)
 {
-	int	c_number;
-	int	p_number;
-	int	e_number;
-
-	c_number = characters->c_number;
-	p_number = characters->p_number;
-	e_number = characters->e_number;
-	if (c_number < 1 || p_number != 1 || e_number < 1)
-		error_exit(NULL_FD);
+	if (characters->c_number < 1)
+		error_exit("inappropriate item");
+	if (characters->p_number != 1)
+		error_exit("inappropriate player");
+	if (characters->e_number < 1)
+		error_exit("inappropriate exit");
 }
 
 void	check_map(t_map_info *map_info)
 {
-	check_rect(map_info);
+	check_rectangle(map_info);
 	check_wall(map_info);
 	check_least(map_info->characters);
 }
