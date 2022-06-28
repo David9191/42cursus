@@ -6,7 +6,7 @@
 /*   By: jislim <jislim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/22 15:03:10 by taeheonk          #+#    #+#             */
-/*   Updated: 2022/06/28 11:56:47 by jislim           ###   ########.fr       */
+/*   Updated: 2022/06/28 19:47:46 by jislim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,9 +65,35 @@ static void	check_least(t_characters *characters)
 		error_exit("inappropriate exit");
 }
 
+static void	check_invalid_value(t_map_info *map_info)
+{
+	int		height;
+	int		width;
+	char	**map;
+
+	height = 0;
+	map = map_info->map;
+	while (height < map_info->height)
+	{
+		width = 0;
+		while (map[height][width] != '\0')
+		{
+			if (map[height][width] != '1'
+				&& map[height][width] != '0'
+				&& map[height][width] != 'C'
+				&& map[height][width] != 'E'
+				&& map[height][width] != 'P')
+				error_exit("invalid value");
+			width++;
+		}
+		height++;
+	}
+}
+
 void	check_map(t_map_info *map_info)
 {
 	check_rectangle(map_info);
 	check_wall(map_info);
 	check_least(map_info->characters);
+	check_invalid_value(map_info);
 }

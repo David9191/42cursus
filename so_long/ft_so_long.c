@@ -6,7 +6,7 @@
 /*   By: jislim <jislim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/22 12:05:00 by jislim            #+#    #+#             */
-/*   Updated: 2022/06/28 19:33:40 by jislim           ###   ########.fr       */
+/*   Updated: 2022/06/28 19:43:33 by jislim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,5 +34,5 @@ int	main(int argc, char **argv)
 			&mlx_destroy_notify, NULL_FD);
 		mlx_loop(map_info->game->mlx_ptr);
 	}
-	error_exit(NULL_FD);
+	error_exit("inappropriate argv");
 }
