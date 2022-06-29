@@ -6,7 +6,7 @@
 /*   By: jislim <jislim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/23 11:48:11 by jislim            #+#    #+#             */
-/*   Updated: 2022/06/28 12:16:38 by jislim           ###   ########.fr       */
+/*   Updated: 2022/06/29 20:26:31 by jislim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,4 +24,17 @@ int	mlx_destroy_notify(void)
 {
 	exit(0);
 	return (0);
+}
+
+char	*check_argv(char *argv)
+{
+	char	**str;
+
+	str = ft_split(argv, '.');
+	if (!str || !str[1] || str[2] \
+		|| ft_strncmp(str[1], "ber", ft_strlen(str[1])))
+		error_exit("invalid file extension");
+	else
+		ft_double_free(str);
+	return (argv);
 }

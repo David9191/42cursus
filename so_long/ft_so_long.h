@@ -6,7 +6,7 @@
 /*   By: jislim <jislim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/22 12:04:57 by jislim            #+#    #+#             */
-/*   Updated: 2022/06/28 12:16:30 by jislim           ###   ########.fr       */
+/*   Updated: 2022/06/29 15:44:39 by jislim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,8 +73,9 @@ void		parse_map(char *map_dir, t_map_info *map_info);
 void		check_map(t_map_info *map_info);
 t_map_info	*init_map(void);
 
+char		*check_argv(char *argv);
+
 # define X_EVENT_KEY_PRESS			2
-# define X_EVENT_KEY_RELEASE		3
 
 # define KEY_ESC					53
 # define KEY_W						13

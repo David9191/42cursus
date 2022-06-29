@@ -6,7 +6,7 @@
 /*   By: jislim <jislim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/22 12:05:00 by jislim            #+#    #+#             */
-/*   Updated: 2022/06/28 19:43:33 by jislim           ###   ########.fr       */
+/*   Updated: 2022/06/29 20:35:31 by jislim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@ int	main(int argc, char **argv)
 	t_map_info	*map_info;
 	char		*map_dir;
 
-	if (argc == 2)
+	if (argc == 2 && ft_strlen(argv[1]) != 0)
 	{
-		map_dir = argv[1];
+		map_dir = check_argv(argv[1]);
 		map_info = init_map();
 		parse_map(map_dir, map_info);
 		check_map(map_info);
