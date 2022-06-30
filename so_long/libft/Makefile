@@ -6,7 +6,7 @@
 #    By: jislim <jislim@student.42seoul.kr>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/30 15:26:40 by jislim            #+#    #+#              #
-#    Updated: 2022/06/24 13:52:45 by jislim           ###   ########.fr        #
+#    Updated: 2022/07/01 13:39:06 by jislim           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME = libft.a
 AR = ar
 ARFLAGS = -rcs
 CC = cc
-CFLAGS = -Wall -Wextra -Werror -I.
+CCFLAG = -Wall -Wextra -Werror
 RM = rm -rf
 
 SRCS =	ft_isalpha.c ft_isdigit.c ft_isalnum.c ft_isascii.c \
@@ -42,7 +42,7 @@ $(NAME) : $(OBJS)
 	$(AR) $(ARFLAGS) $@ $^
 
 %.o : %.c
-	$(CC) $(CFLAG) -c $< -o $@
+	$(CC) $(CCFLAG) -c $< -o $@
 
 clean :
 	$(RM) $(OBJS) $(BONUS_OBJS) *.gch

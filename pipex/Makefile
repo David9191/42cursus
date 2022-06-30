@@ -6,7 +6,7 @@
 #    By: jislim <jislim@student.42seoul.kr>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/07 10:12:10 by jislim            #+#    #+#              #
-#    Updated: 2022/06/20 09:50:44 by jislim           ###   ########.fr        #
+#    Updated: 2022/06/30 17:44:19 by jislim           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,6 +43,6 @@ re :
 	make all
 
 debug :
-	$(CC) $(FLAGS) $(SRCS) -o pipex $(LIBFT_DIR)*.c -g3
+	$(CC) $(FLAGS) $(SRCS) -o pipex $(LIBFT_FILE) -g3
 
 .PHONY : all clean fclean re bonus
