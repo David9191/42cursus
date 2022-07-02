@@ -6,7 +6,7 @@
 /*   By: jislim <jislim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/22 12:05:00 by jislim            #+#    #+#             */
-/*   Updated: 2022/07/01 13:53:11 by jislim           ###   ########.fr       */
+/*   Updated: 2022/07/02 23:58:01 by jislim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ int	main(int argc, char **argv)
 
 	if (argc == 2 && ft_strlen(argv[1]) != 0)
 	{
+		printf("%p\n", argv[1]);
 		map_dir = check_argv(argv[1]);
 		map_info = init_map();
 		parse_map(map_dir, map_info);
