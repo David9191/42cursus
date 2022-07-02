@@ -6,7 +6,7 @@
 /*   By: jislim <jislim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/22 13:10:03 by taeheonk          #+#    #+#             */
-/*   Updated: 2022/06/28 19:44:59 by jislim           ###   ########.fr       */
+/*   Updated: 2022/07/03 00:09:10 by jislim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,8 @@ static void	set_map(char *map_dir, t_map_info *map_info)
 			map[idx][ft_strlen(map[idx]) - 1] = '\0';
 		idx++;
 	}
+	if (!map_info->map[idx])
+		error_exit("empty map");
 	map_info->map[map_info->height] = NULL;
 	map_info->width = ft_strlen(map_info->map[0]);
 }
