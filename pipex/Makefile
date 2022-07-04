@@ -6,7 +6,7 @@
 #    By: jislim <jislim@student.42seoul.kr>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/07 10:12:10 by jislim            #+#    #+#              #
-#    Updated: 2022/06/30 17:44:19 by jislim           ###   ########.fr        #
+#    Updated: 2022/07/04 14:34:22 by jislim           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME = pipex
 AR = ar
 ARFLAGS = -rcs
 CC = cc
-FLAGS = -Wall -Wextra -Werror
+CCFLAG = -Wall -Wextra -Werror
 RM = rm -rf
 
 LIBFT_DIR	= ./libft/
@@ -28,7 +28,7 @@ all : $(NAME)
 
 $(NAME): $(OBJS)
 	make -C $(LIBFT_DIR)
-	$(CC) $(FLAGS) -o $(NAME) $(OBJS) $(LIBFT_FLAGS)
+	$(CC) $(CCFLAG) -o $(NAME) $(OBJS) $(LIBFT_FLAGS)
 
 clean :
 	make -C $(LIBFT_DIR) clean
@@ -43,6 +43,6 @@ re :
 	make all
 
 debug :
-	$(CC) $(FLAGS) $(SRCS) -o pipex $(LIBFT_FILE) -g3
+	$(CC) $(CCFLAGS) $(SRCS) -o pipex $(LIBFT_FILE) -g3
 
 .PHONY : all clean fclean re bonus
