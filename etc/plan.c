@@ -3,34 +3,35 @@
 int		inputPlayDay(char **project, int *project_play_day);
 void	displayall(char	**project, float *blackhole, int *projects_play_day, int *year, int *month, int *day, float *left_blackhole);
 void	calculate(int *year, int *month, int *day);
-// 4 10 1 28 21 2 28 35 20 2 30 35 35 1 45 5
+// 1 28 21 2 28 35 20 2 30 35 35 1 45 5
+
+int	cnt = 14;
+
 int	main(void)
 {
-	int		year = 2022, month = 6, day = 28;
-	float	left_blackhole = 34;
-	char	*project[16 /* 과제 개수 */] = {
-		"so_long", "pipex",
+	int		year = 2022, month = 7, day = 06;
+	float	left_blackhole = 56;
+	char	*project[14 /* 과제 개수 */] = {
 		"exam02", "philosophers", "minishell",
 		"exam03", "cpp-module", "cub3d",
 		"netpractice", "exam04", "inception",
 		"webserv", "ft_containers", "exam05",
 		"ft_transendence", "exam06"
 	};
-	float	blackhole[16 /* 과제 개수 */] = {
-		14.71, 15.24,
+	float	blackhole[14 /* 과제 개수 */] = {
 		0, 38.31, 27.08, 0,
 		73.61, 35.30, 17.16, 0,
 		50.94, 88.12, 36.81, 0,
 		57.96, 0
 	};
-	int		projects_play_day[16 /* 과제 개수 */];
+	int		projects_play_day[cnt /* 과제 개수 */];
 	inputPlayDay(project, projects_play_day);
 	displayall(project, blackhole, projects_play_day, &year, &month, &day, &left_blackhole);
 }
 
 int	inputPlayDay(char **project, int *project_play_day)
 {
-	for (int i = 0; i < 16 /* 과제 개수 */; i++)
+	for (int i = 0; i < cnt /* 과제 개수 */; i++)
 	{
 		printf("%s 과제 소요일 : ", project[i]);
 		scanf("%d", &project_play_day[i]);
@@ -42,7 +43,7 @@ int	inputPlayDay(char **project, int *project_play_day)
 void	displayall(char	**project, float *blackhole, int *projects_play_day, int *year, int *month, int *day, float *left_blackhole)
 {
 	printf("%15s  |  %13s  |  %10s  |  %10s  |  %10s  |  %s  |\n", "과제명", "과제 시작일", "과제 소요일", "블랙홀 플러스", "과제 마침 날짜", "남은 블랙홀");
-	for (int i = 0; i < 16 /* 과제 개수 */; i++)
+	for (int i = 0; i < cnt /* 과제 개수 */; i++)
 	{
 		printf("%13s\t  %d.%d.%d\t   %4d\t\t     %.2f\t    ", project[i], *year, *month, *day, projects_play_day[i], blackhole[i]);
 		*day += projects_play_day[i];
