@@ -6,7 +6,7 @@
 /*   By: jislim <jislim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 17:29:55 by jislim            #+#    #+#             */
-/*   Updated: 2022/06/27 09:03:32 by jislim           ###   ########.fr       */
+/*   Updated: 2022/07/06 13:15:37 by jislim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,15 @@ static char	**make_paths_added_slash(char **paths)
 	if (!paths)
 		error_exit("ERROR_MAKE_PATHS_SLASH", !IS_PERROR);
 	new_paths = malloc(sizeof(char *) * (ft_doublep_len(paths) + 1));
+	if (!new_paths)
+		error_exit("malloc", !IS_PERROR);
 	while (paths[idx])
 	{
 		new_paths[idx] = ft_strjoin(paths[idx], "/");
 		idx++;
 	}
-	new_paths[idx] = NULL;
-	free_double_pointer(paths);
+	new_paths[idx] = NULL_P;
+	ft_double_free(paths);
 	return (new_paths);
 }
 
@@ -50,7 +52,7 @@ static char	**make_paths(char **envp)
 		idx++;
 	}
 	error_exit("ERROR_PATHS", !IS_PERROR);
-	return (NULL);
+	return (NULL_P);
 }
 
 static int	check_cmd_accessible(char *cmd)
@@ -85,8 +87,8 @@ void	excute_cmd(char *argv, char **envp)
 			free(check_cmd);
 			idx++;
 		}
-		free_double_pointer(cmd);
-		free_double_pointer(paths);
+		ft_double_free(cmd);
+		ft_double_free(paths);
 		error_exit("command not found", IS_PERROR);
 	}
 	error_exit("ERROR_EXCUTE_CMD", !IS_PERROR);

@@ -6,7 +6,7 @@
 #    By: jislim <jislim@student.42seoul.kr>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/07 10:12:10 by jislim            #+#    #+#              #
-#    Updated: 2022/07/04 14:34:22 by jislim           ###   ########.fr        #
+#    Updated: 2022/07/06 09:52:51 by jislim           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME = pipex
 AR = ar
 ARFLAGS = -rcs
 CC = cc
-CCFLAG = -Wall -Wextra -Werror
+CCFLAGS = -Wall -Wextra -Werror
 RM = rm -rf
 
 LIBFT_DIR	= ./libft/
@@ -24,11 +24,14 @@ LIBFT_FILE	= $(LIBFT_DIR)libft.a
 SRCS =  pipex.c pipex_utils.c pipex_error.c
 OBJS = $(SRCS:.c=.o)
 
+%.o : %.c
+	$(CC) $(CCFLAGS) -c $< -o $@
+
 all : $(NAME)
 
 $(NAME): $(OBJS)
 	make -C $(LIBFT_DIR)
-	$(CC) $(CCFLAG) -o $(NAME) $(OBJS) $(LIBFT_FLAGS)
+	$(CC) $(CCFLAGS) -o $(NAME) $(OBJS) $(LIBFT_FLAGS)
 
 clean :
 	make -C $(LIBFT_DIR) clean

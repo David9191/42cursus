@@ -6,7 +6,7 @@
 /*   By: jislim <jislim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 17:24:07 by jislim            #+#    #+#             */
-/*   Updated: 2022/07/04 14:52:54 by jislim           ###   ########.fr       */
+/*   Updated: 2022/07/06 09:58:34 by jislim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,11 @@ static void	child_process(int *pipe_fd, char **argv, char **envp)
 
 	if (pipe_fd && argv && envp)
 	{
-		if (access(argv[1], F_OK | R_OK) == -1)
-			error_exit("access", IS_PERROR);
 		infile_fd = open(argv[1], O_RDONLY);
 		if (infile_fd == -1)
 			error_exit("open", IS_PERROR);
+		if (access(argv[1], F_OK | R_OK) == -1)
+			error_exit("access", IS_PERROR);
 		if (dup2(infile_fd, STDIN_FD) == -1 || \
 			dup2(pipe_fd[WRITE_FD], STDOUT_FD) == -1)
 			error_exit("dup2", IS_PERROR);

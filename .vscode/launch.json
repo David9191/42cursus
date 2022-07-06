@@ -10,11 +10,11 @@
 			"name": "Debug",
 			"console": "externalTerminal",
 			"program": "${fileDirname}/${fileBasenameNoExtension}",
-			"args": ["", "", "", ""],
+			// "args": ["", "", "", ""],
 			// "args": ["./so_long_check_map/test_map.ber"],
 			// "args": ["/dev/urandom", "cat", "head -1", "outfile.txt"],
 			// "args": ["/dev/urandom", "cat", "head -1", "outfile.txt"],
-			// "args": ["pipex.c", "grep error_exit", "wc -l", "outfile"],
+			"args": ["pipex.c", "grep error_exit", "wc -l", "outfile"],
 			"cwd": "${fileDirname}"
 		}
 	]
