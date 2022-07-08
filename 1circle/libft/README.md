@@ -1,2 +1,0 @@
-# libft
-# projects in piscine

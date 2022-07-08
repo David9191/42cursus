@@ -1,9 +1,0 @@
-#!/bin/bash
-test*.*
-a.out
-*.swp
-*.o
-#*.txt
-main.c
-main*.*
-*.sh
