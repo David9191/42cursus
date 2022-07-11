@@ -6,15 +6,15 @@
 #    By: jislim <jislim@student.42seoul.kr>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/30 15:26:40 by jislim            #+#    #+#              #
-#    Updated: 2021/12/08 17:43:43 by jislim           ###   ########.fr        #
+#    Updated: 2022/07/11 18:12:05 by jislim           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = libft.a
 AR = ar
 ARFLAGS = -rcs
-CC = gcc
-CFLAGS = -Wall -Wextra -Werror -I.
+CC = cc
+CCFLAGS = -Wall -Wextra -Werror -I.
 RM = rm -f
 
 SRCS =	ft_isalpha.c ft_isdigit.c ft_isalnum.c ft_isascii.c \
@@ -30,9 +30,15 @@ BONUS = ft_lstnew.c ft_lstadd_front.c ft_lstsize.c ft_lstlast.c \
 		ft_lstadd_back.c ft_lstdelone.c ft_lstclear.c ft_lstiter.c ft_lstmap.c
 BONUS_OBJS = $(BONUS:.c=.o)
 
+ifdef WITH_BONUS
+	OBJ_FILES = $(OBJS) $(BONUS_OBJS)
+else
+	OBJ_FILES = $(OBJS)
+endif
+
 all : $(NAME)
 
-$(NAME) : $(OBJS)
+$(NAME) : $(OBJ_FILES)
 	$(AR) $(ARFLAGS) $@ $^
 
 %.o : %.c
@@ -46,7 +52,7 @@ fclean : clean
 
 re : fclean $(NAME)
 
-bonus : $(BONUS_OBJS)
-	$(AR) $(ARFLAGS) $(NAME) $^
+bonus : $(OBJ_FILES)
+	@make WITH_BONUS=1 all
 
 .PHONY : all clean fclean re bonus
