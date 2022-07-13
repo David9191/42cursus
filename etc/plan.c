@@ -3,14 +3,14 @@
 int		inputPlayDay(char **project, int *project_play_day);
 void	displayall(char	**project, float *blackhole, int *projects_play_day, int *year, int *month, int *day, float *left_blackhole);
 void	calculate(int *year, int *month, int *day);
-// 1 28 21 2 28 35 15 2 30 35 35 1 45 5
+// 1 14 21 2 28 35 15 2 30 35 35 1 45 5
 
 int	cnt = 14;
 
 int	main(void)
 {
-	int		year = 2022, month = 7, day = 10;
-	float	left_blackhole = 52;
+	int		year = 2022, month = 7, day = 13;
+	float	left_blackhole = 49;
 	char	*project[14 /* 과제 개수 */] = {
 		"exam02", "minishell", "philosophers",
 		"exam03", "cpp-module", "cub3d",
