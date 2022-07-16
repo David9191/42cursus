@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: seuhan <seuhan@student.42seoul.kr>         +#+  +:+       +#+        */
+/*   By: jislim <jislim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/23 09:50:22 by seuhan            #+#    #+#             */
-/*   Updated: 2022/07/13 23:29:59 by seuhan           ###   ########.fr       */
+/*   Updated: 2022/07/14 22:36:00 by jislim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ typedef struct s_lst_redir
 	char				*file;
 	int					append;
 	struct s_lst_redir	*next;
-}t_lst_redir;
+}	t_lst_redir;
 
 typedef struct s_lst_cmd
 {
@@ -54,7 +54,7 @@ typedef struct s_lst_cmd
 	int					fd_out;
 	struct s_lst_cmd	*next;
 	struct s_lst_cmd	*prev;
-}t_lst_cmd;
+}	t_lst_cmd;
 
 typedef struct s_minishell
 {
@@ -68,7 +68,8 @@ typedef struct s_minishell
 	char				*line;
 	int					error;
 	int					shell_lvl;
-}t_minishell;
+}	t_minishell;
+
 /************************LINKED_LISTS****************************/
 
 t_lst_redir	*ft_create_tab(char *file);
@@ -92,13 +93,13 @@ typedef struct s_var
 	int			j;
 	int			tab_size;
 	char		*temp;
-}t_var;
+}	t_var;
 
 typedef struct s_ki
 {
 	int	k;
 	int	i;
-}t_ki;
+}	t_ki;
 
 t_lst_cmd	*ft_parse_args(char *line, char **env);
 char		*ft_add_char(char *s1, char c);
