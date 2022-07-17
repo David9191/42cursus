@@ -9,8 +9,8 @@ int	cnt = 14;
 
 int	main(void)
 {
-	int		year = 2022, month = 7, day = 13;
-	float	left_blackhole = 49;
+	int		year = 2022, month = 7, day = 18;
+	float	left_blackhole = 44;
 	char	*project[14 /* 과제 개수 */] = {
 		"exam02", "minishell", "philosophers",
 		"exam03", "cpp-module", "cub3d",
