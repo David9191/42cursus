@@ -3,16 +3,16 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: seuhan <seuhan@student.42seoul.kr>         +#+  +:+       +#+         #
+#    By: jislim <jislim@student.42seoul.kr>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/03 15:10:13 by seuhan            #+#    #+#              #
-#    Updated: 2022/07/12 00:23:00 by seuhan           ###   ########.fr        #
+#    Updated: 2022/07/19 13:12:15 by jislim           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = libft.a
 
-CC = gcc -Wall -Wextra -Werror
+CC = cc -Wall -Wextra -Werror
 
 SRCS = ft_atoi.c \
 		ft_bzero.c \

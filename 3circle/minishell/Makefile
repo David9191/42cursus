@@ -3,14 +3,14 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: seuhan <seuhan@student.42seoul.kr>         +#+  +:+       +#+         #
+#    By: jislim <jislim@student.42seoul.kr>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/23 14:11:10 by seuhan            #+#    #+#              #
-#    Updated: 2022/07/14 03:32:46 by seuhan           ###   ########.fr        #
+#    Updated: 2022/07/19 16:10:02 by jislim           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-CC = gcc 
+CC = cc 
 
 CC_FLAGS = -Wall -Werror -Wextra
 
@@ -57,13 +57,13 @@ OBJS := $(SRCS:.c=.o)
 
 all : libft $(NAME)
 
-$(NAME):		$(addprefix objs/, $(OBJS)) Makefile
-				$(CC) $(CC_FLAGS) -o $(NAME) $(addprefix objs/, $(OBJS)) libft/libft.a $(READLINE_LIB_DIR_FLAG) -lreadline
-#				$(CC) -o $(NAME) $(addprefix objs/, $(OBJS)) libft/libft.a  -lreadline $(READLINE_LIB_DIR_FLAG) $(READLINE_INC_DIR_FLAG) -fsanitize=address -g3
+$(NAME):	$(addprefix objs/, $(OBJS)) Makefile
+			$(CC) $(CC_FLAGS) -o $(NAME) $(addprefix objs/, $(OBJS)) libft/libft.a $(READLINE_LIB_DIR_FLAG) -lreadline
+#			$(CC) -o $(NAME) $(addprefix objs/, $(OBJS)) libft/libft.a  -lreadline $(READLINE_LIB_DIR_FLAG) $(READLINE_INC_DIR_FLAG) -fsanitize=address -g3
 
-objs/%.o:		srcs/%.c includes/minishell.h libft/libft.a libft/libft.h Makefile
-					@mkdir -p objs
-					$(CC) $(CC_FLAGS) -c $< -o $@ $(READLINE_INC_DIR_FLAG)
+objs/%.o:	srcs/%.c includes/minishell.h libft/libft.a libft/libft.h Makefile
+			@mkdir -p objs
+			$(CC) $(CC_FLAGS) -c $< -o $@ $(READLINE_INC_DIR_FLAG)
 
 libft :	
 		$(MAKE) -C libft
