@@ -6,7 +6,7 @@
 /*   By: jislim <jislim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/23 09:50:46 by seuhan            #+#    #+#             */
-/*   Updated: 2022/07/14 16:03:02 by jislim           ###   ########.fr       */
+/*   Updated: 2022/07/26 10:51:01 by jislim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,7 @@ int	main(int argc, char **argv, char **env)
 	while (env[++i])
 		data.new_env[i] = ft_gc_strdup(env[i]);
 	i = find_in_env(&data, "SHLVL");
-	data.new_env = replace_exist_line_2(&data,
-			data.new_env[i], data.new_env);
+	data.new_env = replace_exist_line_2(&data, data.new_env[i], data.new_env);
 	prompt(&lst_cmd, &data);
 	return (0);
 }

@@ -12,7 +12,4 @@ chmod -R go-w "$(brew --prefix)/share/zsh"
 
 export PATH=$HOME/goinfre/homebrew/bin:$PATH
 
-cd ~/goinfre
-
-brew install readline
-brew info readline
+cd ~/goinfre/homebrew && brew install readline && brew info readline
