@@ -9,17 +9,17 @@ int	cnt = 14;
 
 int	main(void)
 {
-	int		year = 2022, month = 7, day = 26;
-	float	left_blackhole = 36;
+	int		year = 2022, month = 8, day = 2;
+	float	left_blackhole = 29;
 	char	*project[14 /* 과제 개수 */] = {
-		"exam02", "minishell", "philosophers",
+		"exam02", "philosophers", "minishell",
 		"exam03", "cpp-module", "cub3d",
 		"netpractice", "exam04", "inception",
 		"webserv", "ft_containers", "exam05",
 		"ft_transendence", "exam06"
 	};
 	float	blackhole[14 /* 과제 개수 */] = {
-		0, 32.48, 32.67, 0,
+		0, 65.17, 0, 0,
 		73.61, 35.30, 17.16, 0,
 		50.94, 88.12, 36.81, 0,
 		57.96, 0
