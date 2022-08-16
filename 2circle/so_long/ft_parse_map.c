@@ -6,17 +6,17 @@
 /*   By: jislim <jislim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/22 13:10:03 by taeheonk          #+#    #+#             */
-/*   Updated: 2022/07/03 00:09:10 by jislim           ###   ########.fr       */
+/*   Updated: 2022/08/19 17:36:04 by jislim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_so_long.h"
 
-static void	set_map_height(t_map_info *map_info, char *map_dir)
+static void set_map_height(t_map_info *map_info, char *map_dir)
 {
-	int		fd;
-	int		height;
-	char	*line;
+	int fd;
+	int height;
+	char *line;
 
 	fd = open(map_dir, O_RDONLY);
 	if (fd == -1)
@@ -26,8 +26,8 @@ static void	set_map_height(t_map_info *map_info, char *map_dir)
 	{
 		line = get_next_line(fd);
 		if (line == NULL_FD)
-			break ;
-		free (line);
+			break;
+		free(line);
 		height++;
 	}
 	close(fd);
@@ -37,11 +37,11 @@ static void	set_map_height(t_map_info *map_info, char *map_dir)
 		error_exit("malloc\n");
 }
 
-static void	set_map(char *map_dir, t_map_info *map_info)
+static void set_map(char *map_dir, t_map_info *map_info)
 {
-	int		fd;
-	int		idx;
-	char	**map;
+	int fd;
+	int idx;
+	char **map;
 
 	fd = open(map_dir, O_RDONLY);
 	if (fd == -1)
@@ -52,20 +52,20 @@ static void	set_map(char *map_dir, t_map_info *map_info)
 	{
 		map[idx] = get_next_line(fd);
 		if (map[idx] == NULL_FD)
-			break ;
+			break;
 		if (map[idx][ft_strlen(map[idx]) - 1] == '\n')
 			map[idx][ft_strlen(map[idx]) - 1] = '\0';
 		idx++;
 	}
-	if (!map_info->map[idx])
-		error_exit("empty map");
+	//	if (!map_info->map[idx])
+	//	error_exit("empty map");
 	map_info->map[map_info->height] = NULL;
 	map_info->width = ft_strlen(map_info->map[0]);
 }
 
-static void	set_characters(t_map_info *map_info, int height, int width)
+static void set_characters(t_map_info *map_info, int height, int width)
 {
-	char	**map;
+	char **map;
 
 	map = (map_info->map);
 	while (height < (map_info->height))
@@ -89,7 +89,7 @@ static void	set_characters(t_map_info *map_info, int height, int width)
 	}
 }
 
-void	parse_map(char *map_dir, t_map_info *map_info)
+void parse_map(char *map_dir, t_map_info *map_info)
 {
 	set_map_height(map_info, map_dir);
 	set_map(map_dir, map_info);
